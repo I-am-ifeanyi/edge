@@ -1,4 +1,8 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import 'animate.css';
+import { LogoHeader, CONSTANTS, backgroundStyle, fetchLocalUserData } from '../components';
+
 
 import { useDispatch } from 'react-redux'
 import { setUserEmail, setUserPassword } from '../redux/features/userData'
@@ -8,138 +12,161 @@ import { DevTool } from '@hookform/devtools'
 import { Button } from '../components'
 import { PasswordStrengthBar } from '../components'
 
-import { AiFillCaretDown, AiOutlineEye } from "react-icons/ai"
+import { AiFillCaretDown, AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 
-import Logo from "../assets/Logo.png"
-import background from "../assets/Shape.png"
 import avatar from "../assets/email-avatar.png"
 
 
 const Login = () => {
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const { userData } = useSelector((store) => store.userInfo)
     const form = useForm()
     const { register, control, handleSubmit, formState, reset } = form
     const { errors, isSubmitSuccessful, isSubmitting, isSubmitted } = formState
     const [password, setPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
+    const [isPasswordMatch, setIsPasswordMatch] = useState(false)
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false)
+    const [isNext, setIsNext] = useState(false)
+    const [userInfo, setUserInfo] = useState('')
 
-    const style = {
-        backgroundImage: `url('${background}')`,
-        backgroundSize: 'contain',
-        backgroundRepeat: 'no-repeat',
+    const { EMAIL_PLACEHOLDER, PASSWORD_PLACEHOLDER, CONFIRM_PASSWORD_PLACEHOLDER, SIGN_IN_BUTTON_TEXT, locallyStoreUserData } = CONSTANTS
 
 
+
+    const togglePasswordVisibility = () => {
+        setIsPasswordVisible(prev => !prev)
     }
 
-    const onSubmit = (data) => {
+    const onEmailSubmit = (data) => {
         dispatch(setUserEmail(data.email))
-        console.log(data)
-        console.log(userData.email)
+        setIsNext(true)
 
+    }
+    const onPasswordSubmit = (data) => {
+        dispatch(setUserPassword(data.password))
+        locallyStoreUserData("userInfo", userData)
+        navigate('home-page')
     }
     const email = userData?.email
     const passwordChange = (e) => {
         setPassword(e.target.value)
 
     }
-    console.log(password)
+
+    const checkPasswordMatch = (e) => {
+        const confirmPassword = e.target.value;
+        setConfirmPassword(confirmPassword)
+        if (confirmPassword === password) {
+            setIsPasswordMatch(true)
+        } else return
+    }
+    
+
+
+    fetchLocalUserData("userInfo", setUserInfo)
+    console.log(userData)
+
+    // console.log(userInfo)
     return (
-        <div className='bg-[#E5E5E5] w-full h-screen overflow-hidden' style={style}>
+        <div className='h-screen overflow-hidden' style={backgroundStyle}>
             <div className='w-full h-screen relative flex items-center justify-center'>
+                <LogoHeader />
 
-                <header className='border md:px-10 px-2 py-2 shadow absolute w-full top-0'>
-                    <img src={Logo} />
-
-                </header>
-                <div className='w-[80%] md:w-[360px] h-[360px] flex-shrink-0 bg-white rounded-md shadow-md md:px-8 px-5 py-5 flex flex-col items-center justify-around'>
+                {isNext ? <div className='w-[90%] md:w-[360px] h-[360px] flex-shrink-0 bg-white rounded-md shadow-md md:px-8 px-5 py-5 flex flex-col items-center justify-around animate__animated animate__fadeInRight' >
                     <h4 className=''>Set Password</h4>
-                    <div className='flex items-center gap-2'>
+                    <div className='flex items-center gap-2 border border-colorGray5 rounded-3xl px-4 py-2'>
                         <img src={avatar} alt="" className='w-[30px]' />
                         <p>{email}</p>
                         <AiFillCaretDown />
                     </div>
-                    <form onSubmit={handleSubmit(onSubmit)} noValidate className='w-full '>
-                        <div className='w-full'>
-                            <fieldset className='w-full border rounded-lg border-[#F1F1F5] bg-[#FAFAFB] h-[40px] px-2 shadow flex items-center'>
+                    <form onSubmit={handleSubmit(onPasswordSubmit)} noValidate className='w-full '>
+                        <div className='w-full flex flex-col gap-4'>
+                            <div>
+                                <fieldset className='w-full border rounded-lg border-colorWhite3 bg-colorWhite2 h-[50px] px-2 shadow flex items-center'>
 
 
-                                <input type="password" id="password" placeholder='Create Password' className="outline-none w-full bg-transparent"  {...register(`password`, {
-                                    required: {
-                                        value: true,
-                                        message: 'Please fill in your password'
-                                    },
-                                    pattern: {
-                                        value: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-                                        message:
-                                            'Password must be at least 8 characters long and contain at least one letter, one number, and one special character',
-                                    },
-                                })} onChange={passwordChange}
-                                />
-                                <AiOutlineEye size={20} className='text-[#92929D]' />
-                            </fieldset>
-                            {<p className='text-red-700 text-[12px]'>{errors.password?.message}</p>}
-                            <fieldset className='w-full border rounded-lg border-[#F1F1F5] bg-[#FAFAFB] h-[40px] px-2 shadow flex items-center'>
+                                    <input type={isPasswordVisible ? "text" : "password"} id="password" placeholder={PASSWORD_PLACEHOLDER} className="outline-none w-full bg-transparent"  {...register(`password`, {
+                                        required: {
+                                            value: true,
+                                            message: 'Please fill in your password'
+                                        },
+                                        pattern: {
+                                            value: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+                                            message:
+                                                '',
+                                        },
+                                    })} onChange={passwordChange}
+                                    />
+                                    {isPasswordVisible ? <AiOutlineEye size={20} className='text-colorGray5' onClick={togglePasswordVisibility} /> : <AiOutlineEyeInvisible size={20} className='text-colorGray5' onClick={togglePasswordVisibility} />}
+                                </fieldset>
+                                {<p className='text-colorRed text-[10px]'>{errors.password?.message}</p>}
+                            </div>
+                            <div>
+                                <fieldset className='w-full border rounded-lg border-colorWhite3 bg-colorWhite2 h-[50px] px-2 shadow flex items-center'>
 
 
-                                <input type="confirmPassword" id="confirmPassword" placeholder='Confirm Password' className="outline-none w-full bg-transparent"  {...register(`confirmPassword`, {
-                                    required: {
-                                        value: true,
-                                        message: 'Please confirm your password'
-                                    },
-                                    pattern: {
-                                        value: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-                                        message:
-                                            'Password must be at least 8 characters long and contain at least one letter, one number, and one special character',
-                                    },
-                                })} />
-                                <AiOutlineEye size={20} className='text-[#92929D]' />
-                            </fieldset>
-                            {<p className='text-red-700 text-[12px]'>{errors.confirmPassword?.message}</p>}
+                                    <input type={isPasswordVisible ? "text" : "password"} id="confirmPassword" placeholder={CONFIRM_PASSWORD_PLACEHOLDER} className="outline-none w-full bg-transparent"  {...register(`confirmPassword`, {
+                                        required: {
+                                            value: true,
+                                            message: 'Please confirm your password'
+                                        },
+                                        pattern: {
+                                            value: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+                                            message:
+                                                'Password must be at least 8 characters long and contain at least one letter, one number, and one special character',
+                                        },
+                                    })} onChange={checkPasswordMatch} />
+                                    {isPasswordVisible ? <AiOutlineEye size={20} className='text-colorGray5' onClick={togglePasswordVisibility} /> : <AiOutlineEyeInvisible size={20} className='text-colorGray5' onClick={togglePasswordVisibility} />}
+                                </fieldset>
+                                {<p className='text-colorRed text-[10px]'>{errors.confirmPassword?.message}</p>}
 
+                            </div>
+                            {password && <PasswordStrengthBar password={password} />}
+                            {(!isPasswordMatch && confirmPassword) && <p className='text-colorRed text-[12px]'>Password not a match</p>
+                            }
                         </div>
-                        {password && <PasswordStrengthBar password={password} />}
 
-
-                        <div className='h-[38px]'>
-                            <Button text="Sign in" background="bg-colorBlue" color="text-white" />
+                        <div className='h-[38px] mt-10'>
+                            <Button text={SIGN_IN_BUTTON_TEXT} background="bg-colorBlue" color="text-colorWhite1" />
 
                         </div>
                     </form>
-                    <DevTool control={control} />
 
                 </div>
-                {/* <div className='w-[80%] md:w-[360px] h-[360px] flex-shrink-0 bg-white rounded-md shadow-md md:px-8 px-5 py-5 flex flex-col items-center justify-around'>
-                    <h4 className=''>Get Started</h4>
-                    <p className='text-center'>Welcome to Edge LMS, please input your work email below to get started.</p>
-                    <form onSubmit={handleSubmit(onSubmit)} noValidate className='w-full '>
-                        <div className='w-full'>
-                            <fieldset className='w-full'>
+                    :
+                    <div className='w-[80%] md:w-[360px] h-[360px] flex-shrink-0 bg-white rounded-md shadow-md md:px-8 px-5 py-5 flex flex-col items-center justify-around'>
+                        <h4 className=''>Get Started</h4>
+                        <p className='text-center'>Welcome to Edge LMS, please input your work email below to get started.</p>
+                        <form onSubmit={handleSubmit(onEmailSubmit)} noValidate className='w-full '>
+                            <div className='w-full'>
+                                <fieldset className='w-full h-[50px]'>
 
 
-                                <input type="email" id="email" placeholder='Email' className="outline-none w-full border rounded-lg border-[#F1F1F5] bg-[#FAFAFB] h-[40px] px-2 shadow"  {...register(`email`, {
-                                    required: {
-                                        value: true,
-                                        message: 'Please fill in your email'
-                                    },
-                                    pattern: {
-                                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                                        message: 'Please enter a valid email address',
-                                    },
-                                })} />
-                            </fieldset>
-                            {<p className='text-red-700 text-[12px]'>{errors.email?.message}</p>}
-                            <p className='text-colorLightGreen py-4 text-center'>Forgot Email?</p>
+                                    <input type="email" id="email" placeholder={EMAIL_PLACEHOLDER} className="outline-none w-full border border-colorWhite3 rounded-lg bg-colorWhite2 h-full px-2 shadow"  {...register(`email`, {
+                                        required: {
+                                            value: true,
+                                            message: 'Please fill in your email'
+                                        },
+                                        pattern: {
+                                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                            message: 'Please enter a valid email address',
+                                        },
+                                    })} />
+                                </fieldset>
+                                {<p className='text-red-700 text-[12px]'>{errors.email?.message}</p>}
+                                <p className='text-colorLightGreen py-4 text-center'>Forgot Email?</p>
 
-                        </div>
+                            </div>
 
-                        <div className='h-[38px]'>
-                            <Button text="Next" background="bg-colorBlue" color="text-white" />
+                            <div className='h-[38px]'>
+                                <Button text="Next" background="bg-colorBlue" color="text-colorWhite1" />
 
-                        </div>
-                    </form>
-                    <DevTool control={control} />
+                            </div>
+                        </form>
 
-                </div> */}
+                    </div>}
             </div>
         </div>
     )

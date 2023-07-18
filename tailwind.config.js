@@ -12,7 +12,16 @@ export default {
         colorRed: "#FC5A5A",
         colorGreen: "#82C43C",
         colorPurple: "#A461D8",
-        colorPink: "#FF9AD5"
+        colorPink: "#FF9AD5",
+        colorGray1: "#171725",
+        colorGray2: "#44444F",
+        colorGray3: "#696974",
+        colorGray4: "#92929D",
+        colorGray5: "#B5B5BE",
+        colorGray6: "#D5D5DC",
+        colorWhite1: "#FFFFFF",
+        colorWhite2: "#FAFAFB",
+        colorWhite3: "#F1F1F5"
       }
     }
   },
