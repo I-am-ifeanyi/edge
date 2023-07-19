@@ -2,11 +2,11 @@ import React, { useEffect } from "react"
 
 import Logo from "../assets/Logo.png"
 import background from "../assets/Shape.png"
-export const Button = ({ icon, color, background, text }) => {
+export const Button = ({ icon, color, background, text, onClick }) => {
     return (
         <button
             className={`w-full h-full px-5 ${background} flex items-center justify-center gap-3 hover:translate-x-1 transition-all duration-500  rounded-md ${color}`}
-        >
+            onClick={onClick}>
             {icon} {text}
         </button>
     )
@@ -15,7 +15,7 @@ export const Button = ({ icon, color, background, text }) => {
 
 export const LogoHeader = () => {
     return (
-        <header className='border md:px-10 px-2 h-14 flex items-center shadow absolute w-full top-0'>
+        <header className='border md:px-10 px-2 h-14 flex items-center shadow absolute w-full top-0 z-10'>
             <img src={Logo} />
 
         </header>)

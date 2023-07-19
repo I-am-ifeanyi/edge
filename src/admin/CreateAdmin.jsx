@@ -4,6 +4,8 @@ import 'animate.css';
 import { LogoHeader, CONSTANTS, backgroundStyle, fetchLocalUserData, locallyStoreUserData } from '../components/Components';
 import GetStarted from './components/GetStarted';
 import CreateSchoolProfile from './components/CreateSchoolProfile';
+import 'animate.css';
+
 
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -101,17 +103,17 @@ const CreateAdmin = () => {
 
     console.log(adminCompleteInfo)
 
-
     return (
-        <div className='h-screen overflow-hidden' style={backgroundStyle}>
+        <div className='h-screen' style={backgroundStyle}>
             <div className='w-full h-screen relative flex items-center justify-center'>
                 <LogoHeader />
-                <div className={`absolute top-14 h-1 w-[${progressWidth}] left-0 bg-colorBlue`}></div>
+                <label className={`absolute top-14 left-0 h-1 bg-colorBlue`} style={{ width: progressWidth }}></label>
+               
 
 
-                {/* {getStarted && <GetStarted onGetStartedSubmit={onGetStartedSubmit} form={form} isPasswordVisible={isPasswordVisible} passwordChange={passwordChange} togglePasswordVisibility={togglePasswordVisibility} checkPasswordMatch={checkPasswordMatch} password={password} isPasswordMatch={isPasswordMatch} confirmPassword={confirmPassword} />} */}
+                {getStarted && <GetStarted onGetStartedSubmit={onGetStartedSubmit} form={form} isPasswordVisible={isPasswordVisible} passwordChange={passwordChange} togglePasswordVisibility={togglePasswordVisibility} checkPasswordMatch={checkPasswordMatch} password={password} isPasswordMatch={isPasswordMatch} confirmPassword={confirmPassword} />}
 
-                <CreateSchoolProfile form={form} onSchoolProfileSubmit={onSchoolProfileSubmit} />
+                {schoolProfile && <CreateSchoolProfile form={form} onSchoolProfileSubmit={onSchoolProfileSubmit} setIsNext={setIsNext} />}
             </div>
         </div>
     )
