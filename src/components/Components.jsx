@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 
-import Logo from "./assets/Logo.png"
-import background from "./assets/Shape.png"
+import Logo from "../assets/Logo.png"
+import background from "../assets/Shape.png"
 export const Button = ({ icon, color, background, text }) => {
     return (
         <button
@@ -15,7 +15,7 @@ export const Button = ({ icon, color, background, text }) => {
 
 export const LogoHeader = () => {
     return (
-        <header className='border md:px-10 px-2 py-2 shadow absolute w-full top-0'>
+        <header className='border md:px-10 px-2 h-14 flex items-center shadow absolute w-full top-0'>
             <img src={Logo} />
 
         </header>)
@@ -26,10 +26,8 @@ export const backgroundStyle = {
     backgroundImage: `url('${background}')`,
     backgroundSize: 'contain',
     backgroundRepeat: 'no-repeat',
-    backgroundColor: "#E5E5E5"
-
-
-
+    backgroundColor: "#E5E5E5",
+    shrink: 0
 }
 
 export const CONSTANTS = {
@@ -39,47 +37,26 @@ export const CONSTANTS = {
     SIGN_IN_BUTTON_TEXT: 'Sign in'
 }
 
-// export const FetchLocalUser = () => useEffect((dataType, setDataType) => {
-//     const json = localStorage.getItem(dataType)
-//     const localData = JSON.parse(json)
-//     setDataType(localData)
 
-// }, [])
 
-export const fetchLocalUserData = (dataType, setData) => {
-    useEffect(() => {
-        const json = localStorage.getItem(dataType);
-        const localData = JSON.parse(json);
-        setData(localData);
-    }, [dataType, setData]);
+
+
+export const fetchLocalUserData = (dataType) => {
+    const json = localStorage.getItem(dataType);
+    const localData = JSON.parse(json);
+    return localData;
 };
+
 
 export const locallyStoreUserData = (dataType, dataToStore) => {
-        const json = JSON.stringify(dataToStore)
-    if (typeof localStorage !== 'undefined') {
-        try {
-            localStorage.setItem(dataType, json)
-        } catch (error) {
-            console.error('Error storing data:', error)
-        } }
+    if (typeof dataType !== 'string' || !dataToStore) {
+        throw new Error('Invalid input parameters')
+    }
+    const json = JSON.stringify(dataToStore)
+    localStorage.setItem(dataType, json)
 };
 
 
-// export const FetchLocalUser = ({ dataType, setDataType }) => {
-//     let data;
-//     useEffect(() => {
-//         const json = localStorage.getItem(dataType)
-//         const localData = JSON.parse(json)
-//         setDataType(localData)
-//         data = localData
-
-//     }, []);
-//     return (
-//         <div>
-//             {data}
-//         </div>
-//     )
-// }
 
 
 

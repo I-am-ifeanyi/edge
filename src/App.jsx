@@ -9,6 +9,7 @@ import Login from "./authentication/Login"
 import MainDashboard from "./MainDashboard"
 import PageLayout from "./users/students/PageLayout"
 import StudentDashboard from "./users/students/StudentDashboard"
+import CreateAdmin from "./admin/CreateAdmin"
 
 
 
@@ -17,7 +18,7 @@ import StudentDashboard from "./users/students/StudentDashboard"
 export default function App() {
   const router = createBrowserRouter(createRoutesFromElements(
     <Route >
-      <Route path="/" element={<Login />} />
+      <Route path="/" element={<CreateAdmin />} />
       <Route path="home-page" element={<PageLayout />}>
         <Route index element={<StudentDashboard />} />
       </Route>

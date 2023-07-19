@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import 'animate.css';
-import { LogoHeader, CONSTANTS, backgroundStyle, fetchLocalUserData } from '../components';
+import { LogoHeader, CONSTANTS, backgroundStyle, fetchLocalUserData, locallyStoreUserData } from '../components/Components';
 
 
 import { useDispatch } from 'react-redux'
@@ -9,8 +9,8 @@ import { setUserEmail, setUserPassword } from '../redux/features/userData'
 import { useSelector } from 'react-redux'
 import { useForm } from "react-hook-form"
 import { DevTool } from '@hookform/devtools'
-import { Button } from '../components'
-import { PasswordStrengthBar } from '../components'
+import { Button } from '../components/Components'
+import { PasswordStrengthBar } from '../components/Components'
 
 import { AiFillCaretDown, AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 
@@ -31,7 +31,7 @@ const Login = () => {
     const [isNext, setIsNext] = useState(false)
     const [userInfo, setUserInfo] = useState('')
 
-    const { EMAIL_PLACEHOLDER, PASSWORD_PLACEHOLDER, CONFIRM_PASSWORD_PLACEHOLDER, SIGN_IN_BUTTON_TEXT, locallyStoreUserData } = CONSTANTS
+    const { EMAIL_PLACEHOLDER, PASSWORD_PLACEHOLDER, CONFIRM_PASSWORD_PLACEHOLDER, SIGN_IN_BUTTON_TEXT } = CONSTANTS
 
 
 
@@ -46,8 +46,11 @@ const Login = () => {
     }
     const onPasswordSubmit = (data) => {
         dispatch(setUserPassword(data.password))
-        locallyStoreUserData("userInfo", userData)
-        navigate('home-page')
+        if (userData) {
+            locallyStoreUserData("userInfo", userData)
+            navigate('home-page')
+        }
+
     }
     const email = userData?.email
     const passwordChange = (e) => {
@@ -62,13 +65,16 @@ const Login = () => {
             setIsPasswordMatch(true)
         } else return
     }
-    
+    useEffect(() => {
+        const data = fetchLocalUserData("userInfo");
+        setUserInfo(data);
+    }, []);
 
+    if (userInfo) {
+        console.log(userInfo)
 
-    fetchLocalUserData("userInfo", setUserInfo)
-    console.log(userData)
+    }
 
-    // console.log(userInfo)
     return (
         <div className='h-screen overflow-hidden' style={backgroundStyle}>
             <div className='w-full h-screen relative flex items-center justify-center'>
