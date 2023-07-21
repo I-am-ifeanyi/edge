@@ -1,10 +1,12 @@
 import React from 'react'
+import { Select, MenuItem, FormControl, InputLabel } from '@mui/material';
+import { Controller } from 'react-hook-form';
 
 import { CONSTANTS } from './Components'
 import { AiOutlineEye, AiOutlineEyeInvisible, AiOutlineCloudUpload } from "react-icons/ai"
 
 
-const InputElements = ({ type, form, isPasswordVisible, passwordChange, togglePasswordVisibility, id, checkPasswordMatch, onChange, schoolLogo, placeholder }) => {
+const InputElements = ({ type, form, isPasswordVisible, passwordChange, togglePasswordVisibility, id, checkPasswordMatch, onChange, schoolLogo, placeholder, label, name, value, onClick }) => {
     const { EMAIL_PLACEHOLDER, PASSWORD_PLACEHOLDER, CONFIRM_PASSWORD_PLACEHOLDER } = CONSTANTS
     const { register, control, handleSubmit, formState, reset } = form
     const { errors, isSubmitSuccessful, isSubmitting, isSubmitted } = formState
@@ -111,7 +113,7 @@ const InputElements = ({ type, form, isPasswordVisible, passwordChange, togglePa
 
             </div>
         )
-    } else if(type === "url") {
+    } else if (type === "url") {
         return (
             <div className='w-full'>
                 <fieldset className='w-full h-[50px]'>
@@ -127,6 +129,42 @@ const InputElements = ({ type, form, isPasswordVisible, passwordChange, togglePa
                 {<p className='text-colorRed text-[10px]'>{errors?.[id]?.message}</p>}
 
             </div>
+        )
+    } else if (type === "select") {
+        return (
+            <div>
+                <FormControl variant="outlined" fullWidth>
+                    <InputLabel htmlFor={id}>{label}</InputLabel>
+                    <Controller
+                        name={id}
+                        control={control}
+                        rules={{
+                            required: 'Please fill in this field',
+                        }}
+                        render={({ field }) => (
+                            <Select label={label} {...field} sx={{ borderRadius: 3 }}>
+                                <MenuItem value="Primary School">Primary School</MenuItem>
+                                <MenuItem value="Secondary School">Secondary School</MenuItem>
+                                <MenuItem value="Custom">Custom</MenuItem>
+                            </Select>
+                        )}
+                    />
+                </FormControl>
+                {<p className="text-colorRed text-[10px]">{errors?.[id]?.message}</p>}
+            </div>
+        )
+    } else if (type === "radio") {
+        return (
+
+            <input type="radio" name={name} value={value} id={id} onClick={onClick} {...register(`${name}`, {
+                required: {
+                    value: true,
+                    message: 'Please fill in this field '
+                }
+            })}
+                className="appearance-none w-4 h-4 rounded-full checked:bg-colorGreen"
+
+            />
         )
     }
     return (

@@ -4,6 +4,7 @@ import 'animate.css';
 import { LogoHeader, CONSTANTS, backgroundStyle, fetchLocalUserData, locallyStoreUserData } from '../components/Components';
 import GetStarted from './components/GetStarted';
 import CreateSchoolProfile from './components/CreateSchoolProfile';
+import SchoolStructure from './components/SchoolStructure';
 import 'animate.css';
 
 
@@ -33,7 +34,7 @@ const CreateAdmin = () => {
     const [isPasswordMatch, setIsPasswordMatch] = useState(false)
     const [isPasswordVisible, setIsPasswordVisible] = useState(false)
     const [isNext, setIsNext] = useState({
-        getStarted: true,
+        getStarted: false,
         schoolProfile: false,
         adminLogo: false,
         schoolStructure: false,
@@ -101,7 +102,7 @@ const CreateAdmin = () => {
     }, [getStarted, schoolProfile, adminLogo, schoolStructure, session]);
 
 
-    console.log(adminCompleteInfo)
+    // console.log(adminCompleteInfo)
 
     return (
         <div className='h-screen' style={backgroundStyle}>
@@ -114,6 +115,7 @@ const CreateAdmin = () => {
                 {getStarted && <GetStarted onGetStartedSubmit={onGetStartedSubmit} form={form} isPasswordVisible={isPasswordVisible} passwordChange={passwordChange} togglePasswordVisibility={togglePasswordVisibility} checkPasswordMatch={checkPasswordMatch} password={password} isPasswordMatch={isPasswordMatch} confirmPassword={confirmPassword} />}
 
                 {schoolProfile && <CreateSchoolProfile form={form} onSchoolProfileSubmit={onSchoolProfileSubmit} setIsNext={setIsNext} />}
+                <SchoolStructure setIsNext={setIsNext} form={form} />
             </div>
         </div>
     )

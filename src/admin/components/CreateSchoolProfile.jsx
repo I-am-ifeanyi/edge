@@ -31,7 +31,7 @@ const CreateSchoolProfile = ({ onSchoolProfileSubmit, form, setIsNext }) => {
 
 
     return (
-        <div className='w-[90%] md:w-[500px] h-[400px] flex-shrink-0 bg-white rounded-md shadow-md md:px-8 px-5 py-5 flex flex-col items-center animate__animated animate__fadeInRight overflow-y-scroll'>
+        <div className='w-[90%] md:w-[500px] h-[400px] flex-shrink-0 bg-colorWhite1 rounded-md shadow-md md:px-8 px-5 py-5 flex flex-col items-center animate__animated animate__fadeInRight overflow-y-scroll'>
             <h4 className='pb-4'>Create School Profile</h4>
             <form onSubmit={handleSubmit(onSchoolProfileSubmit)} noValidate className='w-full flex flex-col gap-4'>
                 <InputElements type="file" id="schoolLogo" form={form} onChange={handleSelectSchoolLogo} schoolLogo={schoolLogo}/>
