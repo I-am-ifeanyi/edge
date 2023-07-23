@@ -5,6 +5,9 @@ import { LogoHeader, CONSTANTS, backgroundStyle, fetchLocalUserData, locallyStor
 import GetStarted from './components/GetStarted';
 import CreateSchoolProfile from './components/CreateSchoolProfile';
 import SchoolStructure from './components/SchoolStructure';
+import CustomSchoolStructure from './components/CustomSchoolStructure';
+import CreateNewSession from './components/CreateNewSession';
+import { Caveats } from '../components/Components';
 import 'animate.css';
 
 
@@ -15,6 +18,7 @@ import {
     setSchoolProfile,
     setAdminLogo,
     setSchoolStructure,
+    setCustomSchoolStructure,
     setSession
 } from "../redux/features/createAdmin"
 import { useForm } from "react-hook-form"
@@ -34,15 +38,14 @@ const CreateAdmin = () => {
     const [isPasswordMatch, setIsPasswordMatch] = useState(false)
     const [isPasswordVisible, setIsPasswordVisible] = useState(false)
     const [isNext, setIsNext] = useState({
-        getStarted: false,
+        getStarted: true,
         schoolProfile: false,
-        adminLogo: false,
         schoolStructure: false,
+        customStructure: false,
         session: false
 
     })
-    const { getStarted, schoolProfile, adminLogo, schoolStructure, session } = isNext
-    const [progressWidth, setProgressWidth] = useState("14.3%");
+    const { getStarted, schoolProfile, schoolStructure, customStructure, session } = isNext
     const [userInfo, setUserInfo] = useState('')
 
 
@@ -57,19 +60,47 @@ const CreateAdmin = () => {
         setIsNext({
             getStarted: false,
             schoolProfile: true,
-            adminLogo: false,
             schoolStructure: false,
+            customStructure: false,
             session: false
         })
-        console.log(adminCompleteInfo.getStarted)
 
     }
 
-    
+
     const onSchoolProfileSubmit = (data) => {
         dispatch(setSchoolProfile(data))
-        console.log(adminCompleteInfo.schoolProfile)
+        setIsNext({
+            getStarted: false,
+            schoolProfile: false,
+            schoolStructure: true,
+            customStructure: false,
+            session: false
+        })
+    }
 
+    const schoolStructureSummit = (data) => {
+        dispatch(setSchoolStructure(data))
+        setIsNext({
+            getStarted: false,
+            schoolProfile: false,
+            schoolStructure: false,
+            customStructure: false,
+            session: true
+        })
+        console.log(adminCompleteInfo.schoolStructure)
+
+    }
+
+    const onCustomStructureSubmit = (data) => {
+        dispatch(setCustomSchoolStructure(data))
+        setIsNext({
+            getStarted: false,
+            schoolProfile: false,
+            schoolStructure: false,
+            customStructure: true,
+            session: false
+        })
     }
 
     const passwordChange = (e) => {
@@ -89,34 +120,30 @@ const CreateAdmin = () => {
         setUserInfo(data);
     }, []);
 
-    useEffect(() => {
-        if (schoolProfile) {
-            setProgressWidth("28.6%");
-        } else if (adminLogo) {
-            setProgressWidth(prevWidth => prevWidth * 3);
-        } else if (schoolStructure) {
-            setProgressWidth(prevWidth => prevWidth * 4);
-        } else if (session) {
-            setProgressWidth(prevWidth => prevWidth * 5);
-        }
-    }, [getStarted, schoolProfile, adminLogo, schoolStructure, session]);
 
 
-    // console.log(adminCompleteInfo)
+
+    console.log(adminCompleteInfo)
 
     return (
-        <div className='h-screen' style={backgroundStyle}>
-            <div className='w-full h-screen relative flex items-center justify-center'>
-                <LogoHeader />
-                <label className={`absolute top-14 left-0 h-1 bg-colorBlue`} style={{ width: progressWidth }}></label>
+        <div className='h-screen flex flex-col-reverse md:flex-row items-center w-full justify-center' style={backgroundStyle}>
+            <div className='w-full flex flex-col md:flex-row items-center justify-center ' >
+                <LogoHeader isNext={isNext} />
+
+
+                <div className='w-full md:w-auto md:h-screen relative flex items-center justify-center '>
+
+                    {/* {getStarted && <GetStarted onGetStartedSubmit={onGetStartedSubmit} form={form} isPasswordVisible={isPasswordVisible} passwordChange={passwordChange} togglePasswordVisibility={togglePasswordVisibility} checkPasswordMatch={checkPasswordMatch} password={password} isPasswordMatch={isPasswordMatch} confirmPassword={confirmPassword} />}
+
+                    {schoolProfile && <CreateSchoolProfile form={form} onSchoolProfileSubmit={onSchoolProfileSubmit} setIsNext={setIsNext} />}
+                    {schoolStructure && <SchoolStructure setIsNext={setIsNext} form={form} schoolStructureSummit={schoolStructureSummit} />}
+                    {customStructure && <CustomSchoolStructure setIsNext={setIsNext} form={form} onCustomStructureSubmit={onCustomStructureSubmit} />} */}
+                    <CreateNewSession form={form} />
+
+                </div>
                
-
-
-                {getStarted && <GetStarted onGetStartedSubmit={onGetStartedSubmit} form={form} isPasswordVisible={isPasswordVisible} passwordChange={passwordChange} togglePasswordVisibility={togglePasswordVisibility} checkPasswordMatch={checkPasswordMatch} password={password} isPasswordMatch={isPasswordMatch} confirmPassword={confirmPassword} />}
-
-                {schoolProfile && <CreateSchoolProfile form={form} onSchoolProfileSubmit={onSchoolProfileSubmit} setIsNext={setIsNext} />}
-                <SchoolStructure setIsNext={setIsNext} form={form} />
             </div>
+           
         </div>
     )
 }

@@ -6,7 +6,7 @@ import { CONSTANTS } from './Components'
 import { AiOutlineEye, AiOutlineEyeInvisible, AiOutlineCloudUpload } from "react-icons/ai"
 
 
-const InputElements = ({ type, form, isPasswordVisible, passwordChange, togglePasswordVisibility, id, checkPasswordMatch, onChange, schoolLogo, placeholder, label, name, value, onClick }) => {
+const InputElements = ({ type, form, isPasswordVisible, passwordChange, togglePasswordVisibility, id, checkPasswordMatch, onChange, schoolLogo, placeholder, label, name, value, onClick, icon, disabled }) => {
     const { EMAIL_PLACEHOLDER, PASSWORD_PLACEHOLDER, CONFIRM_PASSWORD_PLACEHOLDER } = CONSTANTS
     const { register, control, handleSubmit, formState, reset } = form
     const { errors, isSubmitSuccessful, isSubmitting, isSubmitted } = formState
@@ -99,15 +99,16 @@ const InputElements = ({ type, form, isPasswordVisible, passwordChange, togglePa
     } else if (type === "text") {
         return (
             <div className='w-full'>
-                <fieldset className='w-full h-[50px]'>
+                <fieldset className='w-full h-[50px] flex items-center bg-colorWhite2 border border-colorWhite3 rounded-lg '>
 
 
-                    <input type="text" id={id} placeholder={placeholder} className="outline-none w-full border border-colorWhite3 rounded-lg bg-colorWhite2 h-full px-2"  {...register(`${id}`, {
+                    <input type="text" onChange={onChange} id={id} placeholder={placeholder} className="outline-none w-full  h-full px-2" disabled={disabled} {...register(`${id}`, {
                         required: {
                             value: true,
                             message: `Please fill in this field`
                         }
                     })} />
+                    {icon}
                 </fieldset>
                 {<p className='text-colorRed text-[10px]'>{errors?.[id]?.message}</p>}
 
@@ -142,7 +143,7 @@ const InputElements = ({ type, form, isPasswordVisible, passwordChange, togglePa
                             required: 'Please fill in this field',
                         }}
                         render={({ field }) => (
-                            <Select label={label} {...field} sx={{ borderRadius: 3 }}>
+                            <Select label={label} {...field} sx={{ borderRadius: 3 }} onChange={onChange}>
                                 <MenuItem value="Primary School">Primary School</MenuItem>
                                 <MenuItem value="Secondary School">Secondary School</MenuItem>
                                 <MenuItem value="Custom">Custom</MenuItem>
@@ -155,16 +156,16 @@ const InputElements = ({ type, form, isPasswordVisible, passwordChange, togglePa
         )
     } else if (type === "radio") {
         return (
+                <input type="radio" name={name} value={value} id={id} onClick={onClick} {...register(`${name}`, {
+                    required: {
+                        value: true,
+                        message: 'Please fill in this field '
+                    }
+                })}
+                    className="appearance-none w-4 h-4 rounded-full checked:bg-colorLightGreen"
 
-            <input type="radio" name={name} value={value} id={id} onClick={onClick} {...register(`${name}`, {
-                required: {
-                    value: true,
-                    message: 'Please fill in this field '
-                }
-            })}
-                className="appearance-none w-4 h-4 rounded-full checked:bg-colorGreen"
+                />
 
-            />
         )
     }
     return (

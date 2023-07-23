@@ -18,6 +18,7 @@ const initialState = {
       groupType: "",
       customOrganizationGroups: ""
     },
+    setCustomSchoolStructure: {},
     session: {
       sessionTimeFrame: "",
       sessionFrequency: ""
@@ -41,6 +42,9 @@ const createAdmin = createSlice({
     setSchoolStructure: (state, { payload }) => {
       state.adminCompleteInfo.schoolStructure = payload
     },
+    setCustomSchoolStructure: (state, { payload }) => {
+      state.adminCompleteInfo.setCustomSchoolStructure = payload
+    },
     setSession: (state, { payload }) => {
       state.adminCompleteInfo.session = payload
     }
@@ -52,6 +56,10 @@ export const {
   setSchoolProfile,
   setAdminLogo,
   setSchoolStructure,
+  setCustomSchoolStructure,
   setSession
 } = createAdmin.actions
 export default createAdmin.reducer
+
+
+

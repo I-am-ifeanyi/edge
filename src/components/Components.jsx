@@ -1,7 +1,12 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
+import { AiFillCaretRight } from "react-icons/ai"
 
 import Logo from "../assets/Logo.png"
 import background from "../assets/Shape.png"
+
+
+
+
 export const Button = ({ icon, color, background, text, onClick }) => {
     return (
         <button
@@ -13,12 +18,36 @@ export const Button = ({ icon, color, background, text, onClick }) => {
 }
 
 
-export const LogoHeader = () => {
-    return (
-        <header className='border md:px-10 px-2 h-14 flex items-center shadow absolute w-full top-0 z-10'>
-            <img src={Logo} />
+export const LogoHeader = ({ isNext }) => {
+    const [progressWidth, setProgressWidth] = useState("25%");
+    const { getStarted, schoolProfile, adminLogo, schoolStructure, customStructure, session } = isNext
 
-        </header>)
+    useEffect(() => {
+        if (schoolProfile) {
+            setProgressWidth("50%");
+        } else if (schoolStructure || customStructure) {
+            setProgressWidth("75%");
+        } else if (session) {
+            setProgressWidth("100%");
+        }
+    }, [
+        getStarted,
+        schoolProfile,
+        adminLogo,
+        schoolStructure,
+        customStructure,
+        session]);
+
+    return (
+        <header className='border h-14 shadow fixed bg-colorWhite1 w-full top-0 z-10'>
+            <div className='border md:px-10 px-2 h-14 flex items-center justify-between shadow fixed bg-colorWhite1 w-full top-0 z-10'>
+                <img src={Logo} />
+                {!getStarted && <button className="flex items-center gap-2 hover:translate-x-1 transition-all duration-500 bg-colorWhite3 px-4 py-2">Skip to login <AiFillCaretRight /></button>}
+
+            </div>
+            <label className={`absolute top-14 left-0 h-1 bg-colorBlue`} style={{ width: progressWidth }}></label>
+        </header>
+    )
 }
 
 
@@ -97,4 +126,14 @@ export const PasswordStrengthBar = ({ password }) => {
         </div>
     );
 };
+
+export const Caveats = ({ bg, textColor, title, body, body2 }) => {
+    return (
+        <div className={`md:w-[15%] w-[90%] md:p-5 px-4 py-2 m-4 rounded-md ${bg} text-white float-left ${textColor}`}>
+            <h6>{title}</h6>
+            <p className="text-[12px]">{body}</p>
+            <p className="text-[12px]">{body2}</p>
+        </div>
+    )
+}
 

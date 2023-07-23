@@ -2,19 +2,21 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { FormGroup, FormControlLabel } from "@mui/material"
 import { IoIosAddCircle } from "react-icons/io"
-import { MdDeleteForever } from "react-icons/md"
+import { BiPlus } from "react-icons/bi"
 
 import { IOSSwitch } from './specialStyles'
 import InputElements from '../../components/InputElements'
 import { Button } from '../../components/Components'
+import { Caveats } from '../../components/Components'
 
 
-const SchoolStructure = ({ form, setIsNext, schoolStructureSummit }) => {
+const CreateNewSession = ({ form, setIsNext, onCustomStructureSubmit }) => {
     const dispatch = useDispatch()
     const { register, control, handleSubmit, formState, reset, errors } = form
     const [isGroupSelected, setIsGroupSelected] = useState("none")
     const [isChecked, setIsChecked] = useState(true)
     const [inputs, setInputs] = useState([{ id: 1, value: '' }]);
+    const [csvFileName, setCsvFileName] = useState("")
 
 
 
@@ -28,7 +30,9 @@ const SchoolStructure = ({ form, setIsNext, schoolStructureSummit }) => {
     const back = () => setIsNext({
         getStarted: false,
         schoolProfile: true,
-        schoolStructure: false,
+        adminLogo: false,
+        schoolStructure: true,
+        customStructure: false,
         session: false
     })
 
@@ -45,58 +49,46 @@ const SchoolStructure = ({ form, setIsNext, schoolStructureSummit }) => {
         setInputs(updatedInputs);
     };
 
-    const findSchoolType = (e) => {
-        if(e.target.value === "Custom") {
-            setIsNext({
-                getStarted: false,
-                schoolProfile: false,
-                schoolStructure: false,
-                customStructure: true,
-                session: false
-            })
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (file.size > 20971520) {
+            alert("File size larger than 20MB")
+            return null
         }
-    }
+        setCsvFileName(file?.name)
+        console.log(file)
 
-    // const handleRemoveInput = (id) => {
-    //     const filteredInputs = inputs.filter((input) => input.id !== id);
-    //     setInputs(filteredInputs);
-    // };
+
+    };
+
 
 
     return (
-        
+
         <div className='w-[90%] md:w-[600px] md:h-[450px] mt-10 flex-shrink-0 bg-colorWhite1 rounded-md shadow-md md:px-8 px-5 py-5 flex flex-col gap-4 items-center animate__animated animate__fadeInRight overflow-y-scroll'>
 
             <h4 className=''>School Structure</h4>
 
-            <form className='w-full flex flex-col gap-4' onSubmit={handleSubmit(schoolStructureSummit)} noValidate>
-                <InputElements type="select" id="schoolType" label="School Type" form={form} onChange={findSchoolType} />
-                <p>How many groups are in your school?</p>
+            <form className='w-full flex flex-col gap-4' onSubmit={handleSubmit(onCustomStructureSubmit)} noValidate>
+                <InputElements type="text" id="custom" placeholder="Custom" disabled={true} form={form} />
+                <p>Import your custom organization groups</p>
 
-                <div className={`w-full flex justify-between border border-${isGroupSelected === "js-ss" ? "colorLightGreen" : null} p-2 gap-1 rounded-md hover:border-colorLightGreen transition-all duration-500 border-2`} >
-                    <div className='w-[10%]'>
-                        <div className='rounded-full w-6 h-6 flex items-center justify-center border-2 border-colorLightGreen'>
+                <div className="h-[70px] w-full border-2 border-dotted rounded-md flex items-center justify-center" >
+                    <label htmlFor='customOrg' className='text-sm flex items-center gap-4'>                    <BiPlus size={30} className='text-colorLightGreen' />{csvFileName ? csvFileName : "Upload .csv file here"}
+                    </label>
+                    <input
+                        type="file"
+                        accept=".csv"
+                        id="customOrg" className='hidden'
+                        {...register("customOrg")}
+                        onChange={handleFileChange} />
 
-                            <InputElements type="radio" name="schoolGroupType" value="js1-ss3" id="js1-ss3" onClick={() => setIsGroupSelected("js-ss")} form={form} />
-                        </div>
-                    </div>
-                    <aside className='w-[90%]'>
-                        <h6>JSS1 - SS3</h6>
-                        <p className='text-[12px]'>Choose this if your institution uses the default primary/secondary school naming convention for Nigerian Schools.</p>
-                    </aside>
+
                 </div>
-                <div className={`w-full flex justify-between border border-${isGroupSelected === "yr1-yr12" ? "colorLightGreen" : null} p-2 gap-1 rounded-md hover:border-colorLightGreen transition-all duration-500 border-2`} >
-                    <div className='w-[10%]'>
-                        <div className='rounded-full w-6 h-6 flex items-center justify-center border-2 border-colorLightGreen'>
-
-                            <InputElements type="radio" name="schoolGroupType" value="yr1-yr12" id="yr1-yr12" onClick={() => setIsGroupSelected("yr1-yr12")} form={form} />
-                        </div>
-                    </div>
-                    <aside className='w-[90%]'>
-                        <h6>YEAR 1 - YEAR 12</h6>
-                        <p className='text-[12px]'>Choose this if your institution uses the K12 naming conventions used in most British or American schools.</p>
-                    </aside>
-                </div>
+                <p className='text-xs text-colorGray3'>MAX FILE SIZE: 20MB</p>
+                <a className='text-sm text-colorBlue underline' href="https://sample-videos.com/csv/Sample-Spreadsheet-10-rows.csv">
+                    Download Sample Spreadsheet
+                </a>
                 <p>How many branches do you have in each group?</p>
                 <FormGroup sx={{ marginLeft: 1 }}>
                     <FormControlLabel
@@ -114,7 +106,7 @@ const SchoolStructure = ({ form, setIsNext, schoolStructureSummit }) => {
                             type="text"
                             id={input.id}
                             value={input.value}
-                            placeholder="Gold or A"
+                            placeholder="Branch Name"
                             form={form}
                             onChange={(e) => handleInputChange(input.id, e.target.value)}
 
@@ -140,10 +132,9 @@ const SchoolStructure = ({ form, setIsNext, schoolStructureSummit }) => {
 
 
         </div>
-          
-        
+
+
     )
 }
 
-export default SchoolStructure
-
+export default CreateNewSession
