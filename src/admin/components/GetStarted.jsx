@@ -13,7 +13,7 @@ const GetStarted = ({ onGetStartedSubmit, form, isPasswordVisible, passwordChang
         <div className='w-[90%] md:w-[360px] min-h-[360px] flex-shrink-0 bg-white rounded-md shadow-md md:px-8 px-5 py-5 flex flex-col items-center justify-around'>
             <h4 className=''>Get Started</h4>
             <form onSubmit={handleSubmit(onGetStartedSubmit)} noValidate className='w-full flex flex-col gap-4'>
-                <InputElements type="email" form={form} />
+                <InputElements type="email" id="email" form={form} />
                 <InputElements type={isPasswordVisible ? "text" : "password"} form={form} isPasswordVisible={isPasswordVisible} passwordChange={passwordChange} togglePasswordVisibility={togglePasswordVisibility} checkPasswordMatch={checkPasswordMatch} id="password" />
                 <InputElements type={isPasswordVisible ? "text" : "password"} form={form} isPasswordVisible={isPasswordVisible} passwordChange={passwordChange} togglePasswordVisibility={togglePasswordVisibility} checkPasswordMatch={checkPasswordMatch} id="confirmPassword" />
 

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { setAdminLogo } from '../../redux/features/createAdmin'
@@ -24,21 +24,25 @@ const CreateSchoolProfile = ({ onSchoolProfileSubmit, form, setIsNext }) => {
     const back = () => setIsNext({
         getStarted: true,
         schoolProfile: false,
-        adminLogo: false,
         schoolStructure: false,
-        session: false
+        customStructure: false,
+        session: false,
+        instructorInvite: false,
+        learnerInvite: false
     })
+
+ 
 
 
     return (
         <div className='w-[90%] md:w-[500px] md:h-[400px] flex-shrink-0 bg-colorWhite1 rounded-md shadow-md md:px-8 px-5 py-5 flex flex-col items-center animate__animated animate__fadeInRight overflow-y-scroll mt-10'>
             <h4 className='pb-4'>Create School Profile</h4>
             <form onSubmit={handleSubmit(onSchoolProfileSubmit)} noValidate className='w-full flex flex-col gap-4'>
-                <InputElements type="file" id="schoolLogo" form={form} onChange={handleSelectSchoolLogo} schoolLogo={schoolLogo}/>
+                <InputElements type="file" id="schoolLogo" form={form} onChange={handleSelectSchoolLogo} schoolLogo={schoolLogo} />
                 <InputElements type="text" id="schoolName" form={form} placeholder="School Name" />
                 <InputElements type="text" id="schoolMotto" form={form} placeholder="School Motto" />
                 <InputElements type="url" id="schoolUrl" form={form} placeholder="http://www.stregencyschools.com" />
-               
+
 
                 <div className='h-[38px] flex gap-10'>
                     <Button text="Back" background="bg-colorWhite3" color="text-colorGray3" onClick={back} />

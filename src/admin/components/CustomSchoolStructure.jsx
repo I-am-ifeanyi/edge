@@ -29,11 +29,12 @@ const CustomSchoolStructure = ({ form, setIsNext, onCustomStructureSubmit }) => 
 
     const back = () => setIsNext({
         getStarted: false,
-        schoolProfile: true,
-        adminLogo: false,
+        schoolProfile: false,
         schoolStructure: true,
         customStructure: false,
-        session: false
+        session: false,
+        instructorInvite: false,
+        learnerInvite: false
     })
 
 
@@ -70,7 +71,7 @@ const CustomSchoolStructure = ({ form, setIsNext, onCustomStructureSubmit }) => 
             <h4 className=''>School Structure</h4>
 
             <form className='w-full flex flex-col gap-4' onSubmit={handleSubmit(onCustomStructureSubmit)} noValidate>
-                <InputElements type="text" id="custom" placeholder="Custom" disabled={true} form={form} />
+                <InputElements type="text" id="custom" value="Custom" placeholder="Custom" disabled={true} form={form} />
                 <p>Import your custom organization groups</p>
 
                 <div className="h-[70px] w-full border-2 border-dotted rounded-md flex items-center justify-center" >

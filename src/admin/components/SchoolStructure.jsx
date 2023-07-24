@@ -3,10 +3,10 @@ import { useDispatch } from 'react-redux'
 import { FormGroup, FormControlLabel } from "@mui/material"
 import { IoIosAddCircle } from "react-icons/io"
 import { MdDeleteForever } from "react-icons/md"
-
 import { IOSSwitch } from './specialStyles'
 import InputElements from '../../components/InputElements'
 import { Button } from '../../components/Components'
+import { Caveats } from '../../components/Components'
 
 
 const SchoolStructure = ({ form, setIsNext, schoolStructureSummit }) => {
@@ -25,11 +25,15 @@ const SchoolStructure = ({ form, setIsNext, schoolStructureSummit }) => {
         setIsChecked(event.target.checked);
     };
 
+
     const back = () => setIsNext({
         getStarted: false,
         schoolProfile: true,
         schoolStructure: false,
-        session: false
+        customStructure: false,
+        session: false,
+        instructorInvite: false,
+        learnerInvite: false
     })
 
 
@@ -62,15 +66,17 @@ const SchoolStructure = ({ form, setIsNext, schoolStructureSummit }) => {
     //     setInputs(filteredInputs);
     // };
 
+   
+
 
     return (
-        
+        <>
         <div className='w-[90%] md:w-[600px] md:h-[450px] mt-10 flex-shrink-0 bg-colorWhite1 rounded-md shadow-md md:px-8 px-5 py-5 flex flex-col gap-4 items-center animate__animated animate__fadeInRight overflow-y-scroll'>
 
             <h4 className=''>School Structure</h4>
 
             <form className='w-full flex flex-col gap-4' onSubmit={handleSubmit(schoolStructureSummit)} noValidate>
-                <InputElements type="select" id="schoolType" label="School Type" form={form} onChange={findSchoolType} />
+                <InputElements type="select" id="schoolType" label="School Type" form={form} onChange={findSchoolType} options={["Primary School", "Secondary School", "Custom"]} />
                 <p>How many groups are in your school?</p>
 
                 <div className={`w-full flex justify-between border border-${isGroupSelected === "js-ss" ? "colorLightGreen" : null} p-2 gap-1 rounded-md hover:border-colorLightGreen transition-all duration-500 border-2`} >
@@ -140,8 +146,8 @@ const SchoolStructure = ({ form, setIsNext, schoolStructureSummit }) => {
 
 
         </div>
-          
-        
+
+        </>
     )
 }
 

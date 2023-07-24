@@ -2,27 +2,14 @@ import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
   adminCompleteInfo: {
-    getStarted: {
-      email: "",
-      name: "",
-      password: ""
-    },
-    schoolProfile: {
-      schoolName: "",
-      schoolMotto: "",
-      schoolWebsite: ""
-    },
+    getStarted: {},
+    schoolProfile: {},
     adminLogo: "",
-    schoolStructure: {
-      schoolType: "",
-      groupType: "",
-      customOrganizationGroups: ""
-    },
+    schoolStructure: {},
     setCustomSchoolStructure: {},
-    session: {
-      sessionTimeFrame: "",
-      sessionFrequency: ""
-    }
+    session: {},
+    inviteInstructor: {},
+    learnersInvite: {}
   }
 }
 
@@ -47,6 +34,12 @@ const createAdmin = createSlice({
     },
     setSession: (state, { payload }) => {
       state.adminCompleteInfo.session = payload
+    },
+    setInviteInstructor: (state, { payload }) => {
+      state.adminCompleteInfo.inviteInstructor = payload
+    },
+    setLearnerInvite: (state, { payload }) => {
+      state.adminCompleteInfo.learnersInvite = payload
     }
   }
 })
@@ -57,9 +50,8 @@ export const {
   setAdminLogo,
   setSchoolStructure,
   setCustomSchoolStructure,
-  setSession
+  setSession,
+  setInviteInstructor,
+  setLearnerInvite
 } = createAdmin.actions
 export default createAdmin.reducer
-
-
-

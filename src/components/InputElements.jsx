@@ -6,7 +6,7 @@ import { CONSTANTS } from './Components'
 import { AiOutlineEye, AiOutlineEyeInvisible, AiOutlineCloudUpload } from "react-icons/ai"
 
 
-const InputElements = ({ type, form, isPasswordVisible, passwordChange, togglePasswordVisibility, id, checkPasswordMatch, onChange, schoolLogo, placeholder, label, name, value, onClick, icon, disabled }) => {
+const InputElements = ({ type, form, isPasswordVisible, passwordChange, togglePasswordVisibility, id, checkPasswordMatch, onChange, schoolLogo, placeholder, label, name, value, onClick, icon, disabled, options }) => {
     const { EMAIL_PLACEHOLDER, PASSWORD_PLACEHOLDER, CONFIRM_PASSWORD_PLACEHOLDER } = CONSTANTS
     const { register, control, handleSubmit, formState, reset } = form
     const { errors, isSubmitSuccessful, isSubmitting, isSubmitted } = formState
@@ -97,12 +97,25 @@ const InputElements = ({ type, form, isPasswordVisible, passwordChange, togglePa
             </fieldset>
         )
     } else if (type === "text") {
+        if (disabled) {
+            return (
+                <div className='w-full'>
+                    <fieldset className='w-full h-[50px] flex items-center bg-colorWhite2 border border-colorWhite3 rounded-lg '>
+
+
+                        <input type="text" value={value} onChange={onChange} id={id} placeholder={placeholder} className="outline-none w-full  h-full px-2" disabled={disabled} {...register(`${id}`)} />
+                        {icon}
+                    </fieldset>
+
+                </div>
+            )
+        }
         return (
             <div className='w-full'>
                 <fieldset className='w-full h-[50px] flex items-center bg-colorWhite2 border border-colorWhite3 rounded-lg '>
 
 
-                    <input type="text" onChange={onChange} id={id} placeholder={placeholder} className="outline-none w-full  h-full px-2" disabled={disabled} {...register(`${id}`, {
+                    <input type="text" onChange={onChange} id={id} placeholder={placeholder} className="outline-none w-full  h-full px-2"  {...register(`${id}`, {
                         required: {
                             value: true,
                             message: `Please fill in this field`
@@ -143,10 +156,18 @@ const InputElements = ({ type, form, isPasswordVisible, passwordChange, togglePa
                             required: 'Please fill in this field',
                         }}
                         render={({ field }) => (
-                            <Select label={label} {...field} sx={{ borderRadius: 3 }} onChange={onChange}>
-                                <MenuItem value="Primary School">Primary School</MenuItem>
-                                <MenuItem value="Secondary School">Secondary School</MenuItem>
-                                <MenuItem value="Custom">Custom</MenuItem>
+                            <Select
+                                label={label}
+                                {...field}
+                                sx={{ borderRadius: 3 }}
+                                onChange={(e) => {
+                                    field.onChange(e);
+                                    onChange && onChange(e); // Call the custom onChange function if provided
+                                }}
+                            >
+                                {options?.map((data, index) => {
+                                    return <MenuItem key={index} value={data}>{data}</MenuItem>;
+                                })}
                             </Select>
                         )}
                     />
@@ -156,15 +177,15 @@ const InputElements = ({ type, form, isPasswordVisible, passwordChange, togglePa
         )
     } else if (type === "radio") {
         return (
-                <input type="radio" name={name} value={value} id={id} onClick={onClick} {...register(`${name}`, {
-                    required: {
-                        value: true,
-                        message: 'Please fill in this field '
-                    }
-                })}
-                    className="appearance-none w-4 h-4 rounded-full checked:bg-colorLightGreen"
+            <input type="radio" name={name} value={value} id={id} onClick={onClick} {...register(`${name}`, {
+                required: {
+                    value: true,
+                    message: 'Please fill in this field '
+                }
+            })}
+                className="appearance-none w-4 h-4 rounded-full checked:bg-colorLightGreen"
 
-                />
+            />
 
         )
     }
