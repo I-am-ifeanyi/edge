@@ -18,7 +18,7 @@ export const Button = ({ icon, color, background, text, onClick }) => {
 }
 
 
-export const LogoHeader = ({ isNext, setIsNext }) => {
+export const LogoHeader = ({ isNext, setIsNext, loginAdmin }) => {
     const [progressWidth, setProgressWidth] = useState("16.7%");
     const { getStarted, schoolProfile, adminLogo, schoolStructure, customStructure, session, instructorInvite, learnerInvite } = isNext
 
@@ -32,7 +32,7 @@ export const LogoHeader = ({ isNext, setIsNext }) => {
         } else if (instructorInvite) {
             setProgressWidth("83.5%");
 
-        } else if (learnerInvite) {
+        } else if (learnerInvite || loginAdmin) {
             setProgressWidth("100%");
 
         }
@@ -55,7 +55,7 @@ export const LogoHeader = ({ isNext, setIsNext }) => {
         session: false,
         instructorInvite: false,
         learnerInvite: false,
-        AdminLogin: true
+        loginAdmin: true
 
     })
 
@@ -151,7 +151,7 @@ export const PasswordStrengthBar = ({ password }) => {
 
 export const Caveats = ({ bg, bg2, textColor2, textColor, title2, bodyA, bodyB, bodyC, bodyD, title, body, body2, body3, body4, body5, body6, body7 }) => {
     return (
-        <div className="flex md:flex-col gap-2 absolute top-16 md:top-20 right-0 md:right-32 justify-between md:w-[150px] z-0 w-full animate__animated animate__fadeInDown">
+        <div className="flex md:flex-col gap-2 absolute top-16 md:top-20 right-0 md:right-5 justify-between md:w-[150px] z-0 w-full animate__animated animate__fadeInDown">
             <div className={`md:p-5 px-4 py-2 w-1/2 md:w-auto rounded-md float-right ${bg} ${textColor}`}>
                 <p className="text-[10px] font-bold">{title}</p>
                 <p className="text-[10px]">{body}</p>

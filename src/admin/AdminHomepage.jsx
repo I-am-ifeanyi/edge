@@ -1,8 +1,13 @@
-import React from 'react'
+import React from "react"
+
+import AdminDashboard from "./AdminDashboard"
 
 const AdminHomepage = () => {
   return (
-    <div>AdminHomepage</div>
+    <div>
+      <div>Dashboard</div>
+      <AdminDashboard />
+    </div>
   )
 }
 

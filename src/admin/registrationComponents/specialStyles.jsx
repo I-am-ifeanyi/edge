@@ -16,7 +16,7 @@ export const IOSSwitch = styled((props) => (
             transform: 'translateX(16px)',
             color: '#fff',
             '& + .MuiSwitch-track': {
-                backgroundColor: theme.palette.mode === 'dark' ? '#2ECA45' : '#3DD598',
+                backgroundColor: theme.palette.mode === 'dark' ? '#2ECA45' : '#82C43C',
                 opacity: 1,
                 border: 0,
             },

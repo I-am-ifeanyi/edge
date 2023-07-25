@@ -6,10 +6,19 @@ const initialState = {
     schoolProfile: {},
     adminLogo: "",
     schoolStructure: {},
-    setCustomSchoolStructure: {},
+    customSchoolStructure: {
+      CSVfile: "",
+      branches: ""
+    },
     session: {},
-    inviteInstructor: {},
-    learnersInvite: {}
+    inviteInstructor: {
+      instructorsAlias: "",
+      instructorsCSVlist: ""
+    },
+    learnersInvite: {
+      learnersAlias: "",
+      learnersCSVlist: ""
+    }
   }
 }
 
@@ -29,17 +38,26 @@ const createAdmin = createSlice({
     setSchoolStructure: (state, { payload }) => {
       state.adminCompleteInfo.schoolStructure = payload
     },
-    setCustomSchoolStructure: (state, { payload }) => {
-      state.adminCompleteInfo.setCustomSchoolStructure = payload
+    setCustomCSVfile: (state, { payload }) => {
+      state.adminCompleteInfo.customSchoolStructure.CSVfile = payload
+    },
+    setCustomBranches: (state, { payload }) => {
+      state.adminCompleteInfo.customSchoolStructure.branches = payload
     },
     setSession: (state, { payload }) => {
       state.adminCompleteInfo.session = payload
     },
-    setInviteInstructor: (state, { payload }) => {
-      state.adminCompleteInfo.inviteInstructor = payload
+    setInstructorCSVlist: (state, { payload }) => {
+      state.adminCompleteInfo.inviteInstructor.instructorsCSVlist = payload
     },
-    setLearnerInvite: (state, { payload }) => {
-      state.adminCompleteInfo.learnersInvite = payload
+    setInstructorAlias: (state, { payload }) => {
+      state.adminCompleteInfo.inviteInstructor.instructorsAlias = payload
+    },
+    setLearnersCSVlist: (state, { payload }) => {
+      state.adminCompleteInfo.learnersInvite.learnersCSVlist = payload
+    },
+    setLearnersAlias: (state, { payload }) => {
+      state.adminCompleteInfo.learnersInvite.learnersAlias = payload
     }
   }
 })
@@ -49,9 +67,12 @@ export const {
   setSchoolProfile,
   setAdminLogo,
   setSchoolStructure,
-  setCustomSchoolStructure,
+  setCustomCSVfile,
+  setCustomBranches,
   setSession,
-  setInviteInstructor,
-  setLearnerInvite
+  setInstructorCSVlist,
+  setInstructorAlias,
+  setLearnersCSVlist,
+  setLearnersAlias
 } = createAdmin.actions
 export default createAdmin.reducer

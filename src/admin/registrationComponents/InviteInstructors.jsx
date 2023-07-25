@@ -6,6 +6,7 @@ import { BiPlus } from "react-icons/bi"
 import { ToastContainer, toast } from 'react-toastify'
 
 
+import { setInstructorCSVlist } from '../../redux/features/createAdmin'
 import InputElements from '../../components/InputElements'
 import { Button } from '../../components/Components'
 import { Caveats } from '../../components/Components'
@@ -42,13 +43,21 @@ const InviteInstructors = ({ form, setIsNext, onInstructorInviteSubmit }) => {
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         if (file.size > 20971520) {
-            alert("File size larger than 20MB")
-            return null
+            alert("File size larger than 20MB");
+            return null;
         }
-        setCsvFileName(file?.name)
-        console.log(file)
 
+        setCsvFileName(file?.name);
 
+        // Read the content of the CSV file using FileReader
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            const csvContent = event.target.result;
+
+            // Save the CSV content to local storage
+            dispatch(setInstructorCSVlist(csvContent));
+        };
+        reader.readAsText(file);
     };
   
     const Toast = {

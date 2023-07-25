@@ -12,7 +12,7 @@ export default {
         colorYellow: "#FFF6A6",
         colorRed: "#FC5A5A",
         colorGreen: "#82C43C",
-        colorLightGreen: "#DFFFE4",
+        colorLightGreen: "#82C43C",
         colorPurple: "#A461D8",
         colorPink: "#FF9AD5",
         colorGray1: "#171725",

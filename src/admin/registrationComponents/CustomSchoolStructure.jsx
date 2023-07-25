@@ -4,6 +4,7 @@ import { FormGroup, FormControlLabel } from "@mui/material"
 import { IoIosAddCircle } from "react-icons/io"
 import { BiPlus } from "react-icons/bi"
 
+import { setCustomCSVfile } from '../../redux/features/createAdmin'
 import { IOSSwitch } from './specialStyles'
 import InputElements from '../../components/InputElements'
 import { Button } from '../../components/Components'
@@ -53,14 +54,23 @@ const CustomSchoolStructure = ({ form, setIsNext, onCustomStructureSubmit }) => 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         if (file.size > 20971520) {
-            alert("File size larger than 20MB")
-            return null
+            alert("File size larger than 20MB");
+            return null;
         }
-        setCsvFileName(file?.name)
-        console.log(file)
 
+        setCsvFileName(file?.name);
 
+        // Read the content of the CSV file using FileReader
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            const csvContent = event.target.result;
+
+            // Save the CSV content to local storage
+            dispatch(setCustomCSVfile(csvContent));
+        };
+        reader.readAsText(file);
     };
+
 
 
 
