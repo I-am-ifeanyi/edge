@@ -9,7 +9,6 @@ import { ToastContainer, toast } from 'react-toastify'
 import { setInstructorCSVlist } from '../../redux/features/createAdmin'
 import InputElements from '../../components/InputElements'
 import { Button } from '../../components/Components'
-import { Caveats } from '../../components/Components'
 
 
 const InviteInstructors = ({ form, setIsNext, onInstructorInviteSubmit }) => {

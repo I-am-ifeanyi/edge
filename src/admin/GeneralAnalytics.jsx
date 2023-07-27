@@ -1,7 +1,6 @@
-import React, { useState } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { useForm } from "react-hook-form"
 import ApexCharts from "apexcharts"
-
 
 import HeaderComponent from "./homepageComponents/HeaderComponent"
 import OverallSummary from "./homepageComponents/OverallSummary"
@@ -39,56 +38,79 @@ const GeneralAnalytics = () => {
     }
   ]
 
-      var options = {
-        series: [
-          {
-            name: "Desktops",
-            data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
-          }
-        ],
-        chart: {
-          height: 350,
-          type: "line",
-          zoom: {
-            enabled: false
-          }
-        },
-        dataLabels: {
-          enabled: false
-        },
-        stroke: {
-          curve: "straight"
-        },
-        title: {
-          text: "Product Trends by Month",
-          align: "left"
-        },
-        grid: {
-          row: {
-            colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
-            opacity: 0.5
-          }
-        },
-        xaxis: {
-          categories: [
-            "Jan",
-            "Feb",
-            "Mar",
-            "Apr",
-            "May",
-            "Jun",
-            "Jul",
-            "Aug",
-            "Sep"
-          ]
-        }
-      }
+  const chartRef = useRef(null)
 
-      var chart = new ApexCharts(
-        document.querySelector("#overallPerformance"),
-        options
-      )
-      chart.render()
+ useEffect(() => {
+   // Your ApexCharts options
+   const options = {
+     series: [
+       {
+         name: "Performance",
+         data: [40, 28, 60, 90, 50, 10, 30, 55, 40, 28, 60, 90]
+       }
+     ],
+     chart: {
+       height: 350,
+       width: "100%",
+       type: "line",
+       zoom: {
+         enabled: false
+       },
+       toolbar: {
+         show: false, // Hide the hamburger menu
+         exportMenu: {
+           show: false // Hide the export menu (download options)
+         }
+       }
+     },
+     dataLabels: {
+       enabled: false
+     },
+     stroke: {
+       curve: "smooth"
+     },
+     title: {
+       text: "Overall Test Performance",
+       align: "left"
+     },
+     grid: {
+       row: {
+         colors: ["#f3f3f3", "transparent"],
+         opacity: 0.5
+       }
+     },
+     xaxis: {
+       categories: [
+         "Jan",
+         "Feb",
+         "Mar",
+         "Apr",
+         "May",
+         "Jun",
+         "Jul",
+         "Aug",
+         "Sep",
+         "Oct",
+         "Nov",
+         "Dec"
+       ],
+       labels: {
+         rotate: -45 // Rotate the labels 45 degrees counter-clockwise
+       }
+     }
+   }
+
+   if (chartRef && chartRef.current) {
+     const chart = new ApexCharts(chartRef.current, options)
+     chartRef.current.style.margin = "35px auto"
+     chart.render();
+       return () => {
+         chart.destroy()
+       }
+   }
+   
+ }, [])
+
 
   return (
     <div className="md:w-[90%] absolute h-full right-0">
@@ -106,7 +128,6 @@ const GeneralAnalytics = () => {
             id="schoolType"
             label="1st Term, 2023"
             form={form}
-            // onChange={findSchoolType}
             options={["1st Term, 2023", "2nd Semester, 2023", "Private"]}
           />
         </div>
@@ -129,7 +150,9 @@ const GeneralAnalytics = () => {
             />
           </div>
           <div className="w-full flex justify-between">
-            <div className="md:w-[70%] m-[35px auto]" id="overallPerformance"></div>
+            <div className="md:w-[70%] shadow rounded-md">
+              <div ref={chartRef} />
+            </div>
             <div className="md:w-[25%] bg-green-500">Secondary</div>
           </div>
         </div>

@@ -8,7 +8,6 @@ import { setCustomCSVfile } from '../../redux/features/createAdmin'
 import { IOSSwitch } from './specialStyles'
 import InputElements from '../../components/InputElements'
 import { Button } from '../../components/Components'
-import { Caveats } from '../../components/Components'
 
 
 const CustomSchoolStructure = ({ form, setIsNext, onCustomStructureSubmit }) => {

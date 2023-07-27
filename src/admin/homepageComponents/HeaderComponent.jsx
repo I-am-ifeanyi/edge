@@ -21,7 +21,7 @@ const HeaderComponent = ({
   }, [])
 
   return (
-    <div className="md:w-[90%] md:h-[140px] flex flex-col fixed right-0 gap-1">
+    <div className="md:w-[90%] md:h-[140px] flex flex-col fixed right-0 gap-1 bg-colorWhite1 z-10">
       <div className="md:w-full md:h-[70px] flex items-center justify-end gap-4 px-4 ">
         {!adminInfo?.adminLogo ? (
           <img
@@ -58,8 +58,8 @@ const HeaderComponent = ({
           )
         })}
       </ul>
-      <div className="flex flex-col justify-between h-full mt-4 w-full">
-        <div className="flex justify-between px-4 ">
+      <div className="flex flex-col justify-between h-full mt-4 w-full bg-colorWhite1">
+        <div className="flex justify-between px-4 bg-colorWhite1">
           <div className="flex flex-col gap-2 items-start">
             <img src={icon} alt="" />
             <h4>{title}</h4>
@@ -74,7 +74,7 @@ const HeaderComponent = ({
             />
           </div>
         </div>
-        <ul className="flex justify-between gap-4 mt-2 border-b px-4 ">
+        <ul className="flex justify-between gap-4 mt-2 border-b px-4 bg-colorWhite1">
           {subLinks.map((item, index) => {
             return (
               <li

@@ -8,7 +8,6 @@ import { setLearnersCSVlist } from '../../redux/features/createAdmin'
 import { IOSSwitch } from './specialStyles'
 import InputElements from '../../components/InputElements'
 import { Button } from '../../components/Components'
-import { Caveats } from '../../components/Components'
 
 
 const LearnersInvite = ({ form, setIsNext, learnersInvite }) => {
@@ -66,7 +65,7 @@ const LearnersInvite = ({ form, setIsNext, learnersInvite }) => {
 
             <h4 className=''>Invite Learners</h4>
 
-            <Caveats title="CSV STRUCTURE" bg="bg-colorLightGreen" textColor="text-colorGray2" body="- Full Name" body2="- Reg Number" body3="- Gender" body4="- Phone Number" body5="- Email" body6="- Group" body7="- Branch" />
+         
 
 
             <form className='w-full flex flex-col gap-4' onSubmit={handleSubmit(learnersInvite)} noValidate>
