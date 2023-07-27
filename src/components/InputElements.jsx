@@ -159,7 +159,7 @@ const InputElements = ({ type, form, isPasswordVisible, passwordChange, togglePa
                             <Select
                                 label={label}
                                 {...field}
-                                sx={{ borderRadius: 3 }}
+                                sx={{ borderRadius: 3, height: "100%", backgroundColor: "white" }}
                                 onChange={(e) => {
                                     field.onChange(e);
                                     onChange && onChange(e); // Call the custom onChange function if provided

@@ -11,7 +11,6 @@ import CreateNewSession from './registrationComponents/CreateNewSession';
 import InviteInstructors from './registrationComponents/InviteInstructors';
 import LearnersInvite from './registrationComponents/LearnersInvite';
 import LoginAdmin from './registrationComponents/LoginAdmin';
-import { Caveats } from '../components/Components';
 import 'animate.css';
 
 
@@ -248,19 +247,6 @@ const CreateAdmin = () => {
                     </div>
 
                 </div>
-                {schoolStructure && <Caveats bg="bg-colorYellow" textColor='text-colorGray2' title="NOTE" body="School types include:" body2="- Primary School" body3="- Secondary School" body4="- Custom" />}
-
-
-                {customStructure && <Caveats bg="bg-colorYellow" textColor='text-colorGray2' title="NOTE" body="Custom structure allows for importation of custom school groups" title2="CSV STRUCTURE" bg2="bg-colorLightGreen" textColor2="text-colorGray2" bodyA="- Group Names" bodyB="- Max Users" />}
-
-
-                {session && <Caveats bg="bg-colorYellow" textColor='text-colorGray2' title="NOTE" body="Sessions would be used to manage student’s classes and school fees only. 
-                Course contents shouldn’t be affected by new sessions." title2="NOTE" bg2="bg-colorYellow" textColor2="text-colorGray2" bodyA="Session frequency includes:" bodyB="- Quarterly" bodyC="- Triannual" bodyD="- Biannual" />}
-
-                {instructorInvite && <Caveats bg="bg-colorLightGreen" textColor='text-colorGray2' title="CSV STRUCTURE" body="- Full Name" body2="- Gender" body3="- Phone Number" body4="- Email" />}
-
-
-                {learnerInvite && <Caveats bg="bg-colorLightGreen" textColor='text-colorGray2' title="CSV STRUCTURE" body="- Full Name" body2="- Reg Number" body3="- Gender" body4="- Phone Number" body5="- Email" body6="- Group" body7="- Branch" />}
 
             </div>
 

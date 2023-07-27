@@ -7,13 +7,14 @@ import background from "../assets/Shape.png"
 
 
 
-export const Button = ({ icon, color, background, text, onClick }) => {
+export const Button = ({ icon, color, background, text, onClick, font }) => {
     return (
-        <button
-            className={`w-full h-full px-5 ${background} flex items-center justify-center gap-3 hover:translate-x-1 transition-all duration-500  rounded-md ${color}`}
-            onClick={onClick}>
-            {icon} {text}
-        </button>
+      <button
+        className={`w-full h-full px-5 ${background} flex items-center justify-center gap-3 hover:translate-x-1 transition-all duration-500 ${font}  rounded-md ${color}`}
+        onClick={onClick}
+      >
+        {icon} {text}
+      </button>
     )
 }
 
@@ -149,28 +150,5 @@ export const PasswordStrengthBar = ({ password }) => {
     );
 };
 
-export const Caveats = ({ bg, bg2, textColor2, textColor, title2, bodyA, bodyB, bodyC, bodyD, title, body, body2, body3, body4, body5, body6, body7 }) => {
-    return (
-        <div className="flex md:flex-col gap-2 absolute top-16 md:top-20 right-0 md:right-5 justify-between md:w-[150px] z-0 w-full animate__animated animate__fadeInDown">
-            <div className={`md:p-5 px-4 py-2 w-1/2 md:w-auto rounded-md float-right ${bg} ${textColor}`}>
-                <p className="text-[10px] font-bold">{title}</p>
-                <p className="text-[10px]">{body}</p>
-                <p className="text-[10px]">{body2}</p>
-                <p className="text-[10px]">{body3}</p>
-                <p className="text-[10px]">{body4}</p>
-                <p className="text-[10px]">{body5}</p>
-                <p className="text-[10px]">{body6}</p>
-                <p className="text-[10px]">{body7}</p>
 
-            </div>
-            <div className={`md:p-5 px-4 py-2 rounded-md ${bg2} ${textColor2}`}>
-                <p className="text-[10px] font-bold">{title2}</p>
-                <p className="text-[10px]">{bodyA}</p>
-                <p className="text-[10px]">{bodyB}</p>
-                <p className="text-[10px]">{bodyC}</p>
-                <p className="text-[10px]">{bodyD}</p>
-            </div>
-        </div>
-    )
-}
 

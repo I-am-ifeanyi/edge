@@ -5,6 +5,7 @@ export default {
     extend: {
       colors: {
         colorBlue: "#041644",
+        colorWhitishBlue: "#6476a5",
         colorYellow: "#FFC542",
         colorSkyBlue: "#50B5FF",
         colorLightGreen: "#3DD598",
@@ -26,6 +27,9 @@ export default {
         colorWhite3: "#F1F1F5"
       }
     }
+  },
+  variants: {
+    scrollbar: ["rounded-md"] 
   },
   plugins: []
 }
