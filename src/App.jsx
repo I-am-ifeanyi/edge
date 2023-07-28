@@ -12,6 +12,7 @@ import StudentDashboard from "./users/students/StudentDashboard"
 import CreateAdmin from "./admin/CreateAdmin"
 import GeneralAnalytics from "./admin/GeneralAnalytics"
 import AdminLayout from "./admin/AdminLayout"
+import School from "./admin/School"
 
 
 
@@ -21,8 +22,9 @@ export default function App() {
     createRoutesFromElements(
       <Route>
         <Route path="/" element={<CreateAdmin />} />
-        <Route path="dashboard" element={<AdminLayout />}>
-          <Route index element={<GeneralAnalytics />} />
+        <Route path="admin" element={<AdminLayout />}>
+          <Route path="dashboard" element={<GeneralAnalytics />} />
+          <Route path="school" element={<School />} />
         </Route>
 
         <Route path="home-page" element={<PageLayout />}>

@@ -12,7 +12,8 @@ const HeaderComponent = ({
   subLinks,
   locations,
   buttonProps,
-  onClick
+  onClick,
+  toggleCreateNewSession
 }) => {
   const [adminInfo, setAdminInfo] = useState("")
 
@@ -21,8 +22,8 @@ const HeaderComponent = ({
   }, [])
 
   return (
-    <div className="md:w-[90%] md:h-[140px] flex flex-col fixed right-0 gap-1 bg-colorWhite1 z-10">
-      <div className="md:w-full md:h-[70px] flex items-center justify-end gap-4 px-4 ">
+    <div className="w-full md:w-[90%] md:h-[140px] flex flex-col  fixed right-0 gap-1 bg-colorWhite1 z-10 md:top-0 top-12">
+      <div className="md:w-full md:h-[70px] md:flex items-center justify-end gap-4 py-2 px-4 hidden">
         {!adminInfo?.adminLogo ? (
           <img
             src={adminInfo?.adminLogo}
@@ -42,7 +43,7 @@ const HeaderComponent = ({
         </div>
         <BsFillCaretDownFill className="text-colorGray4" />
       </div>
-      <ul className="flex items-center gap-1 text-[10px] px-4 ">
+      <ul className="flex items-center gap-1 text-[10px] px-4 mt-2 md:mt-0">
         {locations.map((item, index) => {
           return (
             <li className="flex items-center gap-2" key={index}>
@@ -69,7 +70,7 @@ const HeaderComponent = ({
               color="text-colorWhite1"
               background="bg-colorBlue"
               text={buttonProps}
-              font="text-[12px]"
+              font="md:text-[12px] text-[10px]"
               onClick={onClick}
             />
           </div>

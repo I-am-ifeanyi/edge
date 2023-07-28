@@ -188,9 +188,9 @@ const CreateAdmin = () => {
         const completeAdminInfo = fetchLocalUserData("completeAdminInfo")
         const { email, password } = adminUser
         if (data.email === email && data.password === password) {
-            navigate("adminHomepage")
+            navigate("/admin/dashboard")
 
-        } else navigate("adminHomepage")
+        } else navigate("/admin/dashboard")
 
     }
 

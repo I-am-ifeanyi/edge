@@ -6,10 +6,15 @@ import { CONSTANTS } from './Components'
 import { AiOutlineEye, AiOutlineEyeInvisible, AiOutlineCloudUpload } from "react-icons/ai"
 
 
-const InputElements = ({ type, form, isPasswordVisible, passwordChange, togglePasswordVisibility, id, checkPasswordMatch, onChange, schoolLogo, placeholder, label, name, value, onClick, icon, disabled, options }) => {
+const InputElements = ({ type, form, isPasswordVisible, passwordChange, togglePasswordVisibility, id, checkPasswordMatch, onChange, schoolLogo, placeholder, label, name, value, onClick, icon, disabled, options, required }) => {
     const { EMAIL_PLACEHOLDER, PASSWORD_PLACEHOLDER, CONFIRM_PASSWORD_PLACEHOLDER } = CONSTANTS
     const { register, control, handleSubmit, formState, reset } = form
     const { errors, isSubmitSuccessful, isSubmitting, isSubmitted } = formState
+
+      const initialRules = required
+        ? { required: "Please fill in this field" }
+        : {}
+
 
     if (type === "email") {
         return (
@@ -146,34 +151,44 @@ const InputElements = ({ type, form, isPasswordVisible, passwordChange, togglePa
         )
     } else if (type === "select") {
         return (
-            <div>
-                <FormControl variant="outlined" fullWidth>
-                    <InputLabel htmlFor={id}>{label}</InputLabel>
-                    <Controller
-                        name={id}
-                        control={control}
-                        rules={{
-                            required: 'Please fill in this field',
-                        }}
-                        render={({ field }) => (
-                            <Select
-                                label={label}
-                                {...field}
-                                sx={{ borderRadius: 3, height: "100%", backgroundColor: "white" }}
-                                onChange={(e) => {
-                                    field.onChange(e);
-                                    onChange && onChange(e); // Call the custom onChange function if provided
-                                }}
-                            >
-                                {options?.map((data, index) => {
-                                    return <MenuItem key={index} value={data}>{data}</MenuItem>;
-                                })}
-                            </Select>
-                        )}
-                    />
-                </FormControl>
-                {<p className="text-colorRed text-[10px]">{errors?.[id]?.message}</p>}
-            </div>
+          <div>
+            <FormControl variant="outlined" fullWidth>
+              <InputLabel htmlFor={id}>{label}</InputLabel>
+              <Controller
+                name={id}
+                control={control}
+                rules={initialRules}
+                render={({ field }) => (
+                  <Select
+                    label={label}
+                    {...field}
+                    sx={{
+                      borderRadius: 3,
+                      height: "100%",
+                      backgroundColor: "white"
+                    }}
+                    onChange={(e) => {
+                      field.onChange(e)
+                      onChange && onChange(e) // Call the custom onChange function if provided
+                    }}
+                  >
+                    {options?.map((data, index) => {
+                      return (
+                        <MenuItem key={index} value={data}>
+                          {data}
+                        </MenuItem>
+                      )
+                    })}
+                  </Select>
+                )}
+              />
+            </FormControl>
+            {
+              <p className="text-colorRed text-[10px]">
+                {errors?.[id]?.message}
+              </p>
+            }
+          </div>
         )
     } else if (type === "radio") {
         return (
