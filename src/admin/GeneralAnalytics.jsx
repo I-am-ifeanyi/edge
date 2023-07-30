@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react"
 import { useForm } from "react-hook-form"
 import ApexCharts from "apexcharts"
 import { AiOutlineClose } from "react-icons/ai"
-import { ToastContainer, toast } from "react-toastify"
 
 import HeaderComponent from "./homepageComponents/HeaderComponent"
 import OverallSummary from "./homepageComponents/OverallSummary"
@@ -312,6 +311,8 @@ const GeneralAnalytics = () => {
           locations={locations}
           buttonProps="Create new session"
           onClick={toggleCreateNewSession}
+          createSession={true}
+          toggleItems={""}
         />
         <div className="relative top-48 px-4">
           <div className="md:w-[170px] my-3 md:float-right">

@@ -116,21 +116,29 @@ const InputElements = ({ type, form, isPasswordVisible, passwordChange, togglePa
             )
         }
         return (
-            <div className='w-full'>
-                <fieldset className='w-full h-[50px] flex items-center bg-colorWhite2 border border-colorWhite3 rounded-lg '>
-
-
-                    <input type="text" onChange={onChange} id={id} placeholder={placeholder} className="outline-none w-full  h-full px-2"  {...register(`${id}`, {
-                        required: {
-                            value: true,
-                            message: `Please fill in this field`
-                        }
-                    })} />
-                    {icon}
-                </fieldset>
-                {<p className='text-colorRed text-[10px]'>{errors?.[id]?.message}</p>}
-
-            </div>
+          <div className="w-full">
+            <fieldset className="w-full h-[50px] flex items-center bg-colorWhite2 border border-colorWhite3 rounded-lg ">
+              <input
+                type="text"
+                id={id}
+                placeholder={placeholder}
+                className="outline-none w-full  h-full px-2"
+                {...register(`${id}`, {
+                  required: {
+                    value: true,
+                    message: `Please fill in this field`
+                  }
+                })}
+                onChange={onChange}
+              />
+              {icon}
+            </fieldset>
+            {
+              <p className="text-colorRed text-[10px]">
+                {errors?.[id]?.message}
+              </p>
+            }
+          </div>
         )
     } else if (type === "url") {
         return (

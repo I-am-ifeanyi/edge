@@ -13,10 +13,23 @@ const HeaderComponent = ({
   locations,
   buttonProps,
   onClick,
-  toggleCreateNewSession
+  createSession,
+  toggleItems,
 }) => {
-  const [adminInfo, setAdminInfo] = useState("")
+  
+  const { toggleSchool, toggleBasic } = toggleItems
 
+  const alternateLinks = (a, b) => {
+    if ((a !== "Basic Information")) {
+      toggleSchool()
+    } else if ((a !== "School Structure")) {
+      toggleBasic()
+    }
+  }
+
+
+
+  const [adminInfo, setAdminInfo] = useState("")
   useEffect(() => {
     setAdminInfo(fetchLocalUserData("completeAdminInfo"))
   }, [])
@@ -65,20 +78,25 @@ const HeaderComponent = ({
             <img src={icon} alt="" />
             <h4>{title}</h4>
           </div>
-          <div className="h-10">
-            <Button
-              color="text-colorWhite1"
-              background="bg-colorBlue"
-              text={buttonProps}
-              font="md:text-[12px] text-[10px]"
-              onClick={onClick}
-            />
-          </div>
+          {createSession && (
+            <div className="h-10">
+              <Button
+                color="text-colorWhite1"
+                background="bg-colorBlue"
+                text={buttonProps}
+                font="md:text-[12px] text-[10px]"
+                onClick={onClick}
+              />
+            </div>
+          )}
         </div>
-        <ul className="flex justify-between gap-4 mt-2 border-b px-4 bg-colorWhite1">
+        <ul className="flex gap-4 mt-2 border-b px-4 bg-colorWhite1">
           {subLinks.map((item, index) => {
             return (
               <li
+                onClick={() => {
+                  alternateLinks(item.A)
+                }}
                 key={index}
                 className={`${
                   item.isActive ? "border-colorBlue border-b-2 " : ""
