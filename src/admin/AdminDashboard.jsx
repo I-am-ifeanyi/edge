@@ -3,14 +3,18 @@ import { NavLink } from "react-router-dom"
 import { AiOutlineClose } from "react-icons/ai"
 import { GiHamburgerMenu } from "react-icons/gi"
 
-import dashboardIcon from "./assets/dashboard-icons/dashboard-icon.png"
-import schoolIcon from "./Assets/dashboard-icons/school-icon.png"
-import instructorsIcon from "./Assets/dashboard-icons/instructors-icon.png"
-import learnersIcon from "./Assets/dashboard-icons/learners-icon.png"
-import courseIcon from "./assets/dashboard-icons/courses-icon.png"
-import broadcastIcon from "./Assets/dashboard-icons/broadcast-icon.png"
-import financeIcon from "./assets/dashboard-icons/finance-icon.png"
-import settingsIcon from "./assets/dashboard-icons/settings-icon.png"
+import analyticsIcon from "../assets/admin/generalAnalytics-icons/analytics.png"
+import instructorsIcon from "../assets/admin/dashboard-icons/instructors-icon.png"
+import learnersIcon from "../assets/admin/dashboard-icons/learners-icon.png"
+import courseIcon from "../assets/admin/dashboard-icons/courses-icon.png"
+import dashboardIcon from "../assets/admin/dashboard-icons/dashboard-icon.png"
+import broadcastIcon from "../assets/admin/dashboard-icons/broadcast-icon.png"
+import financeIcon from "../assets/admin/dashboard-icons/finance-icon.png"
+import schoolIcon from "../assets/admin/dashboard-icons/school-icon.png"
+import settingsIcon from "../assets/admin/dashboard-icons/settings-icon.png"
+
+
+
 import edgeLogo from "../assets/Logo.png"
 
 const AdminDashboard = () => {

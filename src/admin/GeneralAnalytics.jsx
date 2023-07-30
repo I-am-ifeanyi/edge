@@ -7,10 +7,13 @@ import { ToastContainer, toast } from "react-toastify"
 import HeaderComponent from "./homepageComponents/HeaderComponent"
 import OverallSummary from "./homepageComponents/OverallSummary"
 import InputElements from "../components/InputElements"
-import analyticsIcon from "./Assets/generalAnalytics-icons/analytics.png"
-import instructorsIcon from "./Assets/dashboard-icons/instructors-icon.png"
-import learnersIcon from "./Assets/dashboard-icons/learners-icon.png"
-import coursesIcon from "./Assets/dashboard-icons/courses-icon.png"
+import analyticsIcon from "../assets/admin/generalAnalytics-icons/analytics.png"
+import instructorsIcon from "../assets/admin/dashboard-icons/instructors-icon.png"
+import learnersIcon from "../assets/admin/dashboard-icons/learners-icon.png"
+import coursesIcon from "../assets/admin/dashboard-icons/courses-icon.png"
+
+
+
 import { Button } from "../components/Components"
 
 

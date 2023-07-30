@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-import schoolIcon from "./Assets/schoolIcons/schoolIcon.png"
+import schoolIcon from "../assets/admin/schoolIcons/schoolIcon.png"
 import HeaderComponent from './homepageComponents/HeaderComponent'
 
 

@@ -1,9 +1,16 @@
 import React from 'react'
 
-import dashboardIcon from "./assets/dashboard-icons/dashboard-icon.png"
-import courseIcon from "./assets/dashboard-icons/courses-icon.png"
-import financeIcon from "./assets/dashboard-icons/finance-icon.png"
-import settingsIcon from "./assets/dashboard-icons/settings-icon.png"
+// import dashboardIcon from "./assets/dashboard-icons/dashboard-icon.png"
+// import courseIcon from "./assets/dashboard-icons/courses-icon.png"
+// import financeIcon from "./assets/dashboard-icons/finance-icon.png"
+// import settingsIcon from "./assets/dashboard-icons/settings-icon.png"
+
+import dashboardIcon from "./assets/admin/dashboard-icons/dashboard-icon.png"
+import courseIcon from "./assets/admin/dashboard-icons/courses-icon.png"
+import financeIcon from "./assets/admin/dashboard-icons/finance-icon.png"
+import settingsIcon from "./assets/admin/dashboard-icons/settings-icon.png"
+
+
 
 const MainDashboard = () => {
   return (
