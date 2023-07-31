@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { useForm } from "react-hook-form"
 
+import SchoolBasicInfo from "./homepageComponents/schoolComponents/SchoolBasicInfo"
 import HeaderComponent from "./homepageComponents/HeaderComponent"
 import InputElements from "../components/InputElements"
 
@@ -10,7 +11,10 @@ import schoolIcon from "../assets/admin/schoolIcons/schoolIcon.png"
 const School = () => {
   const form = useForm()
   const { register, control, handleSubmit, formState, reset, errors } = form
-  const [schoolTopDetail, setSchoolTopDetail] = useState("")
+  const [schoolTopDetail, setSchoolTopDetail] = useState({
+    name: "",
+    state: ""
+  })
   const [activeLocation, setActiveLocation] = useState("Basic Information")
 
   const [subLinks, setSubLinks] = useState([
@@ -68,7 +72,17 @@ const School = () => {
   }
 
   const handleOnChange = (e) => {
-    setSchoolTopDetail(e.target.value)
+    setSchoolTopDetail({
+      name: e.target.value,
+      state: ""
+    })
+  }
+
+  const handleOnChangeState = (e) => {
+    setSchoolTopDetail({
+      ...schoolTopDetail,
+      state: e.target.value
+    })
   }
 
   return (
@@ -85,26 +99,14 @@ const School = () => {
             toggleBasic: toggleBasicInfo
           }}
         />
-        <div className="px-4 md:mt-64">
-          <figure>
-            <img src={schoolLogo} alt="" />
-          </figure>
-          <form onSubmit={handleSubmit(onBasicInfoSubmit)} noValidate>
-            <div>
-              <h6>School</h6>
-              <div>
-                {schoolTopDetail && <h6>{schoolTopDetail}, Location</h6>}
-                <InputElements
-                  type="text"
-                  placeholder="ST&T Regency Schools"
-                  id="School Name"
-                  form={form}
-                  onChange={handleOnChange}
-                />
-              </div>
-            </div>
-          </form>
-        </div>
+        <SchoolBasicInfo
+          form={form}
+          schoolLogo={schoolLogo}
+          onBasicInfoSubmit={onBasicInfoSubmit}
+          schoolTopDetail={schoolTopDetail}
+          handleOnChange={handleOnChange}
+          handleOnChangeState={handleOnChangeState}
+        />
       </div>
     </div>
   )
