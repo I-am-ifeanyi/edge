@@ -154,7 +154,7 @@ const SchoolBasicInfo = ({
                 />
             </div>
           </div>
-          <div className='md:w-1/2 m-auto my-10 h-10'>
+          <div className='m-auto my-10 h-10'>
           <Button text="Update Basic Information" background="bg-colorBlue" color="text-colorWhite1" />
           </div>
         </form>

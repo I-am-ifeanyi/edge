@@ -1,7 +1,9 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useForm } from "react-hook-form"
 
+import { setSchoolStructure } from "../redux/features/createAdmin"
 import SchoolBasicInfo from "./homepageComponents/schoolComponents/SchoolBasicInfo"
+import AdminSchoolStructure from "./homepageComponents/schoolComponents/AdminSchoolStructure"
 import HeaderComponent from "./homepageComponents/HeaderComponent"
 import InputElements from "../components/InputElements"
 
@@ -16,7 +18,19 @@ const School = () => {
     state: ""
   })
   const [activeLocation, setActiveLocation] = useState("Basic Information")
+  const [isFunctionButton, setIsFunctionButton] = useState(false)
+  const [editStructure, setEditStructure] = useState(false)
+  const [createSchoolProfile, setCreateSchoolProfile] = useState({
+    isSchoolProfile: true,
+    isSchoolStructure: false,
+    isCustomSchoolStructure: false
+  })
+  const { isSchoolProfile, isSchoolStructure, isCustomSchoolStructure } =
+    createSchoolProfile
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
+  }, [isSchoolProfile, isSchoolStructure, isCustomSchoolStructure])
   const [subLinks, setSubLinks] = useState([
     {
       A: "Basic Information",
@@ -40,6 +54,7 @@ const School = () => {
       }
     ])
     setActiveLocation("School Structure")
+    setIsFunctionButton(true)
   }
 
   const toggleBasicInfo = () => {
@@ -54,6 +69,7 @@ const School = () => {
       }
     ])
     setActiveLocation("Basic Information")
+    setIsFunctionButton(false)
   }
 
   const locations = [
@@ -85,6 +101,27 @@ const School = () => {
     })
   }
 
+  const schoolStructureSummit = (data) => {
+    dispatch(setSchoolStructure(data))
+    console.log(data)
+  }
+
+  const toggleEditStructure = () => {
+    setEditStructure((prev) => !prev)
+  }
+
+  const findSchoolType2 = (e) => {
+    if (e.target.value === "Custom") {
+      setEditStructure(true)
+      setCreateSchoolProfile({
+        isSchoolProfile: false,
+        isSchoolStructure: false,
+        isCustomSchoolStructure: true
+      })
+    }
+  }
+
+
   return (
     <div>
       <div className="md:w-[90%] w-full absolute h-full right-0">
@@ -93,20 +130,36 @@ const School = () => {
           title="School Settings"
           subLinks={subLinks}
           locations={locations}
-          buttonProps="Create new session"
+          isFunctionButton={isFunctionButton}
+          buttonProps="Edit Structure"
           toggleItems={{
             toggleSchool: toggleSchoolStructure,
             toggleBasic: toggleBasicInfo
           }}
+          onClick={toggleEditStructure}
         />
-        <SchoolBasicInfo
-          form={form}
-          schoolLogo={schoolLogo}
-          onBasicInfoSubmit={onBasicInfoSubmit}
-          schoolTopDetail={schoolTopDetail}
-          handleOnChange={handleOnChange}
-          handleOnChangeState={handleOnChangeState}
-        />
+        {activeLocation === "Basic Information" && (
+          <SchoolBasicInfo
+            form={form}
+            schoolLogo={schoolLogo}
+            onBasicInfoSubmit={onBasicInfoSubmit}
+            schoolTopDetail={schoolTopDetail}
+            handleOnChange={handleOnChange}
+            handleOnChangeState={handleOnChangeState}
+          />
+        )}
+        {activeLocation === "School Structure" && (
+          <AdminSchoolStructure
+            form={form}
+            schoolStructureSummit={schoolStructureSummit}
+            editStructure={editStructure}
+            setEditStructure={setEditStructure}
+            findSchoolType={findSchoolType2}
+            createSchoolProfile={createSchoolProfile}
+            setCreateSchoolProfile={setCreateSchoolProfile}
+            
+          />
+        )}
       </div>
     </div>
   )

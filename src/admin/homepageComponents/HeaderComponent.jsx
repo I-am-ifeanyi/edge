@@ -13,21 +13,18 @@ const HeaderComponent = ({
   locations,
   buttonProps,
   onClick,
-  createSession,
-  toggleItems,
+  isFunctionButton,
+  toggleItems
 }) => {
-  
   const { toggleSchool, toggleBasic } = toggleItems
 
   const alternateLinks = (a, b) => {
-    if ((a !== "Basic Information")) {
+    if (a !== "Basic Information") {
       toggleSchool()
-    } else if ((a !== "School Structure")) {
+    } else if (a !== "School Structure") {
       toggleBasic()
     }
   }
-
-
 
   const [adminInfo, setAdminInfo] = useState("")
   useEffect(() => {
@@ -78,7 +75,7 @@ const HeaderComponent = ({
             <img src={icon} alt="" />
             <h4>{title}</h4>
           </div>
-          {createSession && (
+          {isFunctionButton && (
             <div className="h-10">
               <Button
                 color="text-colorWhite1"
@@ -90,7 +87,7 @@ const HeaderComponent = ({
             </div>
           )}
         </div>
-        <ul className="flex gap-4 mt-2 border-b px-4 bg-colorWhite1">
+        <ul className="flex gap-4 mt-2 border-b px-4 bg-colorWhite1 cursor-pointer">
           {subLinks.map((item, index) => {
             return (
               <li

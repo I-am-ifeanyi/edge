@@ -311,10 +311,10 @@ const GeneralAnalytics = () => {
           locations={locations}
           buttonProps="Create new session"
           onClick={toggleCreateNewSession}
-          createSession={true}
+          isFunctionButton={true}
           toggleItems={""}
         />
-        <div className="relative top-48 px-4">
+        <div className="relative top-52 px-4">
           <div className="md:w-[170px] my-3 md:float-right">
             <InputElements
               type="select"

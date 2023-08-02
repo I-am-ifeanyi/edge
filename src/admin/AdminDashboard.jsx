@@ -71,15 +71,15 @@ const AdminDashboard = () => {
   ]
 
   return (
-    <div className="flex justify-between fixed w-full z-20">
+    <div className="flex justify-between fixed z-20 w-full">
       <div
-        className={`w-full z-20 md:z-0 md fixed h-full shrink-0  justify-between bg-colorBlue md:bg-transparent animate__animated  md:animate-none ${
+        className={`w-full md:w-[10%] z-20 md:z-0 md fixed h-full shrink-0  justify-between bg-colorBlue animate__animated  md:animate-none ${
           showNavLinks ? "flex" : "hidden"
         }  md:flex ${
           showNavLinks ? "animate__fadeInRight" : "animate__fadeOutRight"
         } `}
       >
-        <ul className="relative w-full text-colorWhite1 md:text-[12px] h-full flex flex-col md:items-center py-2 md:py-5 gap-3 md:gap-6 md:w-[10%] bg-colorBlue overflow-y-scroll ">
+        <ul className="relative w-full text-colorWhite1 md:text-[12px] h-full flex flex-col md:items-center py-2 md:py-5 gap-3 md:gap-6 md:w-full bg-colorBlue overflow-y-scroll ">
           {dashboardLinks.map((links, index) => {
             return (
               <NavLink
