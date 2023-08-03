@@ -482,7 +482,7 @@ export default function EnhancedTable() {
                         }}
                       />
                     </TableCell>
-                    <TableCell align="left"><img src={row.image} alt="" className="w-[30px] h-[30px]" /></TableCell>
+                    <TableCell align="right"><img src={row.image} alt="" className="w-[30px] h-[30px] rounded-md" /></TableCell>
 
                     <TableCell
                       component="th"

@@ -104,7 +104,7 @@ const Instructors = () => {
           isFunctionButton={true}
         />
         <div className="px-4 relative top-52 w-full flex flex-col items-center md:items-start h-screen  py-5 rounded-md justify-between gap-5">
-          <div className="w-full flex flex-col md:flex-row justify-between gap-10 md:gap-0 mb-20">
+          <div className="w-full flex flex-col md:flex-row justify-between gap-10 md:gap-0">
             <OverallSummary
               icon={instructorIcon}
               title="Total Instructors"
