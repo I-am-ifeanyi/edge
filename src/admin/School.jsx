@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react"
 import { useForm } from "react-hook-form"
+import {useSelector} from "react-redux"
 
 import { setSchoolStructure } from "../redux/features/createAdmin"
 import SchoolBasicInfo from "./homepageComponents/schoolComponents/SchoolBasicInfo"
 import AdminSchoolStructure from "./homepageComponents/schoolComponents/AdminSchoolStructure"
 import HeaderComponent from "./homepageComponents/HeaderComponent"
-import InputElements from "../components/InputElements"
 
 import schoolLogo from "../assets/admin/schoolIcons/schoolLogo.png"
 import schoolIcon from "../assets/admin/schoolIcons/schoolIcon.png"
 
 const School = () => {
   const form = useForm()
+   const { adminCompleteInfo } = useSelector((store) => store.adminInfo)
   const { register, control, handleSubmit, formState, reset, errors } = form
   const [schoolTopDetail, setSchoolTopDetail] = useState({
     name: "",
@@ -107,7 +108,13 @@ const School = () => {
   }
 
   const toggleEditStructure = () => {
-    setEditStructure((prev) => !prev)
+    setEditStructure(true)
+
+    setCreateSchoolProfile({
+      isSchoolProfile: true,
+      isSchoolStructure: false,
+      isCustomSchoolStructure: false
+    })
   }
 
   const findSchoolType2 = (e) => {
@@ -121,6 +128,7 @@ const School = () => {
     }
   }
 
+   console.log(adminCompleteInfo)
 
   return (
     <div>
@@ -131,12 +139,14 @@ const School = () => {
           subLinks={subLinks}
           locations={locations}
           isFunctionButton={isFunctionButton}
-          buttonProps="Edit Structure"
+          buttonProps={editStructure ? "Editing..." : "Edit Structure"}
           toggleItems={{
-            toggleSchool: toggleSchoolStructure,
-            toggleBasic: toggleBasicInfo
+            toggleA: toggleSchoolStructure,
+            toggleB: toggleBasicInfo
           }}
           onClick={toggleEditStructure}
+          disabled={editStructure ? true : false}
+          page="school"
         />
         {activeLocation === "Basic Information" && (
           <SchoolBasicInfo
@@ -157,7 +167,6 @@ const School = () => {
             findSchoolType={findSchoolType2}
             createSchoolProfile={createSchoolProfile}
             setCreateSchoolProfile={setCreateSchoolProfile}
-            
           />
         )}
       </div>

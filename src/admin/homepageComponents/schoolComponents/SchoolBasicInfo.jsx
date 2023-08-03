@@ -1,10 +1,10 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 import InputElements from '../../../components/InputElements'
 import { Button } from '../../../components/Components'
 
 const SchoolBasicInfo = ({
-  schoolLogo,
   onBasicInfoSubmit,
   form,
   schoolTopDetail,
@@ -20,6 +20,9 @@ const SchoolBasicInfo = ({
     errors,
     onChange
   } = form
+    const { adminCompleteInfo } = useSelector((store) => store.adminInfo)
+
+    const schoolLogo = adminCompleteInfo?.adminLogo 
 
   const { name, state } = schoolTopDetail
   const statesInNigeria = [
@@ -68,6 +71,7 @@ const SchoolBasicInfo = ({
       <div className="px-4 relative top-56 w-full flex flex-col md:flex-row items-center md:items-start bg-colorWhite1 py-5 rounded-md justify-between">
         <figure className="md:w-[20%]">
           <img src={schoolLogo} alt="" />
+          <figcaption className='text-center font-bold tracking-widest'>School Logo</figcaption>
         </figure>
         <form
           className="md:w-[70%] flex flex-col md:items-start items-center"

@@ -14,16 +14,34 @@ const HeaderComponent = ({
   buttonProps,
   onClick,
   isFunctionButton,
-  toggleItems
+  toggleItems,
+  disabled,
+  page
 }) => {
-  const { toggleSchool, toggleBasic } = toggleItems
+  const { toggleA, toggleB } = toggleItems
 
-  const alternateLinks = (a, b) => {
-    if (a !== "Basic Information") {
-      toggleSchool()
-    } else if (a !== "School Structure") {
-      toggleBasic()
+  const handleAlternateLinksSchool = (linkName) => {
+    if (linkName !== "Basic Information") {
+      toggleA()
+    } else if (linkName !== "School Structure") {
+      toggleB()
     }
+  }
+
+  const handleAlternateLinksInstructors = (linkName) => {
+    if (linkName !== "All Instructors") {
+      toggleA()
+    } else if (linkName !== "Settings") {
+      toggleB()
+    }
+  }
+
+  let alternateLinks
+
+  if (page === "school") {
+    alternateLinks = handleAlternateLinksSchool
+  } else if (page === "instructors") {
+    alternateLinks = handleAlternateLinksInstructors
   }
 
   const [adminInfo, setAdminInfo] = useState("")
@@ -83,6 +101,7 @@ const HeaderComponent = ({
                 text={buttonProps}
                 font="md:text-[12px] text-[10px]"
                 onClick={onClick}
+                disabled={disabled}
               />
             </div>
           )}

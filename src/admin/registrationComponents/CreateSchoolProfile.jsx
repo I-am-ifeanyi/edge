@@ -10,7 +10,7 @@ import { Button } from '../../components/Components'
 const CreateSchoolProfile = ({
   onSchoolProfileSubmit,
   form,
-  setIsNext,
+  reverse,
   buttonText1,
   buttonText2
 }) => {
@@ -24,17 +24,6 @@ const CreateSchoolProfile = ({
     setSchoolLogo(imageUrl)
     dispatch(setAdminLogo(imageUrl))
   }
-
-  const back = () =>
-    setIsNext({
-      getStarted: true,
-      schoolProfile: false,
-      schoolStructure: false,
-      customStructure: false,
-      session: false,
-      instructorInvite: false,
-      learnerInvite: false
-    })
 
   return (
     <div className="w-[90%] md:w-[600px] md:h-[400px] flex-shrink-0 bg-colorWhite1 rounded-md shadow-md md:px-8 px-5 py-5 flex flex-col items-center animate__animated animate__fadeInRight overflow-y-scroll mt-10">
@@ -75,7 +64,7 @@ const CreateSchoolProfile = ({
             text={buttonText1}
             background="bg-colorWhite3"
             color="text-colorGray3"
-            onClick={back}
+            onClick={reverse}
           />
           <Button
             text={buttonText2}

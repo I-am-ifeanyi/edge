@@ -26,7 +26,7 @@ const AdminSchoolStructure = ({
   setEditStructure,
   findSchoolType,
   createSchoolProfile,
-  setCreateSchoolProfile,
+  setCreateSchoolProfile
 }) => {
   const dispatch = useDispatch()
 
@@ -102,7 +102,17 @@ const AdminSchoolStructure = ({
     })
     reset()
   }
-  
+
+  const reverse = () => {
+    setEditStructure(false)
+    setCreateSchoolProfile({
+      isSchoolProfile: false,
+      isSchoolStructure: false,
+      isCustomSchoolStructure: false
+    })
+    reset()
+  }
+
   const buttonText1 = "Cancel"
   const buttonText2 = "Save Structure"
 
@@ -123,6 +133,7 @@ const AdminSchoolStructure = ({
                 onSchoolProfileSubmit={onSchoolProfileSubmit}
                 buttonText1={buttonText1}
                 buttonText2={buttonText2}
+                reverse={reverse}
               />
             )}
             {isSchoolStructure && editStructure && (
@@ -133,6 +144,7 @@ const AdminSchoolStructure = ({
                 findSchoolType={findSchoolType}
                 buttonText1={buttonText1}
                 buttonText2={buttonText2}
+                reverse={reverse}
               />
             )}
             {isCustomSchoolStructure && editStructure && (
@@ -141,6 +153,7 @@ const AdminSchoolStructure = ({
                 onCustomStructureSubmit={onCustomStructureSubmit}
                 buttonText1={buttonText1}
                 buttonText2={buttonText2}
+                reverse={reverse}
               />
             )}
           </div>

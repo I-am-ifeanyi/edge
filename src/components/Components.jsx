@@ -17,11 +17,12 @@ import background from "../assets/Shape.png"
 
 
 
-export const Button = ({ icon, color, background, text, onClick, font }) => {
+export const Button = ({ icon, color, background, text, onClick, font, disabled }) => {
     return (
       <button
         className={`w-full h-full px-5 ${background} flex items-center justify-center gap-3 hover:translate-x-1 transition-all duration-500 ${font}  rounded-md ${color}`}
         onClick={onClick}
+        disabled={disabled}
       >
         {icon} {text}
       </button>
@@ -344,7 +345,6 @@ function createData(name, branches, learners) {
   )
 }
 
-export default StickyHeadTable
 
 
 

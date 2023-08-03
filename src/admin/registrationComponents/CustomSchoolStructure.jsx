@@ -1,18 +1,17 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useState } from "react"
+import { useDispatch } from "react-redux"
 import { FormGroup, FormControlLabel } from "@mui/material"
 import { IoIosAddCircle } from "react-icons/io"
 import { BiPlus } from "react-icons/bi"
 
-import { setCustomCSVfile } from '../../redux/features/createAdmin'
-import { IOSSwitch } from './specialStyles'
-import InputElements from '../../components/InputElements'
-import { Button } from '../../components/Components'
-
+import { setCustomCSVfile } from "../../redux/features/createAdmin"
+import { IOSSwitch } from "./specialStyles"
+import InputElements from "../../components/InputElements"
+import { Button } from "../../components/Components"
 
 const CustomSchoolStructure = ({
   form,
-  setIsNext,
+  reverse,
   onCustomStructureSubmit,
   buttonText1,
   buttonText2
@@ -27,17 +26,6 @@ const CustomSchoolStructure = ({
   const handleSwitchChange = (event) => {
     setIsChecked(event.target.checked)
   }
-
-  const back = () =>
-    setIsNext({
-      getStarted: false,
-      schoolProfile: false,
-      schoolStructure: true,
-      customStructure: false,
-      session: false,
-      instructorInvite: false,
-      learnerInvite: false
-    })
 
   const handleAddInput = () => {
     const newId = inputs.length + 1
@@ -154,7 +142,7 @@ const CustomSchoolStructure = ({
             text={buttonText1}
             background="bg-colorWhite3"
             color="text-colorGray3"
-            onClick={back}
+            onClick={reverse}
           />
           <Button
             text={buttonText2}

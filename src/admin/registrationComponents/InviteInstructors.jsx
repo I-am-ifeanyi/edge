@@ -16,14 +16,12 @@ const InviteInstructors = ({
   onInstructorInviteSubmit,
   buttonText1,
   buttonText2,
-  inviteInstructorReverse
+  reverse
 }) => {
   const dispatch = useDispatch()
   const { register, control, handleSubmit, formState, reset, errors } = form
 
   const [csvFileName, setCsvFileName] = useState("")
-
- 
 
   const handleFileChange = (e) => {
     const file = e.target.files[0]
@@ -99,7 +97,7 @@ const InviteInstructors = ({
             text={buttonText1}
             background="bg-colorWhite3"
             color="text-colorGray3"
-            onClick={inviteInstructorReverse}
+            onClick={reverse}
           />
           <Button
             text={buttonText2}

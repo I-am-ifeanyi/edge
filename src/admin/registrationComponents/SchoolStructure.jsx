@@ -9,7 +9,7 @@ import { Button } from "../../components/Components"
 
 const SchoolStructure = ({
   form,
-  schoolStructureReverse,
+  reverse,
   schoolStructureSummit,
   findSchoolType,
   buttonText1,
@@ -24,8 +24,6 @@ const SchoolStructure = ({
   const handleSwitchChange = (event) => {
     setIsChecked(event.target.checked)
   }
-
-
 
   const handleAddInput = () => {
     const newId = inputs.length + 1
@@ -153,7 +151,7 @@ const SchoolStructure = ({
               text={buttonText1}
               background="bg-colorWhite3"
               color="text-colorGray3"
-              onClick={schoolStructureReverse}
+              onClick={reverse}
             />
             <Button
               text={buttonText2}

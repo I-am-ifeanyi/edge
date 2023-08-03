@@ -241,6 +241,37 @@ const CreateAdmin = () => {
       learnerInvite: false
     })
 
+  const customStructureReverse = () =>
+    setIsNext({
+      getStarted: false,
+      schoolProfile: false,
+      schoolStructure: true,
+      customStructure: false,
+      session: false,
+      instructorInvite: false,
+      learnerInvite: false
+    })
+
+  const schoolProfileReverse = () =>
+    setIsNext({
+      getStarted: true,
+      schoolProfile: false,
+      schoolStructure: false,
+      customStructure: false,
+      session: false,
+      instructorInvite: false,
+      learnerInvite: false
+    })
+
+  const newSessionReverse = () =>
+    setIsNext({
+      getStarted: false,
+      schoolProfile: false,
+      schoolStructure: false,
+      customStructure: true,
+      session: false
+    })
+
   return (
     <>
       <div
@@ -276,6 +307,7 @@ const CreateAdmin = () => {
                 setIsNext={setIsNext}
                 buttonText1={buttonText1}
                 buttonText2={buttonText2}
+                reverse={schoolProfileReverse}
               />
             )}
 
@@ -287,7 +319,7 @@ const CreateAdmin = () => {
                 findSchoolType={findSchoolType1}
                 buttonText1={buttonText1}
                 buttonText2={buttonText2}
-                schoolStructureReverse={schoolStructureReverse}
+                reverse={schoolStructureReverse}
               />
             )}
 
@@ -298,6 +330,7 @@ const CreateAdmin = () => {
                 onCustomStructureSubmit={onCustomStructureSubmit}
                 buttonText1={buttonText1}
                 buttonText2={buttonText2}
+                reverse={customStructureReverse}
               />
             )}
 
@@ -308,6 +341,7 @@ const CreateAdmin = () => {
                 setIsNext={setIsNext}
                 buttonText1={buttonText1}
                 buttonText2={buttonText2}
+                reverse={newSessionReverse}
               />
             )}
 
@@ -318,7 +352,7 @@ const CreateAdmin = () => {
                 setIsNext={setIsNext}
                 buttonText1={buttonText1}
                 buttonText2={buttonText2}
-                inviteInstructorReverse={inviteInstructorReverse}
+                reverse={inviteInstructorReverse}
               />
             )}
 
@@ -329,7 +363,7 @@ const CreateAdmin = () => {
                 setIsNext={setIsNext}
                 buttonText1={buttonText1}
                 buttonText2={buttonText2}
-                learnersInviteReverse={learnersInviteReverse}
+                reverse={learnersInviteReverse}
               />
             )}
 
