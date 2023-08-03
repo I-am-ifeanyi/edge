@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form"
 import { useSelector } from "react-redux"
 
 import OverallSummary from "./homepageComponents/OverallSummary"
-import EnhancedTable from "../components/TableList"
+import EnhancedTable from "./homepageComponents/InstructorsTableList"
 import { setSchoolStructure } from "../redux/features/createAdmin"
 import HeaderComponent from "./homepageComponents/HeaderComponent"
 import instructorIcon from "../assets/admin/instructor-icon/instructor-icon.png"

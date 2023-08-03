@@ -22,8 +22,12 @@ import DeleteIcon from "@mui/icons-material/Delete"
 import FilterListIcon from "@mui/icons-material/FilterList"
 import { visuallyHidden } from "@mui/utils"
 
-function createData(name, phone, email, group, gender) {
+import profileImage from "../../assets/admin/instructor-icon/profile.jpg"
+
+function createData(id, image, name, phone, email, group, gender) {
   return {
+    id,
+    image,
     name,
     phone,
     email,
@@ -34,6 +38,8 @@ function createData(name, phone, email, group, gender) {
 
 const instructorDetails = [
   {
+    id: 1,
+    image: profileImage,
     name: "Mr. Ifeanyi Onyeka",
     phone: "(305) 555-0239",
     email: "theonyekagroup@gmail.com",
@@ -41,6 +47,8 @@ const instructorDetails = [
     gender: "Male"
   },
   {
+    id: 2,
+    image: profileImage,
     name: "Mr. Ifeanyi Onyeka",
     phone: "(305) 555-0239",
     email: "theonyekagroup@gmail.com",
@@ -48,6 +56,8 @@ const instructorDetails = [
     gender: "Male"
   },
   {
+    id: 3,
+    image: profileImage,
     name: "Mr. Ifeanyi Onyeka",
     phone: "(305) 555-0239",
     email: "theonyekagroup@gmail.com",
@@ -55,6 +65,8 @@ const instructorDetails = [
     gender: "Male"
   },
   {
+    id: 4,
+    image: profileImage,
     name: "Mr. Ifeanyi Onyeka",
     phone: "(305) 555-0239",
     email: "theonyekagroup@gmail.com",
@@ -62,6 +74,8 @@ const instructorDetails = [
     gender: "Male"
   },
   {
+    id: 5,
+    image: profileImage,
     name: "Mr. Ifeanyi Onyeka",
     phone: "(305) 555-0239",
     email: "theonyekagroup@gmail.com",
@@ -69,6 +83,8 @@ const instructorDetails = [
     gender: "Male"
   },
   {
+    id: 6,
+    image: profileImage,
     name: "Mr. Ifeanyi Onyeka",
     phone: "(305) 555-0239",
     email: "theonyekagroup@gmail.com",
@@ -76,6 +92,8 @@ const instructorDetails = [
     gender: "Male"
   },
   {
+    id: 7,
+    image: profileImage,
     name: "Mr. Ifeanyi Onyeka",
     phone: "(305) 555-0239",
     email: "theonyekagroup@gmail.com",
@@ -83,6 +101,8 @@ const instructorDetails = [
     gender: "Male"
   },
   {
+    id:8,
+    image: profileImage,
     name: "Mr. Ifeanyi Onyeka",
     phone: "(305) 555-0239",
     email: "theonyekagroup@gmail.com",
@@ -90,6 +110,8 @@ const instructorDetails = [
     gender: "Male"
   },
   {
+    id: 9,
+    image: profileImage,
     name: "Mr. Ifeanyi Onyeka",
     phone: "(305) 555-0239",
     email: "theonyekagroup@gmail.com",
@@ -97,6 +119,8 @@ const instructorDetails = [
     gender: "Male"
   },
   {
+    id: 10,
+    image: profileImage,
     name: "Mr. Ifeanyi Onyeka",
     phone: "(305) 555-0239",
     email: "theonyekagroup@gmail.com",
@@ -104,6 +128,8 @@ const instructorDetails = [
     gender: "Male"
   },
   {
+    id: 11,
+    image: profileImage,
     name: "Mr. Ifeanyi Onyeka",
     phone: "(305) 555-0239",
     email: "theonyekagroup@gmail.com",
@@ -111,6 +137,8 @@ const instructorDetails = [
     gender: "Male"
   },
   {
+    id: 12,
+    image: profileImage,
     name: "Mr. Ifeanyi Onyeka",
     phone: "(305) 555-0239",
     email: "theonyekagroup@gmail.com",
@@ -118,6 +146,8 @@ const instructorDetails = [
     gender: "Male"
   },
   {
+    id: 13,
+    image: profileImage,
     name: "Mr. Ifeanyi Onyeka",
     phone: "(305) 555-0239",
     email: "theonyekagroup@gmail.com",
@@ -125,6 +155,8 @@ const instructorDetails = [
     gender: "Male"
   },
   {
+    id: 14,
+    image: profileImage,
     name: "Mr. Ifeanyi Onyeka",
     phone: "(305) 555-0239",
     email: "theonyekagroup@gmail.com",
@@ -133,14 +165,16 @@ const instructorDetails = [
   }
 ]
 
-const rows = instructorDetails.map(detail => {
-    return createData(
-      detail.name,
-      detail.phone,
-      detail.email,
-      detail.group,
-      detail.gender
-    )
+const rows = instructorDetails.map((detail) => {
+  return createData(
+    detail.id,
+    detail.image,
+    detail.name,
+    detail.phone,
+    detail.email,
+    detail.group,
+    detail.gender
+  )
 })
 
 function descendingComparator(a, b, orderBy) {
@@ -174,12 +208,19 @@ function stableSort(array, comparator) {
   })
   return stabilizedThis.map((el) => el[0])
 }
+
 const headCells = [
+  {
+    id: "image",
+    numeric: false,
+    disablePadding: true,
+    label: ""
+  },
   {
     id: "name",
     numeric: false,
     disablePadding: true,
-    label: "Full Name"
+    label: "Name"
   },
   {
     id: "phone",
@@ -302,7 +343,7 @@ function EnhancedTableToolbar(props) {
           id="tableTitle"
           component="div"
         >
-          Instructors' List
+          Instructor's List
         </Typography>
       )}
 
@@ -343,19 +384,19 @@ export default function EnhancedTable() {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelected = rows.map((n) => n.name)
+      const newSelected = rows.map((n) => n.id)
       setSelected(newSelected)
       return
     }
     setSelected([])
   }
 
-  const handleClick = (event, name) => {
-    const selectedIndex = selected.indexOf(name)
+  const handleClick = (event, id) => {
+    const selectedIndex = selected.indexOf(id)
     let newSelected = []
 
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name)
+      newSelected = newSelected.concat(selected, id)
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1))
     } else if (selectedIndex === selected.length - 1) {
@@ -383,7 +424,7 @@ export default function EnhancedTable() {
     setDense(event.target.checked)
   }
 
-  const isSelected = (name) => selected.indexOf(name) !== -1
+  const isSelected = (id) => selected.indexOf(id) !== -1
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -418,17 +459,17 @@ export default function EnhancedTable() {
             />
             <TableBody>
               {visibleRows.map((row, index) => {
-                const isItemSelected = isSelected(row.name)
+                const isItemSelected = isSelected(row.id)
                 const labelId = `enhanced-table-checkbox-${index}`
 
                 return (
                   <TableRow
                     hover
-                    onClick={(event) => handleClick(event, row.name)}
+                    onClick={(event) => handleClick(event, row.id)}
                     role="checkbox"
                     aria-checked={isItemSelected}
                     tabIndex={-1}
-                    key={row.name}
+                    key={row.id}
                     selected={isItemSelected}
                     sx={{ cursor: "pointer" }}
                   >
@@ -441,6 +482,8 @@ export default function EnhancedTable() {
                         }}
                       />
                     </TableCell>
+                    <TableCell align="left"><img src={row.image} alt="" className="w-[30px] h-[30px]" /></TableCell>
+
                     <TableCell
                       component="th"
                       id={labelId}
@@ -449,6 +492,7 @@ export default function EnhancedTable() {
                     >
                       {row.name}
                     </TableCell>
+
                     <TableCell align="left">{row.phone}</TableCell>
                     <TableCell align="left">{row.email}</TableCell>
                     <TableCell align="left">{row.group}</TableCell>
