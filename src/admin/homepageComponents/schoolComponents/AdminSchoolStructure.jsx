@@ -138,7 +138,6 @@ const AdminSchoolStructure = ({
             )}
             {isSchoolStructure && editStructure && (
               <SchoolStructure
-                // setIsNext={setIsNext}
                 form={form}
                 schoolStructureSummit={schoolStructureSummit}
                 findSchoolType={findSchoolType}

@@ -38,7 +38,7 @@ const CreateSchoolProfile = ({
           id="schoolLogo"
           form={form}
           onChange={handleSelectSchoolLogo}
-          schoolLogo={schoolLogo}
+          image={schoolLogo}
         />
         <InputElements
           type="text"
