@@ -14,6 +14,24 @@ import { RiDeleteBin6Line } from "react-icons/ri"
 import Logo from "../assets/Logo.png"
 import background from "../assets/Shape.png"
 
+import profileImage from "../assets/admin/instructor-icon/profile.jpg"
+import image1 from "../assets/admin/instructor-icon/image1.jpg"
+import image2 from "../assets/admin/instructor-icon/image2.jpg"
+import image3 from "../assets/admin/instructor-icon/image3.jpg"
+import image4 from "../assets/admin/instructor-icon/image4.jpg"
+import image5 from "../assets/admin/instructor-icon/image5.jpg"
+import image6 from "../assets/admin/instructor-icon/image6.jpg"
+import image7 from "../assets/admin/instructor-icon/image7.jpg"
+import image8 from "../assets/admin/instructor-icon/image8.jpg"
+import image9 from "../assets/admin/instructor-icon/image9.jpg"
+import image10 from "../assets/admin/instructor-icon/image10.jpg"
+import image11 from "../assets/admin/instructor-icon/image11.jpg"
+import image12 from "../assets/admin/instructor-icon/image12.jpg"
+import image13 from "../assets/admin/instructor-icon/image13.jpg"
+import image14 from "../assets/admin/instructor-icon/image14.jpg"
+import image15 from "../assets/admin/instructor-icon/image15.jpg"
+import image16 from "../assets/admin/instructor-icon/image16.jpg"
+
 export const Button = ({
   icon,
   color,
@@ -363,4 +381,351 @@ export const StickyHeadTable = () => {
   )
 }
 
+export const dummyInstructors = [
+  {
+    id: 1,
+    image: profileImage,
+    name: "Mr. Ifeanyi Onyeka",
+    phone: "(305) 555-0239",
+    email: "theonyekagroup@gmail.com",
+    group: "JSS 1",
+    gender: "Male"
+  },
+  {
+    id: 2,
+    image: image16,
+    name: "Ms. Chinyere Okonkwo",
+    phone: "(306) 555-0240",
+    email: "chinyere.okonkwo@example.com",
+    group: "JSS 2",
+    gender: "Female"
+  },
+  {
+    id: 3,
+    image: image5,
+    name: "Mr. Emeka Obi",
+    phone: "(307) 555-0241",
+    email: "emeka.obi@example.com",
+    group: "JSS 3",
+    gender: "Male"
+  },
+  {
+    id: 4,
+    image: image10,
+    name: "Miss Fatima Ahmed",
+    phone: "(308) 555-0242",
+    email: "fatima.ahmed@example.com",
+    group: "SS 1",
+    gender: "Female"
+  },
+  {
+    id: 5,
+    image: image12,
+    name: "Mr. Olumide Adebayo",
+    phone: "(309) 555-0243",
+    email: "olumide.adebayo@example.com",
+    group: "SS 2",
+    gender: "Male"
+  },
+  {
+    id: 6,
+    image: image3,
+    name: "Ms. Ngozi Eze",
+    phone: "(310) 555-0244",
+    email: "ngozi.eze@example.com",
+    group: "SS 3",
+    gender: "Female"
+  },
+  {
+    id: 7,
+    image: image2,
+    name: "Mr. Chinedu Okoro",
+    phone: "(311) 555-0245",
+    email: "chinedu.okoro@example.com",
+    group: "Year 1",
+    gender: "Male"
+  },
+  {
+    id: 8,
+    image: image5,
+    name: "Miss Ifeoma Igwe",
+    phone: "(312) 555-0246",
+    email: "ifeoma.igwe@example.com",
+    group: "Year 2",
+    gender: "Female"
+  },
+  {
+    id: 9,
+    image: image9,
+    name: "Mr. Hassan Ali",
+    phone: "(313) 555-0247",
+    email: "hassan.ali@example.com",
+    group: "Year 3",
+    gender: "Male"
+  },
+  {
+    id: 10,
+    image: image4,
+    name: "Miss Aisha Ibrahim",
+    phone: "(314) 555-0248",
+    email: "aisha.ibrahim@example.com",
+    group: "Year 4",
+    gender: "Female"
+  },
+  {
+    id: 11,
+    image: image6,
+    name: "Mr. Chukwuemeka Nwosu",
+    phone: "(315) 555-0249",
+    email: "chukwuemeka.nwosu@example.com",
+    group: "Year 5",
+    gender: "Male"
+  },
+  {
+    id: 12,
+    image: image11,
+    name: "Miss Blessing Ogundipe",
+    phone: "(316) 555-0250",
+    email: "blessing.ogundipe@example.com",
+    group: "Year 6",
+    gender: "Female"
+  },
+  {
+    id: 13,
+    image: image7,
+    name: "Mr. Usman Suleiman",
+    phone: "(317) 555-0251",
+    email: "usman.suleiman@example.com",
+    group: "JSS 1",
+    gender: "Male"
+  },
+  {
+    id: 14,
+    image: image1,
+    name: "Miss Hadiza Mohammed",
+    phone: "(318) 555-0252",
+    email: "hadiza.mohammed@example.com",
+    group: "JSS 2",
+    gender: "Female"
+  },
+  {
+    id: 15,
+    image: image8,
+    name: "Mr. Adewale Adeniyi",
+    phone: "(319) 555-0253",
+    email: "adewale.adeniyi@example.com",
+    group: "JSS 3",
+    gender: "Male"
+  },
+  {
+    id: 16,
+    image: image13,
+    name: "Miss Funmilayo Bakare",
+    phone: "(320) 555-0254",
+    email: "funmilayo.bakare@example.com",
+    group: "SS 1",
+    gender: "Female"
+  },
+  {
+    id: 17,
+    image: image14,
+    name: "Miss Funmilayo Bakare",
+    phone: "(320) 555-0254",
+    email: "funmilayo.bakare@example.com",
+    group: "SS 1",
+    gender: "Female"
+  },
+  {
+    id: 18,
+    image: image15,
+    name: "Miss Funmilayo Bakare",
+    phone: "(320) 555-0254",
+    email: "funmilayo.bakare@example.com",
+    group: "SS 1",
+    gender: "Female"
+  }
+]
 
+
+export const dummyLearners = [
+  {
+    id: 1,
+    image: profileImage,
+    name: "John Doe",
+    regNumber: "STT/10/10892",
+    email: "john.doe@example.com",
+    group: "JSS 3",
+    gender: "Male"
+  },
+  {
+    id: 2,
+    image: image1,
+    name: "Jane Smith",
+    regNumber: "STT/10/10893",
+    email: "jane.smith@example.com",
+    group: "YEAR 1",
+    gender: "Female"
+  },
+  {
+    id: 3,
+    image: image2,
+    name: "Michael Johnson",
+    regNumber: "STT/10/10894",
+    email: "michael.johnson@example.com",
+    group: "JSS 1",
+    gender: "Male"
+  },
+  {
+    id: 4,
+    image: image3,
+    name: "Emily Williams",
+    regNumber: "STT/10/10895",
+    email: "emily.williams@example.com",
+    group: "SS 1",
+    gender: "Female"
+  },
+  {
+    id: 5,
+    image: image4,
+    name: "William Davis",
+    regNumber: "STT/10/10896",
+    email: "william.davis@example.com",
+    group: "JSS 2",
+    gender: "Male"
+  },
+  {
+    id: 6,
+    image: image5,
+    name: "Olivia Martinez",
+    regNumber: "STT/10/10897",
+    email: "olivia.martinez@example.com",
+    group: "SS 3",
+    gender: "Female"
+  },
+  {
+    id: 7,
+    image: image6,
+    name: "James Lee",
+    regNumber: "STT/10/10898",
+    email: "james.lee@example.com",
+    group: "JSS 3",
+    gender: "Male"
+  },
+  {
+    id: 8,
+    image: image7,
+    name: "Sophia Wilson",
+    regNumber: "STT/10/10899",
+    email: "sophia.wilson@example.com",
+    group: "JSS 1",
+    gender: "Female"
+  },
+  {
+    id: 9,
+    image: image8,
+    name: "Daniel Taylor",
+    regNumber: "STT/10/10900",
+    email: "daniel.taylor@example.com",
+    group: "SS 2",
+    gender: "Male"
+  },
+  {
+    id: 10,
+    image: image9,
+    name: "Isabella Anderson",
+    regNumber: "STT/10/10901",
+    email: "isabella.anderson@example.com",
+    group: "JSS 1",
+    gender: "Female"
+  },
+  {
+    id: 11,
+    image: image10,
+    name: "David Hernandez",
+    regNumber: "STT/10/10902",
+    email: "david.hernandez@example.com",
+    group: "SS 1",
+    gender: "Male"
+  },
+  {
+    id: 12,
+    image: image11,
+    name: "Mia Walker",
+    regNumber: "STT/10/10903",
+    email: "mia.walker@example.com",
+    group: "SS 3",
+    gender: "Female"
+  },
+  {
+    id: 13,
+    image: image12,
+    name: "Joseph Perez",
+    regNumber: "STT/10/10904",
+    email: "joseph.perez@example.com",
+    group: "JSS 2",
+    gender: "Male"
+  },
+  {
+    id: 14,
+    image: image13,
+    name: "Evelyn Evans",
+    regNumber: "STT/10/10905",
+    email: "evelyn.evans@example.com",
+    group: "JSS 1",
+    gender: "Female"
+  },
+  {
+    id: 15,
+    image: image14,
+    name: "Alexander Rivera",
+    regNumber: "STT/10/10906",
+    email: "alexander.rivera@example.com",
+    group: "JSS 3",
+    gender: "Male"
+  },
+  {
+    id: 16,
+    image: image15,
+    name: "Sofia Collins",
+    regNumber: "STT/10/10907",
+    email: "sofia.collins@example.com",
+    group: "SS 1",
+    gender: "Female"
+  },
+  {
+    id: 17,
+    image: image3,
+    name: "Andrew Campbell",
+    regNumber: "STT/10/10908",
+    email: "andrew.campbell@example.com",
+    group: "SS 3",
+    gender: "Male"
+  },
+  {
+    id: 18,
+    image: image4,
+    name: "Scarlett Mitchell",
+    regNumber: "STT/10/10909",
+    email: "scarlett.mitchell@example.com",
+    group: "SS 2",
+    gender: "Female"
+  },
+  {
+    id: 19,
+    image: image8,
+    name: "Josephine Martinez",
+    regNumber: "STT/10/10910",
+    email: "josephine.martinez@example.com",
+    group: "JSS 3",
+    gender: "Female"
+  },
+  {
+    id: 20,
+    image: image10,
+    name: "Michael Thompson",
+    regNumber: "STT/10/10911",
+    email: "michael.thompson@example.com",
+    group: "SS 3",
+    gender: "Male"
+  }
+]

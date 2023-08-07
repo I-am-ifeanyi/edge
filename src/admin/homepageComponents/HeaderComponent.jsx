@@ -36,12 +36,22 @@ const HeaderComponent = ({
     }
   }
 
+   const handleAlternateLinksLearners = (linkName) => {
+     if (linkName !== "All Learners") {
+       toggleA()
+     } else if (linkName !== "Settings") {
+       toggleB()
+     }
+   }
+
   let alternateLinks
 
   if (page === "school") {
     alternateLinks = handleAlternateLinksSchool
   } else if (page === "instructors") {
     alternateLinks = handleAlternateLinksInstructors
+  } else if(page === "learners") {
+    alternateLinks = handleAlternateLinksLearners
   }
 
   const [adminInfo, setAdminInfo] = useState("")
@@ -115,7 +125,9 @@ const HeaderComponent = ({
                 }}
                 key={index}
                 className={`${
-                  item.isActive ? "border-colorBlue border-b-2 " : ""
+                  item.isActive
+                    ? "border-colorBlue border-b-2 font-bold tracking-widest"
+                    : "tracking-widest"
                 } `}
               >
                 {item.A}

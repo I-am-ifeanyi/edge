@@ -23,213 +23,29 @@ import FilterListIcon from "@mui/icons-material/FilterList"
 
 import { visuallyHidden } from "@mui/utils"
 
-import profileImage from "../../assets/admin/instructor-icon/profile.jpg"
-import image1 from "../../assets/admin/instructor-icon/image1.jpg"
-import image2 from "../../assets/admin/instructor-icon/image2.jpg"
-import image3 from "../../assets/admin/instructor-icon/image3.jpg"
-import image4 from "../../assets/admin/instructor-icon/image4.jpg"
-import image5 from "../../assets/admin/instructor-icon/image5.jpg"
-import image6 from "../../assets/admin/instructor-icon/image6.jpg"
-import image7 from "../../assets/admin/instructor-icon/image7.jpg"
-import image8 from "../../assets/admin/instructor-icon/image8.jpg"
-import image9 from "../../assets/admin/instructor-icon/image9.jpg"
-import image10 from "../../assets/admin/instructor-icon/image10.jpg"
-import image11 from "../../assets/admin/instructor-icon/image11.jpg"
-import image12 from "../../assets/admin/instructor-icon/image12.jpg"
-import image13 from "../../assets/admin/instructor-icon/image13.jpg"
-import image14 from "../../assets/admin/instructor-icon/image14.jpg"
-import image15 from "../../assets/admin/instructor-icon/image15.jpg"
-import image16 from "../../assets/admin/instructor-icon/image16.jpg"
+import { DeleteConfirmation } from "../../../components/Components"
 
-import { DeleteConfirmation } from "../../components/Components"
-
-export default function EnhancedTable({
-  isDelete,
-  setIsShowPrompt,
-  setIsDelete
-}) {
+export default function LearnersTableList({ dataToDisplay }) {
   const [order, setOrder] = React.useState("asc")
   const [orderBy, setOrderBy] = React.useState("calories")
   const [selected, setSelected] = React.useState([])
   const [page, setPage] = React.useState(0)
   const [dense, setDense] = React.useState(false)
   const [rowsPerPage, setRowsPerPage] = React.useState(5)
-  function createData(id, image, name, phone, email, group, gender) {
+  function createData(id, image, name, regNumber, email, group, gender) {
     return {
       id,
       image,
       name,
-      phone,
+      regNumber,
       email,
       group,
       gender
     }
   }
 
-  const [instructorDetails, setInstructorDetails] = React.useState([
-    {
-      id: 1,
-      image: profileImage,
-      name: "Mr. Ifeanyi Onyeka",
-      phone: "(305) 555-0239",
-      email: "theonyekagroup@gmail.com",
-      group: "JSS 1",
-      gender: "Male"
-    },
-    {
-      id: 2,
-      image: image16,
-      name: "Ms. Chinyere Okonkwo",
-      phone: "(306) 555-0240",
-      email: "chinyere.okonkwo@example.com",
-      group: "JSS 2",
-      gender: "Female"
-    },
-    {
-      id: 3,
-      image: image5,
-      name: "Mr. Emeka Obi",
-      phone: "(307) 555-0241",
-      email: "emeka.obi@example.com",
-      group: "JSS 3",
-      gender: "Male"
-    },
-    {
-      id: 4,
-      image: image10,
-      name: "Miss Fatima Ahmed",
-      phone: "(308) 555-0242",
-      email: "fatima.ahmed@example.com",
-      group: "SS 1",
-      gender: "Female"
-    },
-    {
-      id: 5,
-      image: image12,
-      name: "Mr. Olumide Adebayo",
-      phone: "(309) 555-0243",
-      email: "olumide.adebayo@example.com",
-      group: "SS 2",
-      gender: "Male"
-    },
-    {
-      id: 6,
-      image: image3,
-      name: "Ms. Ngozi Eze",
-      phone: "(310) 555-0244",
-      email: "ngozi.eze@example.com",
-      group: "SS 3",
-      gender: "Female"
-    },
-    {
-      id: 7,
-      image: image2,
-      name: "Mr. Chinedu Okoro",
-      phone: "(311) 555-0245",
-      email: "chinedu.okoro@example.com",
-      group: "Year 1",
-      gender: "Male"
-    },
-    {
-      id: 8,
-      image: image5,
-      name: "Miss Ifeoma Igwe",
-      phone: "(312) 555-0246",
-      email: "ifeoma.igwe@example.com",
-      group: "Year 2",
-      gender: "Female"
-    },
-    {
-      id: 9,
-      image: image9,
-      name: "Mr. Hassan Ali",
-      phone: "(313) 555-0247",
-      email: "hassan.ali@example.com",
-      group: "Year 3",
-      gender: "Male"
-    },
-    {
-      id: 10,
-      image: image4,
-      name: "Miss Aisha Ibrahim",
-      phone: "(314) 555-0248",
-      email: "aisha.ibrahim@example.com",
-      group: "Year 4",
-      gender: "Female"
-    },
-    {
-      id: 11,
-      image: image6,
-      name: "Mr. Chukwuemeka Nwosu",
-      phone: "(315) 555-0249",
-      email: "chukwuemeka.nwosu@example.com",
-      group: "Year 5",
-      gender: "Male"
-    },
-    {
-      id: 12,
-      image: image11,
-      name: "Miss Blessing Ogundipe",
-      phone: "(316) 555-0250",
-      email: "blessing.ogundipe@example.com",
-      group: "Year 6",
-      gender: "Female"
-    },
-    {
-      id: 13,
-      image: image7,
-      name: "Mr. Usman Suleiman",
-      phone: "(317) 555-0251",
-      email: "usman.suleiman@example.com",
-      group: "JSS 1",
-      gender: "Male"
-    },
-    {
-      id: 14,
-      image: image1,
-      name: "Miss Hadiza Mohammed",
-      phone: "(318) 555-0252",
-      email: "hadiza.mohammed@example.com",
-      group: "JSS 2",
-      gender: "Female"
-    },
-    {
-      id: 15,
-      image: image8,
-      name: "Mr. Adewale Adeniyi",
-      phone: "(319) 555-0253",
-      email: "adewale.adeniyi@example.com",
-      group: "JSS 3",
-      gender: "Male"
-    },
-    {
-      id: 16,
-      image: image13,
-      name: "Miss Funmilayo Bakare",
-      phone: "(320) 555-0254",
-      email: "funmilayo.bakare@example.com",
-      group: "SS 1",
-      gender: "Female"
-    },
-    {
-      id: 17,
-      image: image14,
-      name: "Miss Funmilayo Bakare",
-      phone: "(320) 555-0254",
-      email: "funmilayo.bakare@example.com",
-      group: "SS 1",
-      gender: "Female"
-    },
-    {
-      id: 18,
-      image: image15,
-      name: "Miss Funmilayo Bakare",
-      phone: "(320) 555-0254",
-      email: "funmilayo.bakare@example.com",
-      group: "SS 1",
-      gender: "Female"
-    }
-  ])
+  const [instructorDetails, setInstructorDetails] =
+    React.useState(dataToDisplay)
 
   console.log(instructorDetails)
 
@@ -238,7 +54,7 @@ export default function EnhancedTable({
       detail.id,
       detail.image,
       detail.name,
-      detail.phone,
+      detail.regNumber,
       detail.email,
       detail.group,
       detail.gender
@@ -293,10 +109,10 @@ export default function EnhancedTable({
       label: "Name"
     },
     {
-      id: "phone",
+      id: "regNumber",
       numeric: true,
       disablePadding: false,
-      label: "Phone"
+      label: "Reg Number"
     },
     {
       id: "email",
@@ -461,7 +277,7 @@ export default function EnhancedTable({
                 onClick1={() => setIsShowPrompt(false)}
                 onClick2={handleDeleteItems}
                 questionPrompt={`Are you sure you want to delete ${
-                  numSelected > 1 ? "Instructors?" : "Instructor"
+                  numSelected > 1 ? "learners?" : "learner"
                 }`}
               />
             </div>
@@ -548,6 +364,14 @@ export default function EnhancedTable({
     [order, orderBy, page, rowsPerPage, instructorDetails]
   )
 
+  if (visibleRows.length < 1) {
+    return (
+      <h1 className="absolute top-40 w-full text-center">
+        You Currently Have no Learners
+      </h1>
+    )
+  }
+
   return (
     <Box sx={{ width: "100%" }}>
       <Paper sx={{ width: "100%", mb: 2 }}>
@@ -610,7 +434,7 @@ export default function EnhancedTable({
                       {row.name}
                     </TableCell>
 
-                    <TableCell align="left">{row.phone}</TableCell>
+                    <TableCell align="left">{row.regNumber}</TableCell>
                     <TableCell align="left">{row.email}</TableCell>
                     <TableCell align="left">{row.group}</TableCell>
                     <TableCell align="left">{row.gender}</TableCell>

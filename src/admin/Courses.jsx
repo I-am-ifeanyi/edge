@@ -5,19 +5,18 @@ import { AiOutlineClose } from "react-icons/ai"
 import { BiPlus } from "react-icons/bi"
 
 import OverallSummary from "./homepageComponents/OverallSummary"
-import InstructorsEnhancedTable from "./homepageComponents/EnhancedTables/InstructorsTableList"
+import LearnersTableList from "./homepageComponents/EnhancedTables/LearnersTableList"
 import HeaderComponent from "./homepageComponents/HeaderComponent"
-import instructorIcon from "../assets/admin/instructor-icon/instructor-icon.png"
+import coursesIcon from "../assets/admin/coursesIcon/courses-icon.png"
 import InputElements from "../components/InputElements"
-import { Button } from "../components/Components"
-import { dummyInstructors } from "../components/Components"
+import { Button, dummyLearners } from "../components/Components"
 
-const Instructors = () => {
+const Courses = () => {
   const form = useForm()
   const { adminCompleteInfo } = useSelector((store) => store.adminInfo)
   const { register, control, handleSubmit, formState, reset, errors } = form
-  const [activeLocation, setActiveLocation] = useState("All Instructors")
-  const [isAddInstructor, setIsAddInstructor] = useState(false)
+  const [activeLocation, setActiveLocation] = useState("All Courses")
+  const [isAddNewCourse, setIsAddNewCourse] = useState(false)
   const [profilePicture, setProfilePicture] = useState("")
   const [instructorCourses, setInstructorCourses] = useState([])
   const [csvFileName, setCsvFileName] = useState("")
@@ -27,18 +26,14 @@ const Instructors = () => {
   }, [])
   const [subLinks, setSubLinks] = useState([
     {
-      A: "All Instructors",
+      A: "All Courses",
       isActive: true
-    },
-    {
-      A: "Settings",
-      isActive: false
     }
   ])
 
   const [locations, setLocations] = useState([
     {
-      A: "Instructors",
+      A: "Courses",
       isActive: false
     },
     {
@@ -47,93 +42,91 @@ const Instructors = () => {
     }
   ])
 
-  const toggleSettings = () => {
-    setActiveLocation("Settings")
+  //   const toggleSettings = () => {
+  //     setActiveLocation("Settings")
 
-    setSubLinks([
-      {
-        A: "All Instructors",
-        isActive: false
-      },
-      {
-        A: "Settings",
-        isActive: true
-      }
-    ])
-    setLocations([
-      {
-        A: "Instructors",
-        isActive: false
-      },
-      {
-        A: "Settings",
-        isActive: true
-      }
-    ])
-  }
+  //     setSubLinks([
+  //       {
+  //         A: "All Learners",
+  //         isActive: false
+  //       },
+  //       {
+  //         A: "Settings",
+  //         isActive: true
+  //       }
+  //     ])
+  //     setLocations([
+  //       {
+  //         A: "Learners",
+  //         isActive: false
+  //       },
+  //       {
+  //         A: "Settings",
+  //         isActive: true
+  //       }
+  //     ])
+  //   }
 
-  const toggleAllInstructors = () => {
-    setSubLinks([
-      {
-        A: "All Instructors",
-        isActive: true
-      },
-      {
-        A: "Settings",
-        isActive: false
-      }
-    ])
-    setActiveLocation("All Instructors")
-  }
+  //   const toggleAllLearners = () => {
+  //     setActiveLocation("All Learners")
+
+  //     setSubLinks([
+  //       {
+  //         A: "All Learners",
+  //         isActive: true
+  //       },
+  //       {
+  //         A: "Settings",
+  //         isActive: false
+  //       }
+  //     ])
+  //     setLocations([
+  //       {
+  //         A: "Learners",
+  //         isActive: false
+  //       },
+  //       {
+  //         A: "All Learners",
+  //         isActive: true
+  //       }
+  //     ])
+  //   }
 
   const addLocation = () => {
-    setIsAddInstructor((prev) => !prev)
+    setIsAddNewCourse((prev) => !prev)
     setLocations([
       {
-        A: "Instructors",
+        A: "Courses",
         isActive: false
       },
       {
-        A: "All Instructors",
+        A: "All Courses",
         isActive: false
       },
       {
-        A: "Add Instructor",
+        A: "Add Course",
         isActive: true
       }
     ])
-    setActiveLocation("Add Instructors")
-    setSubLinks([
-      {
-        A: "All Instructors",
-        isActive: true
-      },
-      {
-        A: "Settings",
-        isActive: false
-      }
-    ])
+    setActiveLocation("Add Course")
   }
 
   const reverseAddLocation = () => {
-    setActiveLocation("")
-
-    setIsAddInstructor((prev) => !prev)
-
+    setIsAddNewCourse((prev) => !prev)
     setLocations([
       {
-        A: "Instructors",
+        A: "Courses",
         isActive: false
       },
       {
-        A: "All Instructors",
+        A: "All Courses",
         isActive: false
       }
     ])
-    reset()
+    setActiveLocation("All Course")
   }
 
-  const onInviteInstructorSubmit = (data) => {
+  const onAddLearnerSubmit = (data) => {
     console.log(data)
   }
 
@@ -189,46 +182,43 @@ const Instructors = () => {
     <div className="relative">
       <div className="md:w-[90%] w-full absolute h-full right-0">
         <HeaderComponent
-          icon={instructorIcon}
-          title="Instructors"
+          icon={coursesIcon}
+          title="Courses"
           subLinks={subLinks}
           locations={locations}
-          buttonProps={isAddInstructor ? "Cancel" : "Add Instructor"}
-          toggleItems={{
-            toggleA: toggleSettings,
-            toggleB: toggleAllInstructors
-          }}
-          page="instructors"
+          buttonProps={isAddNewCourse ? "Cancel" : "Add Learner"}
+          toggleItems={""}
+          page="courses"
           isFunctionButton={true}
-          onClick={isAddInstructor ? reverseAddLocation : addLocation}
+          onClick={isAddNewCourse ? reverseAddLocation : addLocation}
         />
         {activeLocation !== "Settings" && (
           <div className="px-4 relative top-52 w-full flex flex-col items-center md:items-start h-screen  py-5 rounded-md justify-between gap-5">
             <div className="w-full flex flex-col md:flex-row justify-between gap-10 md:gap-0">
               <OverallSummary
-                icon={instructorIcon}
-                title="Total Instructors"
-                figure="304"
+                icon={coursesIcon}
+                title="Total Learners"
+                figure="1309"
               />
             </div>
-            {!isAddInstructor && (
-              <InstructorsEnhancedTable dataToDisplay={dummyInstructors} />
+            {!isAddNewCourse && (
+              <LearnersTableList dataToDisplay={dummyLearners} />
             )}
-            {isAddInstructor && (
+            {isAddNewCourse && (
               <div className="w-full flex flex-col md:flex-row justify-between gap-10 md:gap-0 animate__animated animate__fadeInRight">
                 <form
                   className="bg-colorWhite1 md:w-[65%] rounded-md shadow-md flex flex-col gap-10"
                   noValidate
-                  onSubmit={handleSubmit(onInviteInstructorSubmit)}
+                  onSubmit={handleSubmit(onAddLearnerSubmit)}
                 >
                   <fieldset className="flex flex-col items-center">
                     <h5 className="text-start w-full bg-colorGray6 p-2 rounded-t-md mb-2">
-                      Add New Instructor
+                      Add New Learner
                     </h5>
                     <h6 className="mb-2">Profile Picture</h6>
                     <InputElements
                       type="file"
-                      id="instructorProfilePicture"
+                      id="learnersProfilePicture"
                       form={form}
                       image={profilePicture}
                       onChange={handleSelectSchoolLogo}
@@ -242,24 +232,25 @@ const Instructors = () => {
                       <div className="col-span-2">
                         <InputElements
                           type="text"
-                          id="instructorFullName"
+                          id="learnersFullName"
                           placeholder="Full Name"
                           form={form}
                         />
                       </div>
+                      <div className="col-span-2">
+                        <InputElements
+                          type="select"
+                          id="learnersGender"
+                          label="Gender"
+                          form={form}
+                          options={["Female", "Male", "Custom"]}
+                        />
+                      </div>
                       <InputElements
-                        type="select"
-                        id="instructorGender"
-                        label="Gender"
+                        type="text"
+                        id="learnersRegNumber"
+                        placeholder="Reg Num"
                         form={form}
-                        options={["Female", "Male", "Custom"]}
-                      />
-                      <InputElements
-                        type="select"
-                        id="instructorRole"
-                        label="Role"
-                        form={form}
-                        options={["Instructor", "Assistant Instructor"]}
                       />
                     </fieldset>
                   </fieldset>
@@ -280,20 +271,20 @@ const Instructors = () => {
                         </div>
                         <InputElements
                           type="number"
-                          id="instructorPhoneNumber"
+                          id="learnersPhoneNumber"
                           placeholder="8065345654"
                           form={form}
                         />
                       </div>
                       <InputElements
                         type="email"
-                        id="instructorEmail"
+                        id="learnersEmail"
                         form={form}
                         placeholder="Email Address"
                       />
                       <InputElements
                         type="select"
-                        id="instructorGroup"
+                        id="learnersGroup"
                         label="Group"
                         form={form}
                         options={[
@@ -313,12 +304,12 @@ const Instructors = () => {
                       />
                     </fieldset>
                   </fieldset>
-                  <fieldset className="flex flex-col md:flex-row w-full justify-center items-center border-t-2 py-10 px-4 md:p-0">
+                  <fieldset className="flex flex-col md:flex-row w-full justify-center items-center border-t-2 py-10 px-4 ">
                     <label className="md:w-[20%] text-colorGray4">
                       COURSES
                     </label>
-                    <fieldset className="md:w-[50%] grid gap-5 w-full" >
-                      <div className="flex items-center text-xs gap-2 p-4 md:p-0 flex-wrap">
+                    <fieldset className="md:w-[50%] grid gap-5 w-full">
+                      <div className="flex items-center text-xs gap-2 flex-wrap p-4">
                         {instructorCourses?.map((courses, index) => {
                           return (
                             <div
@@ -336,8 +327,8 @@ const Instructors = () => {
                       </div>
                       <InputElements
                         type="select"
-                        id="instructorCourses"
-                        label="Courses Taught"
+                        id="learnersCourses"
+                        label=""
                         form={form}
                         options={[
                           "ENG 101",
@@ -355,7 +346,7 @@ const Instructors = () => {
                   </fieldset>
                   <div className="h-10 w-1/2 m-auto mb-20">
                     <Button
-                      text="Add Instructor"
+                      text="Add Learner"
                       background="bg-colorBlue"
                       color="text-colorWhite1"
                     />
@@ -366,7 +357,7 @@ const Instructors = () => {
                   onSubmit={handleSubmit(onBulkInviteSubmit)}
                   noValidate
                 >
-                  <h6 className="text-center">Bulk Import Instructors</h6>
+                  <h6 className="text-center">Bulk Import Learners</h6>
                   <a
                     className="text-sm text-colorBlue underline text-center"
                     href="https://sample-videos.com/csv/Sample-Spreadsheet-10-rows.csv"
@@ -386,24 +377,17 @@ const Instructors = () => {
                     <input
                       type="file"
                       accept=".csv"
-                      id="bulkInstructorInvite"
+                      id="bulkLearnerInvite"
                       className="hidden"
-                      {...register("bulkInstructorInvite")}
+                      {...register("bulkLearnerInvite")}
                       onChange={handleFileChange}
                     />
                   </div>
                   <p className="text-xs text-colorGray3">MAX FILE SIZE: 20MB</p>
-                  <InputElements
-                    type="select"
-                    id="instructorRole"
-                    label="Role"
-                    form={form}
-                    options={["Instructor", "Assistant Instructor"]}
-                  />
 
                   <div className="h-[38px] flex gap-10">
                     <Button
-                      text="Import Instructors"
+                      text="Import Learners"
                       background="bg-colorBlue"
                       color="text-colorWhite1"
                     />
@@ -421,12 +405,12 @@ const Instructors = () => {
               onSubmit={handleSubmit(updateInstructorSettings)}
             >
               <h5 className="bg-colorGray6 rounded-t-md p-4">
-                Instructor Settings
+                Learner Settings
               </h5>
               <InputElements
                 type="text"
                 id="instructorAlias"
-                placeholder="Instructor Alias"
+                placeholder="Learner Alias"
                 form={form}
               />
               <div className="h-10 mt-10">
@@ -445,4 +429,4 @@ const Instructors = () => {
   )
 }
 
-export default Instructors
+export default Courses

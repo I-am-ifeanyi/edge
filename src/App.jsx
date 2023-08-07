@@ -14,9 +14,8 @@ import GeneralAnalytics from "./admin/GeneralAnalytics"
 import AdminLayout from "./admin/AdminLayout"
 import School from "./admin/School"
 import Instructors from "./admin/Instructors"
-
-
-
+import Learners from "./admin/Learners"
+import Courses from "./admin/Courses"
 
 export default function App() {
   const router = createBrowserRouter(
@@ -27,6 +26,8 @@ export default function App() {
           <Route path="dashboard" element={<GeneralAnalytics />} />
           <Route path="school" element={<School />} />
           <Route path="instructors" element={<Instructors />} />
+          <Route path="learners" element={<Learners />} />
+          <Route path="courses" element={<Courses />} />
         </Route>
 
         <Route path="home-page" element={<PageLayout />}>
@@ -36,8 +37,5 @@ export default function App() {
     )
   )
 
-
-  return (
-    <RouterProvider router={router} />
-  )
+  return <RouterProvider router={router} />
 }
