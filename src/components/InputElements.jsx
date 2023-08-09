@@ -1,10 +1,15 @@
-import React from 'react'
-import { Select, MenuItem, FormControl, InputLabel } from '@mui/material';
-import { Controller } from 'react-hook-form';
+import React from "react"
+import { Select, MenuItem, FormControl, InputLabel } from "@mui/material"
+import { Controller } from "react-hook-form"
+import Autocomplete from "@mui/material/Autocomplete"
+import TextField from "@mui/material/TextField"
 
-import { CONSTANTS } from './Components'
-import { AiOutlineEye, AiOutlineEyeInvisible, AiOutlineCloudUpload } from "react-icons/ai"
-
+import { CONSTANTS } from "./Components"
+import {
+  AiOutlineEye,
+  AiOutlineEyeInvisible,
+  AiOutlineCloudUpload
+} from "react-icons/ai"
 
 const InputElements = ({
   type,
@@ -24,7 +29,8 @@ const InputElements = ({
   icon,
   disabled,
   options,
-  required
+  required,
+  multiple
 }) => {
   const {
     EMAIL_PLACEHOLDER,
@@ -185,11 +191,7 @@ const InputElements = ({
           })}
           onChange={onChange}
         />
-        {
-          <p className="text-colorRed text-[10px]">
-            {errors?.[id]?.message}
-          </p>
-        }
+        {<p className="text-colorRed text-[10px]">{errors?.[id]?.message}</p>}
       </fieldset>
     )
   } else if (type === "text") {
@@ -254,6 +256,41 @@ const InputElements = ({
       </div>
     )
   } else if (type === "select") {
+    if (multiple) {
+      return (
+        <FormControl variant="outlined" fullWidth>
+          <InputLabel htmlFor={id}>{label}</InputLabel>
+
+          <Controller
+            name={id}
+            control={control}
+            rules={initialRules}
+            render={({ field }) => (
+              <Select
+                label={label}
+                multiple
+                value={field.value || []}
+                sx={{
+                  borderRadius: 3,
+                  height: "100%",
+                  backgroundColor: "white"
+                }}
+                onChange={(e) => {
+                  field.onChange(e)
+                  onChange && onChange(e) // Call the custom onChange function if provided
+                }}
+              >
+                {options?.map((data, index) => (
+                  <MenuItem key={index} value={data}>
+                    {data}
+                  </MenuItem>
+                ))}
+              </Select>
+            )}
+          />
+        </FormControl>
+      )
+    }
     return (
       <div>
         <FormControl variant="outlined" fullWidth>
@@ -290,6 +327,32 @@ const InputElements = ({
         {<p className="text-colorRed text-[10px]">{errors?.[id]?.message}</p>}
       </div>
     )
+  } else if (type === "autoComplete") {
+    return (
+      <Controller
+        name={id}
+        control={control}
+        render={({ field }) => (
+          <Autocomplete
+            multiple
+            id={`${id}-combo-box`}
+            options={options}
+            getOptionLabel={(option) => option}
+            sx={{
+              borderRadius: 3,
+              height: "100%",
+              backgroundColor: "white"
+            }}
+            renderInput={(params) => <TextField {...params} label={label} />}
+            value={field.value}
+            onChange={(e, newValue) => {
+              field.onChange(newValue)
+              onChange && onChange(newValue)
+            }}
+          />
+        )}
+      />
+    )
   } else if (type === "radio") {
     return (
       <input
@@ -307,7 +370,7 @@ const InputElements = ({
         className="appearance-none w-4 h-4 rounded-full checked:bg-colorLightGreen"
       />
     )
-  } else if(type === "number") {
+  } else if (type === "number") {
     return (
       <div className="w-full">
         <fieldset className="w-full h-[50px] flex items-center bg-colorWhite2 border border-colorWhite3 rounded-lg ">
@@ -326,6 +389,25 @@ const InputElements = ({
           />
           {icon}
         </fieldset>
+        {<p className="text-colorRed text-[10px]">{errors?.[id]?.message}</p>}
+      </div>
+    )
+  } else if (type === "textArea") {
+    return (
+      <div className="w-full h-full">
+        <textarea
+          id={id}
+          placeholder={placeholder}
+          className="outline-none w-full h-full p-2 bg-colorWhite2 border border-colorWhite3 rounded-lg resize-none"
+          {...register(`${id}`, {
+            required: {
+              value: true,
+              message: `Please fill in this field`
+            }
+          })}
+          onChange={onChange}
+        />
+        {icon}
         {<p className="text-colorRed text-[10px]">{errors?.[id]?.message}</p>}
       </div>
     )

@@ -23,7 +23,7 @@ const Learners = () => {
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
-  }, [])
+  }, [activeLocation, isAddLearner])
   const [subLinks, setSubLinks] = useState([
     {
       A: "All Learners",

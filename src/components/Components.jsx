@@ -546,7 +546,6 @@ export const dummyInstructors = [
   }
 ]
 
-
 export const dummyLearners = [
   {
     id: 1,
@@ -727,5 +726,168 @@ export const dummyLearners = [
     email: "michael.thompson@example.com",
     group: "SS 3",
     gender: "Male"
+  }
+]
+
+export const dummyCourses = [
+  {
+    id: 1,
+    courseName: "Biology",
+    courseAlias: "Bio 101",
+    groups: "JSS 2",
+    branches: "A, C, E",
+    instructors: "Mr. Kayode Olu"
+  },
+  {
+    id: 2,
+    courseName: "Mathematics",
+    courseAlias: "Math 101",
+    groups: "SS 1",
+    branches: "B, D",
+    instructors: "Mrs. Oge Okafor Victoria"
+  },
+  {
+    id: 3,
+    courseName: "Physics",
+    courseAlias: "Phy 102",
+    groups: "YEAR 2",
+    branches: "C, E",
+    instructors: "Mr. John Smith"
+  },
+  {
+    id: 4,
+    courseName: "Chemistry",
+    courseAlias: "Chem 201",
+    groups: "SS 3",
+    branches: "A, B",
+    instructors: "Dr. Sarah Johnson"
+  },
+  {
+    id: 5,
+    courseName: "English Literature",
+    courseAlias: "Lit 301",
+    groups: "JSS 1",
+    branches: "B, C",
+    instructors: "Ms. Emily Brown"
+  },
+  {
+    id: 6,
+    courseName: "History",
+    courseAlias: "Hist 202",
+    groups: "YEAR 1",
+    branches: "C, D",
+    instructors: "Mr. Michael Thompson"
+  },
+  {
+    id: 7,
+    courseName: "Computer Science",
+    courseAlias: "CS 101",
+    groups: "SS 2",
+    branches: "A, E",
+    instructors: "Prof. Daniel Taylor"
+  },
+  {
+    id: 8,
+    courseName: "Geography",
+    courseAlias: "Geo 102",
+    groups: "JSS 3",
+    branches: "B, D",
+    instructors: "Dr. Sophia Wilson"
+  },
+  {
+    id: 9,
+    courseName: "Economics",
+    courseAlias: "Econ 201",
+    groups: "YEAR 3",
+    branches: "C, E",
+    instructors: "Mr. James Lee"
+  },
+  {
+    id: 10,
+    courseName: "Physical Education",
+    courseAlias: "PE 301",
+    groups: "SS 1",
+    branches: "A, B",
+    instructors: "Mrs. Isabella Anderson"
+  },
+  {
+    id: 11,
+    courseName: "Art History",
+    courseAlias: "ArtH 202",
+    groups: "YEAR 2",
+    branches: "B, D",
+    instructors: "Ms. Mia Walker"
+  },
+  {
+    id: 12,
+    courseName: "Music",
+    courseAlias: "Mus 101",
+    groups: "JSS 2",
+    branches: "C, E",
+    instructors: "Mr. Joseph Perez"
+  },
+  {
+    id: 13,
+    courseName: "Foreign Languages",
+    courseAlias: "Lang 201",
+    groups: "SS 3",
+    branches: "A, B",
+    instructors: "Dr. Evelyn Evans"
+  },
+  {
+    id: 14,
+    courseName: "Environmental Science",
+    courseAlias: "EnvSci 301",
+    groups: "YEAR 1",
+    branches: "B, C",
+    instructors: "Prof. Alexander Rivera"
+  },
+  {
+    id: 15,
+    courseName: "Political Science",
+    courseAlias: "PolSci 202",
+    groups: "SS 2",
+    branches: "C, D",
+    instructors: "Ms. Sofia Collins"
+  },
+  {
+    id: 16,
+    courseName: "Business Studies",
+    courseAlias: "Bus 101",
+    groups: "JSS 3",
+    branches: "A, E",
+    instructors: "Mr. Andrew Campbell"
+  },
+  {
+    id: 17,
+    courseName: "Psychology",
+    courseAlias: "Psych 102",
+    groups: "YEAR 3",
+    branches: "B, C",
+    instructors: "Dr. Scarlett Mitchell"
+  },
+  {
+    id: 18,
+    courseName: "Sociology",
+    courseAlias: "Soc 201",
+    groups: "SS 1",
+    branches: "C, D",
+    instructors: "Mrs. Josephine Martinez"
+  },
+  {
+    id: 19,
+    courseName: "Philosophy",
+    courseAlias: "Phil 301",
+    groups: "YEAR 2",
+    branches: "A, B",
+    instructors: "Mr. Michael Johnson"
+  },
+  {
+    id: 20,
+    courseName: "Anthropology",
+    courseAlias: "Anthro 202",
+    groups: "JSS 2",
+    branches: "B, E",
+    instructors: "Ms. Emily Williams"
   }
 ]

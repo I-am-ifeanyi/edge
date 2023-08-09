@@ -24,7 +24,7 @@ const Instructors = () => {
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
-  }, [])
+  }, [activeLocation, isAddInstructor])
   const [subLinks, setSubLinks] = useState([
     {
       A: "All Instructors",

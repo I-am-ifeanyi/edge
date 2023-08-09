@@ -31,7 +31,12 @@ const School = () => {
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
-  }, [isSchoolProfile, isSchoolStructure, isCustomSchoolStructure])
+  }, [
+    isSchoolProfile,
+    isSchoolStructure,
+    isCustomSchoolStructure,
+    activeLocation
+  ])
   const [subLinks, setSubLinks] = useState([
     {
       A: "Basic Information",
