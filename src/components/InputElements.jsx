@@ -30,7 +30,8 @@ const InputElements = ({
   disabled,
   options,
   required,
-  multiple
+  multiple,
+  defaultValue
 }) => {
   const {
     EMAIL_PLACEHOLDER,
@@ -221,6 +222,7 @@ const InputElements = ({
             type="text"
             id={id}
             placeholder={placeholder}
+            defaultValue={defaultValue}
             className="outline-none w-full  h-full px-2"
             {...register(`${id}`, {
               required: {
@@ -332,6 +334,7 @@ const InputElements = ({
       <Controller
         name={id}
         control={control}
+        defaultValue={defaultValue}
         render={({ field }) => (
           <Autocomplete
             multiple
@@ -398,6 +401,7 @@ const InputElements = ({
         <textarea
           id={id}
           placeholder={placeholder}
+          defaultValue={defaultValue}
           className="outline-none w-full h-full p-2 bg-colorWhite2 border border-colorWhite3 rounded-lg resize-none"
           {...register(`${id}`, {
             required: {

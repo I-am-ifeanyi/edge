@@ -23,9 +23,11 @@ import FilterListIcon from "@mui/icons-material/FilterList"
 
 import { visuallyHidden } from "@mui/utils"
 
+import { CiEdit } from "react-icons/ci"
+
 import { DeleteConfirmation } from "../../../components/Components"
 
-export default function CoursesTableList({ dataToDisplay }) {
+export default function CoursesTableList({ dataToDisplay, setCourseToEditID, setLocations }) {
   const [order, setOrder] = React.useState("asc")
   const [orderBy, setOrderBy] = React.useState("calories")
   const [selected, setSelected] = React.useState([])
@@ -53,7 +55,6 @@ export default function CoursesTableList({ dataToDisplay }) {
   const [instructorDetails, setInstructorDetails] =
     React.useState(dataToDisplay)
 
-
   const rows = instructorDetails?.map((detail) => {
     return createData(
       detail.id,
@@ -80,7 +81,6 @@ export default function CoursesTableList({ dataToDisplay }) {
       ? (a, b) => descendingComparator(a, b, orderBy)
       : (a, b) => -descendingComparator(a, b, orderBy)
   }
-
 
   function stableSort(array, comparator) {
     if (array) {
@@ -126,6 +126,12 @@ export default function CoursesTableList({ dataToDisplay }) {
       numeric: true,
       disablePadding: false,
       label: "Instructors"
+    },
+    {
+      id: "actions",
+      numeric: true,
+      disablePadding: false,
+      label: "Actions"
     }
   ]
 
@@ -320,7 +326,6 @@ export default function CoursesTableList({ dataToDisplay }) {
     setSelected(newSelected)
   }
 
-
   const handleDeleteItems = () => {
     setInstructorDetails((prevDetails) => {
       return prevDetails.filter((item) => !selected.includes(item.id))
@@ -426,9 +431,41 @@ export default function CoursesTableList({ dataToDisplay }) {
                       {row.courseAlias}
                     </TableCell>
 
-                    <TableCell align="left">{row.groups}</TableCell>
-                    <TableCell align="left">{row.branches}</TableCell>
-                    <TableCell align="left">{row.instructors}</TableCell>
+                    <TableCell align="left">
+                      {Array.isArray(row.groups)
+                        ? row.groups.map((item, index) => (
+                            <span key={index} className="mx-1">
+                              {item}
+                            </span>
+                          ))
+                        : row.groups}
+                    </TableCell>
+                    <TableCell align="left">
+                      {Array.isArray(row.branches)
+                        ? row.branches.map((item, index) => (
+                            <span key={index} className="mx-1">
+                              {item}
+                            </span>
+                          ))
+                        : row.branches}
+                    </TableCell>
+                    <TableCell align="left">
+                      {Array.isArray(row.instructors)
+                        ? row.instructors.map((item, index) => (
+                            <span key={index} className="mx-1">
+                              {item}
+                            </span>
+                          ))
+                        : row.instructors}
+                    </TableCell>
+                    <TableCell>
+                      <IconButton
+                        aria-label="edit"
+                        onClick={() => setCourseToEditID(row.id)}
+                      >
+                        <CiEdit />
+                      </IconButton>
+                    </TableCell>
                   </TableRow>
                 )
               })}

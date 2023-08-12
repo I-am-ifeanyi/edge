@@ -25,7 +25,7 @@ import { visuallyHidden } from "@mui/utils"
 
 import { DeleteConfirmation } from "../../../components/Components"
 
-export default function LearnersTableList({ dataToDisplay }) {
+export default function LearnersTableList({ dataToDisplay, listName }) {
   const [order, setOrder] = React.useState("asc")
   const [orderBy, setOrderBy] = React.useState("calories")
   const [selected, setSelected] = React.useState([])
@@ -241,7 +241,7 @@ export default function LearnersTableList({ dataToDisplay }) {
             id="tableTitle"
             component="div"
           >
-            Instructor's List
+            {listName}
           </Typography>
         )}
 

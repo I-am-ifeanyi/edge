@@ -16,9 +16,20 @@ const HeaderComponent = ({
   isFunctionButton,
   toggleItems,
   disabled,
-  page
+  page,
+  subTitle
 }) => {
-  const { toggleA, toggleB } = toggleItems
+  const {
+    toggleA,
+    toggleB,
+    toggleOverview,
+    toggleLearners,
+    toggleLessons,
+    toggleAssignments,
+    toggleTests,
+    toggleLiveSessions,
+    toggleDiscussions
+  } = toggleItems
 
   const handleAlternateLinksSchool = (linkName) => {
     if (linkName !== "Basic Information") {
@@ -36,13 +47,31 @@ const HeaderComponent = ({
     }
   }
 
-   const handleAlternateLinksLearners = (linkName) => {
-     if (linkName !== "All Learners") {
-       toggleA()
-     } else if (linkName !== "Settings") {
-       toggleB()
-     }
-   }
+  const handleAlternateLinksLearners = (linkName) => {
+    if (linkName !== "All Learners") {
+      toggleA()
+    } else if (linkName !== "Settings") {
+      toggleB()
+    }
+  }
+
+  const handleAlternateLinksCourses = (linkName) => {
+    if (linkName === "Overview") {
+      toggleOverview()
+    } else if (linkName === "Learners") {
+      toggleLearners()
+    } else if (linkName === "Lessons") {
+      toggleLessons()
+    } else if (linkName === "Assignments") {
+      toggleAssignments()
+    } else if (linkName === "Tests") {
+      toggleTests()
+    } else if (linkName === "Live Sessions") {
+      toggleLiveSessions()
+    } else if (linkName === "Discussions") {
+      toggleDiscussions()
+    }
+  }
 
   let alternateLinks
 
@@ -50,8 +79,10 @@ const HeaderComponent = ({
     alternateLinks = handleAlternateLinksSchool
   } else if (page === "instructors") {
     alternateLinks = handleAlternateLinksInstructors
-  } else if(page === "learners") {
+  } else if (page === "learners") {
     alternateLinks = handleAlternateLinksLearners
+  } else if (page === "courses") {
+    alternateLinks = handleAlternateLinksCourses
   }
 
   const [adminInfo, setAdminInfo] = useState("")
@@ -101,7 +132,12 @@ const HeaderComponent = ({
         <div className="flex justify-between px-4 bg-colorWhite1">
           <div className="flex flex-col gap-2 items-start">
             <img src={icon} alt="" />
-            <h4>{title}</h4>
+            <h4>
+              {title}{" "}
+              {subTitle && (
+                <span className="text-sm text-colorGray3">{subTitle}</span>
+              )}
+            </h4>
           </div>
           {isFunctionButton && (
             <div className="h-10">
@@ -116,7 +152,7 @@ const HeaderComponent = ({
             </div>
           )}
         </div>
-        <ul className="flex gap-4 mt-2 border-b px-4 bg-colorWhite1 cursor-pointer">
+        <ul className="flex flex-wrap gap-5 mt-2 border-b px-4 bg-colorWhite1 cursor-pointer">
           {subLinks.map((item, index) => {
             return (
               <li
@@ -126,8 +162,8 @@ const HeaderComponent = ({
                 key={index}
                 className={`${
                   item.isActive
-                    ? "border-colorBlue border-b-2 font-bold tracking-widest"
-                    : "tracking-widest"
+                    ? "border-colorBlue text-sm border-b-2 font-bold tracking-widest"
+                    : "tracking-widest hover:border-colorBlue text-sm hover:border-b-2 transition-all duration-500"
                 } `}
               >
                 {item.A}
