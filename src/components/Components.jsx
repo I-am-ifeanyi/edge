@@ -198,19 +198,23 @@ export const DeleteConfirmation = ({ onClick1, onClick2, questionPrompt }) => {
   return (
     <div className="absolute z-10">
       <h5 className="">{questionPrompt}</h5>
-      <div className="flex gap-5 mt-5">
-        <Button
-          text="Cancel"
-          background="bg-colorBlue"
-          color="text-colorWhite1"
-          onClick={onClick1}
-        />
-        <Button
-          text="Delete"
-          background="bg-colorRed"
-          color="text-colorWhite1"
-          onClick={onClick2}
-        />
+      <div className="flex gap-5 mt-5 items-center justify-center">
+        <div className="h-10 w-full">
+          <Button
+            text="Cancel"
+            background="bg-colorBlue"
+            color="text-colorWhite1"
+            onClick={onClick1}
+          />
+        </div>
+        <div className="h-10 w-full">
+          <Button
+            text="Delete"
+            background="bg-colorRed"
+            color="text-colorWhite1"
+            onClick={onClick2}
+          />
+        </div>
       </div>
     </div>
   )
@@ -745,6 +749,7 @@ export const dummyCourses = [
         lessonName: "Introduction to Biology",
         videos: [
           {
+            
             title: "Video 1",
             url: "video_url_1",
             instructor: "Mr. Kayode Olu",

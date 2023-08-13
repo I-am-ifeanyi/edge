@@ -613,7 +613,7 @@ const Courses = () => {
           }
         />
         {courseToEditID &&
-          locationsII.map((location) => {
+          locationsII.map((location, index) => {
             if (location.A === "Overview") {
               return (
                 <EditCourse
@@ -627,35 +627,36 @@ const Courses = () => {
                   groups={groups}
                   branches={branches}
                   extractCourseToEdit={extractCourseToEdit}
+                  key={index}
                 />
               )
             } else if (location.A === "Learners") {
               return (
-                <div className="relative top-56 px-4">
+                <div className="relative top-56 px-4" key={index}>
                   <Learners />
                 </div>
               )
             } else if (location.A === "Lessons") {
               return (
-                <div className="relative top-56 px-4">
+                <div className="relative top-56 px-4" key={index}>
                   <Lessons courseToEditID={courseToEditID} />
                 </div>
               )
             } else if (location.A === "Assignments") {
               return (
-                <div className="relative top-72">This is Assignment's fort</div>
+                <div className="relative top-72" key={index}>This is Assignment's fort</div>
               )
             } else if (location.A === "Tests") {
-              return <div className="relative top-72">This is Test's fort</div>
+              return <div className="relative top-72" key={index}>This is Test's fort</div>
             } else if (location.A === "Live Sessions") {
               return (
-                <div className="relative top-72">
+                <div className="relative top-72" key={index}>
                   This is Live Session's fort
                 </div>
               )
             } else if (location.A === "Discussions") {
               return (
-                <div className="relative top-72">This is Discussion's fort</div>
+                <div className="relative top-72" key={index}>This is Discussion's fort</div>
               )
             }
           })}
