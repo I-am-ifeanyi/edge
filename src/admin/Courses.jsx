@@ -10,7 +10,10 @@ import coursesIcon from "../assets/admin/coursesIcon/courses-icon.png"
 import Learners from "./homepageComponents/courseComponents/Learners"
 import InputElements from "../components/InputElements"
 import EditCourse from "./homepageComponents/courseComponents/EditCourse"
-import Lessons from "./homepageComponents/courseComponents/Lessons"
+import {
+  Lessons,
+  AddNewLesson
+} from "./homepageComponents/courseComponents/Lessons"
 import {
   Button,
   dummyCourses,
@@ -26,6 +29,8 @@ const Courses = () => {
   const [instructorsList, setInstructorsList] = useState(dummyInstructors)
   const [courseSuccessfullyAdded, setCourseSuccessfullyAdded] = useState("")
   const [courseToEditID, setCourseToEditID] = useState("")
+  const [isLesson, setIsLesson] = useState(false)
+  const [isAddNewLesson, setIsAddNewLesson] = useState(false)
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
@@ -36,6 +41,7 @@ const Courses = () => {
       isActive: true
     }
   ])
+
   const [subLinksII, setSubLinksII] = useState([
     {
       A: "Overview",
@@ -68,36 +74,13 @@ const Courses = () => {
   ])
 
   const toggleOverview = () => {
-    setSubLinksII([
-      {
-        A: "Overview",
-        isActive: true
-      },
-      {
-        A: "Learners",
-        isActive: false
-      },
-      {
-        A: "Lessons",
-        isActive: false
-      },
-      {
-        A: "Assignments",
-        isActive: false
-      },
-      {
-        A: "Tests",
-        isActive: false
-      },
-      {
-        A: "Live Sessions",
-        isActive: false
-      },
-      {
-        A: "Discussions",
-        isActive: false
-      }
-    ])
+    setSubLinksII((prev) =>
+      prev.map((link) => ({
+        ...link,
+        isActive: link.A === "Overview" ? true : false
+      }))
+    )
+
     setLocationsII([
       {
         A: "Courses",
@@ -112,39 +95,17 @@ const Courses = () => {
         isActive: true
       }
     ])
+    setIsLesson(false)
   }
 
   const toggleLearners = () => {
-    setSubLinksII([
-      {
-        A: "Overview",
-        isActive: false
-      },
-      {
-        A: "Learners",
-        isActive: true
-      },
-      {
-        A: "Lessons",
-        isActive: false
-      },
-      {
-        A: "Assignments",
-        isActive: false
-      },
-      {
-        A: "Tests",
-        isActive: false
-      },
-      {
-        A: "Live Sessions",
-        isActive: false
-      },
-      {
-        A: "Discussions",
-        isActive: false
-      }
-    ])
+    setSubLinksII((prev) =>
+      prev.map((link) => ({
+        ...link,
+        isActive: link.A === "Learners" ? true : false
+      }))
+    )
+
     setLocationsII([
       {
         A: "Courses",
@@ -159,39 +120,16 @@ const Courses = () => {
         isActive: true
       }
     ])
+    setIsLesson(false)
   }
 
   const toggleLessons = () => {
-    setSubLinksII([
-      {
-        A: "Overview",
-        isActive: false
-      },
-      {
-        A: "Learners",
-        isActive: false
-      },
-      {
-        A: "Lessons",
-        isActive: true
-      },
-      {
-        A: "Assignments",
-        isActive: false
-      },
-      {
-        A: "Tests",
-        isActive: false
-      },
-      {
-        A: "Live Sessions",
-        isActive: false
-      },
-      {
-        A: "Discussions",
-        isActive: false
-      }
-    ])
+    setSubLinksII((prev) =>
+      prev.map((link) => ({
+        ...link,
+        isActive: link.A === "Lessons" ? true : false
+      }))
+    )
     setLocationsII([
       {
         A: "Courses",
@@ -206,39 +144,18 @@ const Courses = () => {
         isActive: true
       }
     ])
+
+    setIsLesson(true)
   }
 
   const toggleAssignments = () => {
-    setSubLinksII([
-      {
-        A: "Overview",
-        isActive: false
-      },
-      {
-        A: "Learners",
-        isActive: false
-      },
-      {
-        A: "Lessons",
-        isActive: false
-      },
-      {
-        A: "Assignments",
-        isActive: true
-      },
-      {
-        A: "Tests",
-        isActive: false
-      },
-      {
-        A: "Live Sessions",
-        isActive: false
-      },
-      {
-        A: "Discussions",
-        isActive: false
-      }
-    ])
+    setSubLinksII((prev) =>
+      prev.map((link) => ({
+        ...link,
+        isActive: link.A === "Assignments" ? true : false
+      }))
+    )
+
     setLocationsII([
       {
         A: "Courses",
@@ -253,39 +170,17 @@ const Courses = () => {
         isActive: true
       }
     ])
+
+    setIsLesson(false)
   }
 
   const toggleTests = () => {
-    setSubLinksII([
-      {
-        A: "Overview",
-        isActive: false
-      },
-      {
-        A: "Learners",
-        isActive: false
-      },
-      {
-        A: "Lessons",
-        isActive: false
-      },
-      {
-        A: "Assignments",
-        isActive: false
-      },
-      {
-        A: "Tests",
-        isActive: true
-      },
-      {
-        A: "Live Sessions",
-        isActive: false
-      },
-      {
-        A: "Discussions",
-        isActive: false
-      }
-    ])
+    setSubLinksII((prev) =>
+      prev.map((link) => ({
+        ...link,
+        isActive: link.A === "Tests" ? true : false
+      }))
+    )
     setLocationsII([
       {
         A: "Courses",
@@ -300,39 +195,16 @@ const Courses = () => {
         isActive: true
       }
     ])
+    setIsLesson(false)
   }
 
   const toggleLiveSessions = () => {
-    setSubLinksII([
-      {
-        A: "Overview",
-        isActive: false
-      },
-      {
-        A: "Learners",
-        isActive: false
-      },
-      {
-        A: "Lessons",
-        isActive: false
-      },
-      {
-        A: "Assignments",
-        isActive: false
-      },
-      {
-        A: "Tests",
-        isActive: false
-      },
-      {
-        A: "Live Sessions",
-        isActive: true
-      },
-      {
-        A: "Discussions",
-        isActive: false
-      }
-    ])
+    setSubLinksII((prev) =>
+      prev.map((link) => ({
+        ...link,
+        isActive: link.A === "Live Sessions" ? true : false
+      }))
+    )
     setLocationsII([
       {
         A: "Courses",
@@ -347,39 +219,16 @@ const Courses = () => {
         isActive: true
       }
     ])
+    setIsLesson(false)
   }
 
   const toggleDiscussions = () => {
-    setSubLinksII([
-      {
-        A: "Overview",
-        isActive: false
-      },
-      {
-        A: "Learners",
-        isActive: false
-      },
-      {
-        A: "Lessons",
-        isActive: false
-      },
-      {
-        A: "Assignments",
-        isActive: false
-      },
-      {
-        A: "Tests",
-        isActive: false
-      },
-      {
-        A: "Live Sessions",
-        isActive: false
-      },
-      {
-        A: "Discussions",
-        isActive: true
-      }
-    ])
+    setSubLinksII((prev) =>
+      prev.map((link) => ({
+        ...link,
+        isActive: link.A === "Discussions" ? true : false
+      }))
+    )
     setLocationsII([
       {
         A: "Courses",
@@ -394,6 +243,7 @@ const Courses = () => {
         isActive: true
       }
     ])
+    setIsLesson(false)
   }
   const extractCourseToEdit = coursesList.filter(
     (courses) => courses.id === courseToEditID
@@ -432,7 +282,16 @@ const Courses = () => {
       isActive: true
     }
   ])
+  useEffect(() => {
+    locationsII.map((location, index) => {
+      if (location.A === "Lessons") {
+        setIsLesson(true)
+        setIsAddNewCourse(false)
+      }
+    })
+  }, [locationsII])
 
+  console.log(isAddNewLesson)
   useEffect(() => {
     setLocationsII([
       {
@@ -503,7 +362,6 @@ const Courses = () => {
     reset()
   }
   const onEditCourseSubmit = (data) => {
-    console.log(data)
     if (!data.branches || !data.instructors || !data.groups) {
       alert(
         "Make sure all the fields are filled correctly. No field must be left empty"
@@ -578,7 +436,15 @@ const Courses = () => {
       }
     ])
     setCourseToEditID("")
+    setIsLesson(false)
+    setIsAddNewLesson(true)
+
     reset()
+  }
+
+  const addNewLesson = () => {
+    setIsAddNewLesson(true)
+    // setIsLesson(false)
   }
 
   return (
@@ -591,8 +457,13 @@ const Courses = () => {
           subLinks={courseToEditID ? subLinksII : subLinks}
           locations={!courseToEditID ? locations : locationsII}
           buttonProps={
-            isAddNewCourse || courseToEditID ? "Cancel" : "Add New Course"
+            !isLesson && (isAddNewCourse || courseToEditID)
+              ? "Cancel"
+              : isLesson && courseToEditID
+              ? "Add Lesson"
+              : "Add New Course"
           }
+          disabled={isAddNewLesson ? true : false}
           toggleItems={{
             toggleOverview: toggleOverview,
             toggleLearners: toggleLearners,
@@ -607,7 +478,9 @@ const Courses = () => {
           onClick={
             isAddNewCourse
               ? reverseAddLocation
-              : courseToEditID
+              : isLesson && courseToEditID
+              ? addNewLesson
+              : courseToEditID && !isLesson
               ? reverseEdit
               : addLocation
           }
@@ -616,38 +489,56 @@ const Courses = () => {
           locationsII.map((location, index) => {
             if (location.A === "Overview") {
               return (
-                <EditCourse
-                  form={form}
-                  onEditCourseSubmit={onEditCourseSubmit}
-                  courseDefaultValue={extractCourseToEdit[0]?.courseName}
-                  courseAliasDefaultValue={extractCourseToEdit[0]?.courseAlias}
-                  courseDescriptionDefaultValue={
-                    extractCourseToEdit[0]?.description
-                  }
-                  groups={groups}
-                  branches={branches}
-                  extractCourseToEdit={extractCourseToEdit}
-                  key={index}
-                />
+                <div className="relative md:top-0 top-10 pb-10" key={index}>
+                  <EditCourse
+                    form={form}
+                    onEditCourseSubmit={onEditCourseSubmit}
+                    courseDefaultValue={extractCourseToEdit[0]?.courseName}
+                    courseAliasDefaultValue={
+                      extractCourseToEdit[0]?.courseAlias
+                    }
+                    courseDescriptionDefaultValue={
+                      extractCourseToEdit[0]?.description
+                    }
+                    groups={groups}
+                    branches={branches}
+                    extractCourseToEdit={extractCourseToEdit}
+                  />
+                </div>
               )
             } else if (location.A === "Learners") {
               return (
-                <div className="relative top-56 px-4" key={index}>
+                <div className="relative md:top-56 top-64 px-4" key={index}>
                   <Learners />
                 </div>
               )
             } else if (location.A === "Lessons") {
               return (
                 <div className="relative top-56 px-4" key={index}>
-                  <Lessons courseToEditID={courseToEditID} />
+                  {!isAddNewLesson && (
+                    <Lessons courseToEditID={courseToEditID} />
+                  )}
+                  {isAddNewLesson && (
+                    <AddNewLesson
+                      form={form}
+                      setIsAddNewLesson={setIsAddNewLesson}
+                      courseToEditID={courseToEditID}
+                    />
+                  )}
                 </div>
               )
             } else if (location.A === "Assignments") {
               return (
-                <div className="relative top-72" key={index}>This is Assignment's fort</div>
+                <div className="relative top-72" key={index}>
+                  This is Assignment's fort
+                </div>
               )
             } else if (location.A === "Tests") {
-              return <div className="relative top-72" key={index}>This is Test's fort</div>
+              return (
+                <div className="relative top-72" key={index}>
+                  This is Test's fort
+                </div>
+              )
             } else if (location.A === "Live Sessions") {
               return (
                 <div className="relative top-72" key={index}>
@@ -656,7 +547,9 @@ const Courses = () => {
               )
             } else if (location.A === "Discussions") {
               return (
-                <div className="relative top-72" key={index}>This is Discussion's fort</div>
+                <div className="relative top-72" key={index}>
+                  This is Discussion's fort
+                </div>
               )
             }
           })}

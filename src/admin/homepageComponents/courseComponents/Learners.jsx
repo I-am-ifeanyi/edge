@@ -7,7 +7,7 @@ import learnersIcon from "../../../assets/admin/learnersIcon/learnerIcon.png"
 
 const Learners = () => {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 ">
       <OverallSummary
         icon={learnersIcon}
         title="Total Learners"

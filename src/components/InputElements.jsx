@@ -168,18 +168,19 @@ const InputElements = ({
             />{" "}
           </figure>
         )}
-        <label
-          htmlFor={id}
-          className={`flex gap-2 w-[150px] ${
-            image
-              ? "h-10 mt-2 bg-colorBlue text-colorWhite3 flex flex-row"
-              : "h-[150px] flex-col"
-          } border-2 border-dotted rounded-md text-sm items-center justify-center cursor-pointer`}
-        >
-          {" "}
-          <AiOutlineCloudUpload size={20} />
-          {image ? "Change Image" : "Upload"}
-        </label>
+          <label
+            htmlFor={id}
+            className={`flex gap-2 w-[150px] ${
+              image
+                ? "h-10 mt-2 bg-colorBlue text-colorWhite3 flex flex-row"
+                : "h-[150px] flex-col"
+            } border-2 border-dotted rounded-md text-sm items-center justify-center cursor-pointer`}
+          >
+            {" "}
+            <AiOutlineCloudUpload size={20} />
+            {image ? "Change Image" : "Upload"}
+          </label>
+        
         <input
           type="file"
           id={id}
@@ -221,12 +222,13 @@ const InputElements = ({
           <input
             type="text"
             id={id}
+            value={value}
             placeholder={placeholder}
             defaultValue={defaultValue}
             className="outline-none w-full  h-full px-2"
             {...register(`${id}`, {
               required: {
-                value: true,
+                value: value ? false : true,
                 message: `Please fill in this field`
               }
             })}

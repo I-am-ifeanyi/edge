@@ -741,6 +741,18 @@ export const dummyCourses = [
     groups: "JSS 2",
     branches: ["A", "C", "E"],
     instructors: ["Mr. Kayode Olu", "Mrs. Oge Okafor Victoria"],
+    topics: [
+      "Cell Structure and Function",
+      "Genetics and Heredity",
+      "Ecology and Ecosystems",
+      "Evolutionary Biology",
+      "Human Anatomy and Physiology",
+      "Microbiology",
+      "Plant Biology",
+      "Neuroscience",
+      "Biotechnology",
+      "Environmental Conservation"
+    ],
     description:
       "Explore the fascinating world of living organisms and their interactions in this introductory biology course.",
     lessons: [
@@ -749,7 +761,6 @@ export const dummyCourses = [
         lessonName: "Introduction to Biology",
         videos: [
           {
-            
             title: "Video 1",
             url: "video_url_1",
             instructor: "Mr. Kayode Olu",
@@ -838,6 +849,18 @@ export const dummyCourses = [
     groups: "SS 1",
     branches: ["B", "D"],
     instructors: "Mrs. Oge Okafor Victoria",
+    topics: [
+      "Algebra",
+      "Geometry",
+      "Calculus",
+      "Probability and Statistics",
+      "Linear Algebra",
+      "Number Theory",
+      "Differential Equations",
+      "Discrete Mathematics",
+      "Mathematical Logic",
+      "Cryptology"
+    ],
     description:
       "Dive into the realm of numbers, shapes, and patterns, and unravel the mysteries of mathematics.",
     lessons: [
@@ -934,6 +957,18 @@ export const dummyCourses = [
     groups: "YEAR 2",
     branches: ["C", "E"],
     instructors: "Mr. John Smith",
+    topics: [
+      "Classical Mechanics",
+      "Electromagnetism",
+      "Quantum Mechanics",
+      "Thermodynamics",
+      "Relativity",
+      "Astrophysics",
+      "Particle Physics",
+      "Nuclear Physics",
+      "Optics",
+      "Fluid Dynamics"
+    ],
     description:
       "Explore the fundamental laws of the physical universe and the forces that govern its behavior.",
     lessons: [
@@ -1030,6 +1065,18 @@ export const dummyCourses = [
     groups: "SS 3",
     branches: ["A", "B"],
     instructors: "Dr. Sarah Johnson",
+    topics: [
+      "Atomic Structure",
+      "Chemical Bonding",
+      "Stoichiometry",
+      "Thermodynamics",
+      "Organic Chemistry",
+      "Inorganic Chemistry",
+      "Physical Chemistry",
+      "Analytical Chemistry",
+      "Biochemistry",
+      "Nanotechnology"
+    ],
     description:
       "Delve into the composition, properties, and transformations of matter in this engaging chemistry course.",
     lessons: [
@@ -1126,6 +1173,18 @@ export const dummyCourses = [
     groups: "JSS 1",
     branches: ["B", "C"],
     instructors: "Ms. Emily Brown",
+    topics: [
+      "Shakespearean Drama",
+      "Victorian Literature",
+      "Modernist Literature",
+      "Postcolonial Literature",
+      "Feminist Literature",
+      "American Literature",
+      "World Literature",
+      "Literary Theory",
+      "Poetry Analysis",
+      "Narrative Techniques"
+    ],
     description:
       "Journey through the world of literary masterpieces, analyzing and appreciating the art of written expression.",
     lessons: [
@@ -1222,6 +1281,18 @@ export const dummyCourses = [
     groups: "YEAR 1",
     branches: ["C", "D"],
     instructors: "Mr. Michael Thompson",
+    topics: [
+      "Ancient Civilizations",
+      "Medieval History",
+      "Renaissance and Enlightenment",
+      "World Wars",
+      "Cold War Era",
+      "Colonialism and Imperialism",
+      "Revolutionary Movements",
+      "Globalization",
+      "Historical Methodology",
+      "Cultural History"
+    ],
     description:
       "Uncover the events, cultures, and people that have shaped the course of human history over the ages.",
     lessons: [
@@ -1318,6 +1389,18 @@ export const dummyCourses = [
     groups: "SS 2",
     branches: ["A", "E"],
     instructors: "Prof. Daniel Taylor",
+    topics: [
+      "Programming Languages",
+      "Data Structures",
+      "Algorithms",
+      "Software Engineering",
+      "Databases",
+      "Artificial Intelligence",
+      "Cybersecurity",
+      "Computer Networks",
+      "Human-Computer Interaction",
+      "Web Development"
+    ],
     description:
       "Dive into the world of algorithms, programming, and technology, and learn the art of problem-solving in computing.",
     lessons: [
@@ -1414,6 +1497,18 @@ export const dummyCourses = [
     groups: "JSS 3",
     branches: ["B", "D"],
     instructors: "Dr. Sophia Wilson",
+    topics: [
+      "Physical Geography",
+      "Human Geography",
+      "Cartography",
+      "Geographical Information Systems (GIS)",
+      "Urban Studies",
+      "Environmental Geography",
+      "Cultural Geography",
+      "Geopolitics",
+      "Climate Change",
+      "Migration Patterns"
+    ],
     description:
       "Explore the Earth's landscapes, environments, and the intricate relationships between human societies and the planet.",
     lessons: [
@@ -1510,6 +1605,18 @@ export const dummyCourses = [
     groups: "YEAR 3",
     branches: ["C", "E"],
     instructors: "Mr. James Lee",
+    topics: [
+      "Microeconomics",
+      "Macroeconomics",
+      "International Trade",
+      "Development Economics",
+      "Behavioral Economics",
+      "Game Theory",
+      "Labor Economics",
+      "Environmental Economics",
+      "Econometrics",
+      "Health Economics"
+    ],
     description:
       "Examine the principles of production, distribution, and consumption of goods and services in this economics course.",
     lessons: [
@@ -1606,6 +1713,18 @@ export const dummyCourses = [
     groups: "SS 1",
     branches: ["A", "B"],
     instructors: "Mrs. Isabella Anderson",
+    topics: [
+      "Sports Physiology",
+      "Exercise Science",
+      "Biomechanics",
+      "Nutrition and Fitness",
+      "Physical Training",
+      "Sports Psychology",
+      "Motor Learning",
+      "Injury Prevention",
+      "Adapted Physical Education",
+      "Physical Activity and Health"
+    ],
     description:
       "Get active and learn the importance of physical fitness, sportsmanship, and healthy lifestyle choices.",
     lessons: [
@@ -1702,6 +1821,18 @@ export const dummyCourses = [
     groups: "YEAR 2",
     branches: ["B", "D"],
     instructors: "Ms. Mia Walker",
+    topics: [
+      "Ancient Art",
+      "Renaissance Art",
+      "Baroque Art",
+      "Impressionism",
+      "Modern Art",
+      "Contemporary Art",
+      "Art Criticism",
+      "Feminist Art History",
+      "Museum Studies",
+      "Art Conservation"
+    ],
     description:
       "Journey through the evolution of visual arts, exploring iconic artworks and the stories behind them.",
     lessons: [
@@ -1798,6 +1929,18 @@ export const dummyCourses = [
     groups: "JSS 2",
     branches: ["C", "E"],
     instructors: "Mr. Joseph Perez",
+    topics: [
+      "Music Theory",
+      "Music Composition",
+      "Music History",
+      "Ethnomusicology",
+      "Jazz and Blues",
+      "Classical Music",
+      "Popular Music",
+      "Music Technology",
+      "Music Psychology",
+      "Music Education"
+    ],
     description:
       "Discover the world of music, from theory and composition to performance and cultural significance.",
     lessons: [
@@ -1886,7 +2029,7 @@ export const dummyCourses = [
         ]
       }
     ]
-  }, // ... (previous courses)
+  },
 
   {
     id: 13,
@@ -1895,6 +2038,18 @@ export const dummyCourses = [
     groups: "SS 3",
     branches: ["A", "B"],
     instructors: "Dr. Evelyn Evans",
+    topics: [
+      "Language Acquisition",
+      "Grammar and Syntax",
+      "Language Proficiency",
+      "Cultural Studies",
+      "Translation and Interpretation",
+      "Language Pedagogy",
+      "Bilingualism",
+      "Dialectology",
+      "Language Preservation",
+      "Linguistic Anthropology"
+    ],
     description:
       "Embark on a linguistic journey, learning the beauty and intricacies of foreign languages and their cultures.",
     lessons: [
@@ -1991,6 +2146,18 @@ export const dummyCourses = [
     groups: "YEAR 1",
     branches: ["B", "C"],
     instructors: "Prof. Alexander Rivera",
+    topics: [
+      "Ecology",
+      "Biodiversity Conservation",
+      "Climate Change",
+      "Sustainability",
+      "Environmental Policy",
+      "Renewable Energy",
+      "Ecosystem Management",
+      "Pollution Control",
+      "Water Resources",
+      "Environmental Ethics"
+    ],
     description:
       "Explore the complex web of interactions between humans and the environment, and address pressing environmental challenges.",
     lessons: [
@@ -2087,6 +2254,18 @@ export const dummyCourses = [
     groups: "SS 2",
     branches: ["C", "D"],
     instructors: "Ms. Sofia Collins",
+    topics: [
+      "Political Theories",
+      "Comparative Politics",
+      "International Relations",
+      "Public Policy",
+      "Political Institutions",
+      "Political Philosophy",
+      "Human Rights",
+      "Political Economy",
+      "Geopolitics",
+      "Election Systems"
+    ],
     description:
       "Delve into the study of political systems, governance, and the dynamics of power and authority in societies.",
     lessons: [
@@ -2183,6 +2362,18 @@ export const dummyCourses = [
     groups: "JSS 3",
     branches: ["A", "E"],
     instructors: "Mr. Andrew Campbell",
+    topics: [
+      "Business Ethics",
+      "Entrepreneurship",
+      "Marketing",
+      "Finance",
+      "Management",
+      "Strategic Planning",
+      "Organizational Behavior",
+      "Supply Chain Management",
+      "Business Law",
+      "E-commerce"
+    ],
     description:
       "Gain insights into the world of business, from entrepreneurship and management to marketing and finance.",
     lessons: [
@@ -2279,6 +2470,18 @@ export const dummyCourses = [
     groups: "YEAR 3",
     branches: ["B", "C"],
     instructors: "Dr. Scarlett Mitchell",
+    topics: [
+      "Behavioral Psychology",
+      "Cognitive Psychology",
+      "Clinical Psychology",
+      "Developmental Psychology",
+      "Social Psychology",
+      "Neuropsychology",
+      "Personality Theories",
+      "Psychological Assessment",
+      "Psychopathology",
+      "Positive Psychology"
+    ],
     description:
       "Explore the human mind and behavior, delving into topics like cognition, emotions, and psychological disorders.",
     lessons: [
@@ -2375,6 +2578,18 @@ export const dummyCourses = [
     groups: "SS 1",
     branches: ["C", "D"],
     instructors: "Mrs. Josephine Martinez",
+    topics: [
+      "Social Theories",
+      "Cultural Sociology",
+      "Gender and Sexuality",
+      "Race and Ethnicity",
+      "Social Inequality",
+      "Urban Sociology",
+      "Family Dynamics",
+      "Globalization",
+      "Social Movements",
+      "Sociological Research Methods"
+    ],
     description:
       "Examine the structures, institutions, and dynamics that shape societies and influence human interactions.",
     lessons: [
@@ -2471,6 +2686,18 @@ export const dummyCourses = [
     groups: "YEAR 2",
     branches: ["A", "B"],
     instructors: "Mr. Michael Johnson",
+    topics: [
+      "Metaphysics",
+      "Epistemology",
+      "Ethics",
+      "Political Philosophy",
+      "Philosophy of Mind",
+      "Philosophy of Science",
+      "Aesthetics",
+      "Existentialism",
+      "Logic",
+      "Moral Philosophy"
+    ],
     description:
       "Embark on a journey of critical thinking and contemplation, exploring fundamental questions about existence and knowledge.",
     lessons: [
@@ -2567,6 +2794,18 @@ export const dummyCourses = [
     groups: "JSS 2",
     branches: ["B", "E"],
     instructors: "Ms. Emily Williams",
+    topics: [
+      "Cultural Anthropology",
+      "Archaeology",
+      "Biological Anthropology",
+      "Linguistic Anthropology",
+      "Ethnography",
+      "Anthropological Theories",
+      "Human Evolution",
+      "Medical Anthropology",
+      "Globalization and Culture",
+      "Indigenous Studies"
+    ],
     description:
       "Uncover the rich tapestry of human cultures and societies, exploring their diversity and interconnectedness.",
     lessons: [
