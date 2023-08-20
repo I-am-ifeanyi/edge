@@ -10,10 +10,9 @@ import coursesIcon from "../assets/admin/coursesIcon/courses-icon.png"
 import Learners from "./homepageComponents/courseComponents/Learners"
 import InputElements from "../components/InputElements"
 import EditCourse from "./homepageComponents/courseComponents/EditCourse"
-import {
-  Lessons,
-  AddNewLesson
-} from "./homepageComponents/courseComponents/Lessons"
+import AddNewLesson from "./homepageComponents/courseComponents/lessonComponent/AddNewLesson"
+import Lessons from "./homepageComponents/courseComponents/lessonComponent/Lessons"
+
 import {
   Button,
   dummyCourses,
@@ -31,17 +30,25 @@ const Courses = () => {
   const [courseToEditID, setCourseToEditID] = useState("")
   const [isLesson, setIsLesson] = useState(false)
   const [isAddNewLesson, setIsAddNewLesson] = useState(false)
+  const [previewedCourseList, setPreviewedCourseList] = useState(null)
+
+  const sampleCourse = coursesList?.filter(
+    (course) => course.id === courseToEditID
+  )
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
-  }, [isAddNewCourse, activeLocation, courseToEditID])
+    if (sampleCourse) {
+      setPreviewedCourseList(sampleCourse)
+    }
+  }, [isAddNewCourse, activeLocation, courseToEditID, setPreviewedCourseList])
   const [subLinks, setSubLinks] = useState([
     {
       A: "All Courses",
       isActive: true
     }
   ])
-
+  console.log(previewedCourseList)
   const [subLinksII, setSubLinksII] = useState([
     {
       A: "Overview",
@@ -291,7 +298,6 @@ const Courses = () => {
     })
   }, [locationsII])
 
-  console.log(isAddNewLesson)
   useEffect(() => {
     setLocationsII([
       {
@@ -516,13 +522,22 @@ const Courses = () => {
               return (
                 <div className="relative top-56 px-4" key={index}>
                   {!isAddNewLesson && (
-                    <Lessons courseToEditID={courseToEditID} />
+                    <Lessons
+                      courseToEditID={courseToEditID}
+                      coursesList={coursesList}
+                      setCoursesList={setCoursesList}
+                      previewedCourseList={previewedCourseList}
+                    />
                   )}
                   {isAddNewLesson && (
                     <AddNewLesson
                       form={form}
                       setIsAddNewLesson={setIsAddNewLesson}
                       courseToEditID={courseToEditID}
+                      coursesList={coursesList}
+                      setCoursesList={setCoursesList}
+                      previewedCourseList={previewedCourseList}
+                      setPreviewedCourseList={setPreviewedCourseList}
                     />
                   )}
                 </div>

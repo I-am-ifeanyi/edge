@@ -217,8 +217,8 @@ const InputElements = ({
       )
     }
     return (
-      <div className="w-full">
-        <fieldset className="w-full h-[50px] flex items-center bg-colorWhite2 border border-colorWhite3 rounded-lg ">
+      <div className="w-full h-full">
+        <fieldset className="w-full h-full flex items-center bg-colorWhite2 border border-colorWhite3 rounded-lg ">
           <input
             type="text"
             id={id}
