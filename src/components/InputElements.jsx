@@ -236,7 +236,7 @@ const InputElements = ({
           />
           {icon}
         </fieldset>
-        {<p className="text-colorRed text-[10px]">{errors?.[id]?.message}</p>}
+        {<p className="text-colorRed text-[10px] h-8">{errors?.[id]?.message}</p>}
       </div>
     )
   } else if (type === "url") {

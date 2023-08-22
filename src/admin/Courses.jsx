@@ -12,6 +12,7 @@ import InputElements from "../components/InputElements"
 import EditCourse from "./homepageComponents/courseComponents/EditCourse"
 import AddNewLesson from "./homepageComponents/courseComponents/lessonComponent/AddNewLesson"
 import Lessons from "./homepageComponents/courseComponents/lessonComponent/Lessons"
+import Assignments from "./homepageComponents/courseComponents/assignmentComponent/Assignments"
 
 import {
   Button,
@@ -28,9 +29,27 @@ const Courses = () => {
   const [instructorsList, setInstructorsList] = useState(dummyInstructors)
   const [courseSuccessfullyAdded, setCourseSuccessfullyAdded] = useState("")
   const [courseToEditID, setCourseToEditID] = useState("")
-  const [isLesson, setIsLesson] = useState(false)
   const [isAddNewLesson, setIsAddNewLesson] = useState(false)
   const [previewedCourseList, setPreviewedCourseList] = useState(null)
+  const [activeSections, setActiveSections] = useState({
+    overview: false,
+    learners: false,
+    isLesson: false,
+    assignments: false,
+    tests: false,
+    liveSessions: false,
+    discussions: false
+  })
+
+  const {
+    overview,
+    learners,
+    isLesson,
+    assignments,
+    tests,
+    liveSessions,
+    discussions
+  } = activeSections
 
   const sampleCourse = coursesList?.filter(
     (course) => course.id === courseToEditID
@@ -41,14 +60,13 @@ const Courses = () => {
     if (sampleCourse) {
       setPreviewedCourseList(sampleCourse)
     }
-  }, [isAddNewCourse, activeLocation, courseToEditID, setPreviewedCourseList])
+  }, [isAddNewCourse, activeLocation, courseToEditID])
   const [subLinks, setSubLinks] = useState([
     {
       A: "All Courses",
       isActive: true
     }
   ])
-  console.log(previewedCourseList)
   const [subLinksII, setSubLinksII] = useState([
     {
       A: "Overview",
@@ -102,7 +120,15 @@ const Courses = () => {
         isActive: true
       }
     ])
-    setIsLesson(false)
+    setActiveSections({
+      overview: true,
+      learners: false,
+      isLesson: false,
+      assignments: false,
+      tests: false,
+      liveSessions: false,
+      discussions: false
+    })
   }
 
   const toggleLearners = () => {
@@ -127,7 +153,15 @@ const Courses = () => {
         isActive: true
       }
     ])
-    setIsLesson(false)
+    setActiveSections({
+      overview: false,
+      learners: true,
+      isLesson: false,
+      assignments: false,
+      tests: false,
+      liveSessions: false,
+      discussions: false
+    })
   }
 
   const toggleLessons = () => {
@@ -152,7 +186,15 @@ const Courses = () => {
       }
     ])
 
-    setIsLesson(true)
+    setActiveSections({
+      overview: false,
+      learners: false,
+      isLesson: true,
+      assignments: false,
+      tests: false,
+      liveSessions: false,
+      discussions: false
+    })
   }
 
   const toggleAssignments = () => {
@@ -178,7 +220,15 @@ const Courses = () => {
       }
     ])
 
-    setIsLesson(false)
+    setActiveSections({
+      overview: false,
+      learners: false,
+      isLesson: false,
+      assignments: true,
+      tests: false,
+      liveSessions: false,
+      discussions: false
+    })
   }
 
   const toggleTests = () => {
@@ -202,7 +252,15 @@ const Courses = () => {
         isActive: true
       }
     ])
-    setIsLesson(false)
+    setActiveSections({
+      overview: false,
+      learners: false,
+      isLesson: false,
+      assignments: false,
+      tests: true,
+      liveSessions: false,
+      discussions: false
+    })
   }
 
   const toggleLiveSessions = () => {
@@ -226,7 +284,15 @@ const Courses = () => {
         isActive: true
       }
     ])
-    setIsLesson(false)
+    setActiveSections({
+      overview: false,
+      learners: false,
+      isLesson: false,
+      assignments: false,
+      tests: false,
+      liveSessions: true,
+      discussions: false
+    })
   }
 
   const toggleDiscussions = () => {
@@ -250,8 +316,17 @@ const Courses = () => {
         isActive: true
       }
     ])
-    setIsLesson(false)
+    setActiveSections({
+      overview: false,
+      learners: false,
+      isLesson: false,
+      assignments: false,
+      tests: false,
+      liveSessions: false,
+      discussions: true
+    })
   }
+
   const extractCourseToEdit = coursesList.filter(
     (courses) => courses.id === courseToEditID
   )
@@ -292,7 +367,15 @@ const Courses = () => {
   useEffect(() => {
     locationsII.map((location, index) => {
       if (location.A === "Lessons") {
-        setIsLesson(true)
+        setActiveSections({
+          overview: false,
+          learners: false,
+          isLesson: true,
+          assignments: false,
+          tests: false,
+          liveSessions: false,
+          discussions: false
+        })
         setIsAddNewCourse(false)
       }
     })
@@ -316,7 +399,7 @@ const Courses = () => {
   }, [courseName])
 
   const addLocation = () => {
-    setIsAddNewCourse((prev) => !prev)
+    setIsAddNewCourse(true)
     setLocations([
       {
         A: "Courses",
@@ -331,11 +414,10 @@ const Courses = () => {
         isActive: true
       }
     ])
-    setActiveLocation("Add Course")
   }
 
   const reverseAddLocation = () => {
-    setIsAddNewCourse((prev) => !prev)
+    setIsAddNewCourse(false)
     setLocations([
       {
         A: "Courses",
@@ -346,7 +428,24 @@ const Courses = () => {
         isActive: false
       }
     ])
-    setActiveLocation("All Course")
+    setActiveLocation("All Courses")
+    setActiveSections({
+      overview: false,
+      learners: false,
+      isLesson: false,
+      assignments: false,
+      tests: false,
+      liveSessions: false,
+      discussions: false
+    })
+    setCourseToEditID("")
+    setActiveLocation("Add Course")
+    setSubLinksII((prev) =>
+      prev.map((link) => ({
+        ...link,
+        isActive: link.A === "Overview" ? true : false
+      }))
+    )
   }
 
   const onAddCourseSubmit = (data) => {
@@ -442,7 +541,15 @@ const Courses = () => {
       }
     ])
     setCourseToEditID("")
-    setIsLesson(false)
+    setActiveSections({
+      overview: true,
+      learners: false,
+      isLesson: false,
+      assignments: false,
+      tests: false,
+      liveSessions: false,
+      discussions: false
+    })
     setIsAddNewLesson(true)
 
     reset()
@@ -450,23 +557,35 @@ const Courses = () => {
 
   const addNewLesson = () => {
     setIsAddNewLesson(true)
-    // setIsLesson(false)
   }
+
+  console.log(activeSections)
 
   return (
     <div className="relative">
-      <div className="md:w-[90%] w-full absolute h-full right-0">
+      <div className="md:w-[90%] w-full absolute h-full right-0 top-4">
         <HeaderComponent
           icon={coursesIcon}
           title={!courseToEditID ? "Courses" : `${courseName}`}
           subTitle={courseToEditID ? `(${courseAlias})` : null}
           subLinks={courseToEditID ? subLinksII : subLinks}
           locations={!courseToEditID ? locations : locationsII}
+      
           buttonProps={
-            !isLesson && (isAddNewCourse || courseToEditID)
+            courseToEditID
+              ? learners || overview
+                ? "Cancel"
+                : isLesson
+                ? "Add Lesson"
+                : assignments
+                ? "Create Assignment"
+                : tests
+                ? "Create Test"
+                : liveSessions
+                ? "Schedule Session"
+                : "Add New Course"
+              : isAddNewCourse
               ? "Cancel"
-              : isLesson && courseToEditID
-              ? "Add Lesson"
               : "Add New Course"
           }
           disabled={isAddNewLesson ? true : false}
@@ -481,13 +600,35 @@ const Courses = () => {
           }}
           page="courses"
           isFunctionButton={true}
+          // onClick={
+          //   isAddNewCourse
+          //     ? reverseAddLocation
+          //     : isLesson && courseToEditID
+          //     ? addNewLesson
+          //     : courseToEditID && !isLesson
+          //     ? reverseEdit
+          //     : addLocation
+          // }
+          // onClick={
+          //   isAddNewCourse || overview || learners
+          //     ? reverseAddLocation
+          //     : addLocation
+          // }
           onClick={
-            isAddNewCourse
+            courseToEditID
+              ? learners || overview
+                ? reverseAddLocation
+                : isLesson
+                ? addNewLesson
+                : assignments
+                ? ""
+                : tests
+                ? ""
+                : liveSessions
+                ? ""
+                : ""
+              : isAddNewCourse
               ? reverseAddLocation
-              : isLesson && courseToEditID
-              ? addNewLesson
-              : courseToEditID && !isLesson
-              ? reverseEdit
               : addLocation
           }
         />
@@ -509,6 +650,9 @@ const Courses = () => {
                     groups={groups}
                     branches={branches}
                     extractCourseToEdit={extractCourseToEdit}
+                    setActiveSections={setActiveSections}
+                    activeSections={activeSections}
+                    courseToEditID={courseToEditID}
                   />
                 </div>
               )
@@ -520,7 +664,7 @@ const Courses = () => {
               )
             } else if (location.A === "Lessons") {
               return (
-                <div className="relative top-56 px-4" key={index}>
+                <div className="relative md:top-56 top-60 px-4" key={index}>
                   {!isAddNewLesson && (
                     <Lessons
                       courseToEditID={courseToEditID}
@@ -544,8 +688,11 @@ const Courses = () => {
               )
             } else if (location.A === "Assignments") {
               return (
-                <div className="relative top-72" key={index}>
-                  This is Assignment's fort
+                <div
+                  className="relative md:top-60 top-64 px-4 shadow mx-4 py-10 bg-colorWhite1 rounded-md"
+                  key={index}
+                >
+                  <Assignments previewedCourseList={previewedCourseList} />
                 </div>
               )
             } else if (location.A === "Tests") {
@@ -580,6 +727,7 @@ const Courses = () => {
             {!isAddNewCourse && (
               <CoursesTableList
                 setCourseToEditID={setCourseToEditID}
+                setActiveSections={setActiveSections}
                 setLocations={setLocations}
                 dataToDisplay={coursesList}
               />

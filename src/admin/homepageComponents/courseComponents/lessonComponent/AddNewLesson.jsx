@@ -1,31 +1,17 @@
 import React, { useState, useEffect } from "react"
-import { GoVideo } from "react-icons/go"
-import { BsCloudDownload } from "react-icons/bs"
-import { RiDeleteBin6Line } from "react-icons/ri"
-import { PiSpeakerHighLight } from "react-icons/pi"
-import { CgFileDocument } from "react-icons/cg"
 import { AiOutlineClose } from "react-icons/ai"
 import { BiMessageSquareAdd } from "react-icons/bi"
 
-import Accordion from "@mui/material/Accordion"
-import AccordionSummary from "@mui/material/AccordionSummary"
-import AccordionDetails from "@mui/material/AccordionDetails"
-import Typography from "@mui/material/Typography"
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
-import Alert from "@mui/material/Alert"
-import AlertTitle from "@mui/material/AlertTitle"
-import Stack from "@mui/material/Stack"
+
 import { styled } from "@mui/material/styles"
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip"
 
-import { Button, DeleteConfirmation } from "../../../../components/Components"
+import { Button } from "../../../../components/Components"
 import InputElements from "../../../../components/InputElements"
 
 const AddNewLesson = ({
   form,
   setIsAddNewLesson,
-  courseToEditID,
-  coursesList,
   setPreviewedCourseList,
   previewedCourseList
 }) => {
@@ -45,6 +31,10 @@ const AddNewLesson = ({
   })
 
   const lessonOptions = lessonCourses[0]?.topics?.map((item) => item)
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
+  }, [])
 
   useEffect(() => {
     if (previewedCourseList) {
@@ -73,15 +63,18 @@ const AddNewLesson = ({
   const onAddLessonSubmit = () => {
     setLessonCourses((prev) => {
       return prev.map((items) => {
-        return [...items.lessons, newLesson]
+        return [...items?.lessons, newLesson]
       })
     })
-   setPreviewedCourseList((prev) => {
-     return prev.map((item) => {
-       return { ...item, lessons: lessonCourses }
-     })
-   })
-
+    setPreviewedCourseList((prev) => {
+      return prev.map((course) => {
+        return {
+          ...course,
+          lessons: [...course.lessons, newLesson]
+        }
+      })
+    })
+    setIsAddNewLesson(false)
   }
   const handleChangeSelectTopic = (e) => {
     const lessonName = e.target.value
@@ -140,7 +133,6 @@ const AddNewLesson = ({
       ])
     }
   }
-
   const handleChangeSelectDocument = (event) => {
     const file = event.target.files[0]
     const title = file.name
@@ -214,10 +206,19 @@ const AddNewLesson = ({
     setNewLessonId(lessonLength + 1)
   }
 
-  const removeDocument = (title) => {
-    setSelectedDocuments((prev) => {
-      return prev.filter((document) => document.title !== title)
-    })
+  const removeItem = (title, type) => {
+    if (type === "videos") {
+      setSelectedVideos((prev) => {
+        return prev.filter((video) => video.title !== title)
+      })
+    } else if (type === "audios") {
+      setSelectedAudios((prev) => {
+        return prev.filter((audio) => audio.title !== title)
+      })
+    } else
+      setSelectedDocuments((prev) => {
+        return prev.filter((document) => document.title !== title)
+      })
     return prev
   }
 
@@ -233,7 +234,7 @@ const AddNewLesson = ({
   }))
 
   return (
-    <div className="relative top-10 md:top-0">
+    <div className="relative">
       <CloseTooltip title="Close Add Lesson">
         <figure
           className="w-[40px] h-[40px] border flex items-center justify-center rounded-full bg-colorGray6 float-right"
@@ -294,10 +295,13 @@ const AddNewLesson = ({
                   </p>
                   <div className="w-full">
                     {selectedVideos && (
-                      <div className="grid grid-cols-3 my-2 gap-2">
+                      <div className="grid md:grid-cols-3 grid-cols-2 my-2 gap-2">
                         {selectedVideos?.map((video, index) => {
                           return (
-                            <div className="flex flex-col gap-2" key={index}>
+                            <div
+                              className="flex flex-col gap-2 relative"
+                              key={index}
+                            >
                               <video controls className="rounded-md">
                                 <source src={video?.url} type="video/mp4" />
                                 Your browser does not support the video tag.
@@ -313,6 +317,15 @@ const AddNewLesson = ({
                                       event,
                                       video?.title
                                     )
+                                  }
+                                />
+                              </div>
+                              <div className="w-[25px] h-[25px] border flex items-center justify-center rounded-full bg-colorGray6 absolute top-0 right-0 md:-m-2 hover:translate-y-1 duration-500 transition-all">
+                                <AiOutlineClose
+                                  size={20}
+                                  className="text-colorRed cursor-pointer "
+                                  onClick={() =>
+                                    removeItem(video?.title, "videos")
                                   }
                                 />
                               </div>
@@ -353,12 +366,15 @@ const AddNewLesson = ({
                       <div className="flex flex-col gap-4 mt-2">
                         {selectedAudios?.map((audio, index) => {
                           return (
-                            <div className="flex flex-col gap-2" key={index}>
+                            <div
+                              className="flex flex-col gap-2 relative"
+                              key={index}
+                            >
                               <audio controls>
                                 <source src={audio?.url} />
                                 Your browser does not support the audio element.
                               </audio>
-                              <div className="md:w-1/2 h-8 border rounded-md ">
+                              <div className="md:w-1/2 w-2/3 h-8 border rounded-md ">
                                 <InputElements
                                   form={form}
                                   placeholder="Audio Instructor"
@@ -369,6 +385,15 @@ const AddNewLesson = ({
                                       event,
                                       audio?.title
                                     )
+                                  }
+                                />
+                              </div>
+                              <div className="w-[25px] h-[25px] border flex items-center justify-center rounded-full bg-colorGray6 absolute top-0 right-10 md:-m-2 hover:translate-y-1 duration-500 transition-all">
+                                <AiOutlineClose
+                                  size={20}
+                                  className="text-colorRed cursor-pointer "
+                                  onClick={() =>
+                                    removeItem(audio?.title, "audios")
                                   }
                                 />
                               </div>
@@ -406,7 +431,7 @@ const AddNewLesson = ({
                   </p>
                   <div>
                     {selectedDocuments && (
-                      <div className="grid md:grid-cols-3 gap-4 mt-2">
+                      <div className="grid md:grid-cols-3 grid-cols-2 gap-4 mt-2">
                         {selectedDocuments?.map((document, index) => {
                           return (
                             <div
@@ -437,11 +462,13 @@ const AddNewLesson = ({
                                   }
                                 />
                               </div>
-                              <div className="w-[25px] h-[25px] border flex items-center justify-center rounded-full bg-colorGray6 absolute top-0 right-0 -m-2 hover:translate-y-1 duration-500 transition-all">
+                              <div className="w-[25px] h-[25px] border flex items-center justify-center rounded-full bg-colorGray6 absolute top-0 right-0 md:-m-2 hover:translate-y-1 duration-500 transition-all">
                                 <AiOutlineClose
                                   size={20}
                                   className="text-colorRed cursor-pointer "
-                                  onClick={() => removeDocument(document.title)}
+                                  onClick={() =>
+                                    removeItem(document?.title, "documents")
+                                  }
                                 />
                               </div>
                             </div>
@@ -468,7 +495,7 @@ const AddNewLesson = ({
         </div>
         <div className="h-10 w-1/2 md:w-[50%] px-4 md:m-auto md:mb-10 m-auto mb-20">
           <Button
-            text="Edit Course"
+            text="Add Lesson"
             background="bg-colorBlue"
             color="text-colorWhite1"
           />

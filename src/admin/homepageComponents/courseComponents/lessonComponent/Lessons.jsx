@@ -4,37 +4,29 @@ import { BsCloudDownload } from "react-icons/bs"
 import { RiDeleteBin6Line } from "react-icons/ri"
 import { PiSpeakerHighLight } from "react-icons/pi"
 import { CgFileDocument } from "react-icons/cg"
-import { AiOutlineClose } from "react-icons/ai"
-import { BiMessageSquareAdd } from "react-icons/bi"
 
 import Accordion from "@mui/material/Accordion"
 import AccordionSummary from "@mui/material/AccordionSummary"
 import AccordionDetails from "@mui/material/AccordionDetails"
-import Typography from "@mui/material/Typography"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
 import Alert from "@mui/material/Alert"
 import AlertTitle from "@mui/material/AlertTitle"
-import Stack from "@mui/material/Stack"
-import { styled } from "@mui/material/styles"
-import Tooltip, { tooltipClasses } from "@mui/material/Tooltip"
 
 import { Button, DeleteConfirmation } from "../../../../components/Components"
-import InputElements from "../../../../components/InputElements"
 
 function Lessons({
-  courseToEditID,
-  coursesList,
-  setCourseList,
   previewedCourseList
 }) {
   const [lessonCourses, setLessonCourses] = useState("")
   const [isDeleteLesson, setIsDeleteLesson] = useState(false)
   const [lessonToDeleteId, setLessonToDeleteId] = useState("")
-  const [isDeleteVideo, setIsDeleteVideo] = useState(false)
-  const [isDeleteAudio, setIsDeleteAudio] = useState(false)
-  const [isDeleteDocument, setIsDeleteDocument] = useState(false)
+  const [isDeleteVideo, setIsDeleteVideo] = useState("")
+  const [isDeleteAudio, setIsDeleteAudio] = useState("")
+  const [isDeleteDocument, setIsDeleteDocument] = useState("")
 
   useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
+
     if (previewedCourseList) {
       setLessonCourses(previewedCourseList)
     }
@@ -67,6 +59,14 @@ function Lessons({
 
   if (lessonCourses[0]?.lessons?.length < 1) {
     return <h3>There is currently no lessons for this course</h3>
+  }
+
+  const showDeleteWarning = (fileIndex, type) => {
+    if (type === "videos") {
+      setIsDeleteVideo(fileIndex)
+    } else if (type === "audios") {
+      setIsDeleteAudio(fileIndex)
+    } else setIsDeleteDocument(fileIndex)
   }
 
   return (
@@ -109,13 +109,15 @@ function Lessons({
                 </AccordionSummary>
                 <AccordionDetails>
                   <div className="flex flex-col gap-4 relative z-0 py-5 border-b-2">
-                    <div>
+                    <div className="flex flex-col gap-2">
                       {lesson?.videos?.map((video, index) => {
                         return (
                           <div className="flex relative w-full" key={index}>
                             <div
                               className={`relative ${
-                                isDeleteVideo ? "hidden md:flex" : "flex"
+                                isDeleteVideo === index
+                                  ? "hidden md:flex"
+                                  : "flex"
                               } items-center w-[80px] h-[80px] justify-center`}
                             >
                               <figure className="w-full h-full rounded-l-md bg-[#FFC542] opacity-[0.2] absolute z-10 "></figure>
@@ -126,7 +128,9 @@ function Lessons({
                             </div>
                             <div
                               className={`relative ${
-                                isDeleteVideo ? "md:w-1/2 hidden" : "w-full"
+                                isDeleteVideo === index
+                                  ? "md:w-1/2 hidden"
+                                  : "w-full"
                               } h-[80px] flex flex-col justify-center`}
                             >
                               <div className="w-full h-full absolute bg-[#FEF2D5] z-10 opacity-[0.3] rounded-r-md"></div>
@@ -140,7 +144,7 @@ function Lessons({
                                     <p>{video.date}</p>
                                   </div>
                                 </div>
-                                {!isDeleteVideo && (
+                                {isDeleteVideo !== index && (
                                   <div className="flex px-4 gap-4">
                                     <figure className="rounded-md p-1 cursor-pointer">
                                       <BsCloudDownload size={20} />
@@ -149,9 +153,7 @@ function Lessons({
                                       <RiDeleteBin6Line
                                         size={20}
                                         onClick={() => {
-                                          setIsDeleteVideo(true)
-                                          setIsDeleteAudio(false)
-                                          setIsDeleteDocument(false)
+                                          showDeleteWarning(index, "videos")
                                         }}
                                       />
                                     </figure>
@@ -159,7 +161,8 @@ function Lessons({
                                 )}
                               </div>
                             </div>
-                            {isDeleteVideo && (
+
+                            {isDeleteVideo === index && (
                               <div className="w-full md:h-20 h-28 animate__animated animate__fadeInRight">
                                 <Alert
                                   severity="warning"
@@ -175,14 +178,14 @@ function Lessons({
                                         "videos",
                                         video.title
                                       )
-                                      setIsDeleteVideo(false)
+                                      setIsDeleteVideo("")
                                     }}
                                   >
                                     Yes
                                   </strong>{" "}
                                   <strong
                                     className="mx-5 cursor-pointer px-6 py-1 rounded-md border-2"
-                                    onClick={() => setIsDeleteVideo(false)}
+                                    onClick={() => setIsDeleteVideo("")}
                                   >
                                     No
                                   </strong>
@@ -193,13 +196,13 @@ function Lessons({
                         )
                       })}
                     </div>
-                    <div>
+                    <div className="flex flex-col gap-2">
                       {lesson.audios.map((audio, index) => {
                         return (
                           <div className="flex relative w-full" key={index}>
                             <div
                               className={`relative ${
-                                isDeleteAudio ? "hidden md:flex" : "flex"
+                                isDeleteAudio === index ? "hidden md:flex" : "flex"
                               } items-center w-[80px] h-[80px] justify-center`}
                             >
                               <figure className="w-full h-full rounded-l-md bg-[#82C43C] opacity-[0.2] absolute z-10 "></figure>
@@ -210,7 +213,7 @@ function Lessons({
                             </div>
                             <div
                               className={`relative ${
-                                isDeleteAudio ? "md:w-1/2 hidden" : "w-full"
+                                isDeleteAudio === index ? "md:w-1/2 hidden" : "w-full"
                               } h-[80px] flex flex-col justify-center`}
                             >
                               <div className="w-full h-full absolute bg-[#E2F1D2] z-10 opacity-[0.3] rounded-r-md"></div>
@@ -224,7 +227,7 @@ function Lessons({
                                     <p>{audio.date}</p>
                                   </div>
                                 </div>
-                                {!isDeleteAudio && (
+                                {isDeleteAudio !== index && (
                                   <div className="flex px-4 gap-4">
                                     <figure className="rounded-md p-1 cursor-pointer">
                                       <BsCloudDownload size={20} />
@@ -233,9 +236,7 @@ function Lessons({
                                       <RiDeleteBin6Line
                                         size={20}
                                         onClick={() => {
-                                          setIsDeleteVideo(false)
-                                          setIsDeleteAudio(true)
-                                          setIsDeleteDocument(false)
+                                          showDeleteWarning(index, "audios")
                                         }}
                                       />
                                     </figure>
@@ -243,7 +244,7 @@ function Lessons({
                                 )}
                               </div>
                             </div>
-                            {isDeleteAudio && (
+                            {isDeleteAudio === index && (
                               <div className="w-full md:h-20 h-28 animate__animated animate__fadeInRight">
                                 <Alert
                                   severity="warning"
@@ -277,13 +278,13 @@ function Lessons({
                         )
                       })}
                     </div>
-                    <div>
+                    <div className="flex flex-col gap-2">
                       {lesson.documents.map((document, index) => {
                         return (
                           <div className="flex relative w-full" key={index}>
                             <div
                               className={`relative ${
-                                isDeleteDocument ? "hidden md:flex" : "flex"
+                                isDeleteDocument === index ? "hidden md:flex" : "flex"
                               } items-center w-[80px] h-[80px] justify-center`}
                             >
                               <figure className="w-full h-full rounded-l-md bg-[#50B5FF] opacity-[0.1] absolute z-10 "></figure>
@@ -294,7 +295,7 @@ function Lessons({
                             </div>
                             <div
                               className={`relative ${
-                                isDeleteDocument ? "md:w-1/2 hidden" : "w-full"
+                                isDeleteDocument === index ? "md:w-1/2 hidden" : "w-full"
                               } h-[80px] flex flex-col justify-center`}
                             >
                               <div className="w-full h-full absolute bg-[#C4DBFF] z-10 opacity-[0.15] rounded-r-md"></div>
@@ -308,7 +309,7 @@ function Lessons({
                                     <p>{document.date}</p>
                                   </div>
                                 </div>
-                                {!isDeleteDocument && (
+                                {isDeleteDocument !== index && (
                                   <div className="flex px-4 gap-4">
                                     <figure className="rounded-md p-1 cursor-pointer">
                                       <BsCloudDownload size={20} />
@@ -317,9 +318,7 @@ function Lessons({
                                       <RiDeleteBin6Line
                                         size={20}
                                         onClick={() => {
-                                          setIsDeleteVideo(false)
-                                          setIsDeleteAudio(false)
-                                          setIsDeleteDocument(true)
+                                          showDeleteWarning(index, "documents")
                                         }}
                                       />
                                     </figure>
@@ -327,7 +326,7 @@ function Lessons({
                                 )}
                               </div>
                             </div>
-                            {isDeleteDocument && (
+                            {isDeleteDocument === index && (
                               <div className="w-full md:h-20 h-28 animate__animated animate__fadeInRight">
                                 <Alert
                                   severity="warning"

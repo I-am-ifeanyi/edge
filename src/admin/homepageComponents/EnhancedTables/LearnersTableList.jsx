@@ -47,7 +47,6 @@ export default function LearnersTableList({ dataToDisplay, listName }) {
   const [instructorDetails, setInstructorDetails] =
     React.useState(dataToDisplay)
 
-  console.log(instructorDetails)
 
   const rows = instructorDetails?.map((detail) => {
     return createData(
@@ -206,7 +205,6 @@ export default function LearnersTableList({ dataToDisplay, listName }) {
         return prevDetails.filter((item) => !selected.includes(item.id))
       })
       setSelected([])
-      console.log(instructorDetails)
     }
 
     const [isShowPrompt, setIsShowPrompt] = React.useState(false)
@@ -326,14 +324,12 @@ export default function LearnersTableList({ dataToDisplay, listName }) {
     setSelected(newSelected)
   }
 
-  console.log(selected)
 
   const handleDeleteItems = () => {
     setInstructorDetails((prevDetails) => {
       return prevDetails.filter((item) => !selected.includes(item.id))
     })
     setSelected([])
-    console.log(instructorDetails)
   }
 
   const handleChangePage = (event, newPage) => {

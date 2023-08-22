@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 
 import InputElements from "../../../components/InputElements"
 import { dummyInstructors } from "../../../components/Components"
@@ -12,10 +12,12 @@ const EditCourse = ({
   courseDescriptionDefaultValue,
   groups,
   branches,
-  extractCourseToEdit
+  extractCourseToEdit,
 }) => {
   const { register, control, handleSubmit, formState, reset, errors } = form
   const [instructorsList, setInstructorsList] = useState(dummyInstructors)
+
+
 
   return (
     <form
@@ -32,20 +34,24 @@ const EditCourse = ({
             </h5>
 
             <fieldset className="px-4 md:w-full grid grid-cols-2 gap-4">
-              <InputElements
-                type="text"
-                id="courseName"
-                placeholder="Course Title"
-                form={form}
-                defaultValue={courseDefaultValue}
-              />
-              <InputElements
-                type="text"
-                id="courseAlias"
-                placeholder="Course Alias"
-                form={form}
-                defaultValue={courseAliasDefaultValue}
-              />
+              <div className="h-10">
+                <InputElements
+                  type="text"
+                  id="courseName"
+                  placeholder="Course Title"
+                  form={form}
+                  defaultValue={courseDefaultValue}
+                />
+              </div>
+              <div className="h-10">
+                <InputElements
+                  type="text"
+                  id="courseAlias"
+                  placeholder="Course Alias"
+                  form={form}
+                  defaultValue={courseAliasDefaultValue}
+                />
+              </div>
               <div className="h-[120px] col-span-2">
                 <InputElements
                   type="textArea"

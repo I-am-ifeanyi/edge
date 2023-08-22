@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { AiFillCaretRight } from "react-icons/ai"
 
-
 import Paper from "@mui/material/Paper"
 import Table from "@mui/material/Table"
 import TableBody from "@mui/material/TableBody"
@@ -387,11 +386,6 @@ export const StickyHeadTable = () => {
   )
 }
 
-
-
-
-
-
 export const dummyInstructors = [
   {
     id: 1,
@@ -760,6 +754,19 @@ export const dummyCourses = [
       "Biotechnology",
       "Environmental Conservation"
     ],
+    assignments: [
+      {
+        title: "Biology Assignment 1",
+        question1: "Describe the process of photosynthesis.",
+        question2: "Explain the functions of DNA in living organisms.",
+        dueDate: "2023-08-31",
+        setDate: "2023-08-15",
+        overallScore: 100,
+        videoAttachment: "link_to_video1",
+        audioAttachment: "link_to_audio1",
+        documentAttachment: "link_to_document1"
+      }
+    ],
     description:
       "Explore the fascinating world of living organisms and their interactions in this introductory biology course.",
     lessons: [
@@ -868,6 +875,20 @@ export const dummyCourses = [
       "Mathematical Logic",
       "Cryptology"
     ],
+    assignments: [
+      {
+        title: "Mathematics Assignment 1",
+        question1: "Solve the following quadratic equation: x^2 - 4x + 4 = 0",
+        question2: "Calculate the derivative of y = 3x^2 + 2x + 1.",
+        dueDate: "2023-09-05",
+        setDate: "2023-08-18",
+        overallScore: 100,
+        videoAttachment: "link_to_video2",
+        audioAttachment: "link_to_audio2",
+        documentAttachment: "link_to_document2"
+      }
+    ],
+
     description:
       "Dive into the realm of numbers, shapes, and patterns, and unravel the mysteries of mathematics.",
     lessons: [
@@ -976,6 +997,20 @@ export const dummyCourses = [
       "Optics",
       "Fluid Dynamics"
     ],
+    assignments: [
+      {
+        title: "Physics Assignment 1",
+        question1: "Explain Newton's laws of motion.",
+        question2:
+          "Calculate the velocity of an object falling freely from a certain height.",
+        dueDate: "2023-09-10",
+        setDate: "2023-08-20",
+        overallScore: 100,
+        videoAttachment: "link_to_video3",
+        audioAttachment: "link_to_audio3",
+        documentAttachment: "link_to_document3"
+      }
+    ],
     description:
       "Explore the fundamental laws of the physical universe and the forces that govern its behavior.",
     lessons: [
@@ -1083,6 +1118,19 @@ export const dummyCourses = [
       "Analytical Chemistry",
       "Biochemistry",
       "Nanotechnology"
+    ],
+    assignments: [
+      {
+        title: "Chemistry Assignment 1",
+        question1: "Discuss the properties of acids and bases.",
+        question2: "Balance the chemical equation: H2 + O2 → H2O.",
+        dueDate: "2023-09-15",
+        setDate: "2023-08-22",
+        overallScore: 100,
+        videoAttachment: "link_to_video4",
+        audioAttachment: "link_to_audio4",
+        documentAttachment: "link_to_document4"
+      }
     ],
     description:
       "Delve into the composition, properties, and transformations of matter in this engaging chemistry course.",
@@ -1194,6 +1242,20 @@ export const dummyCourses = [
     ],
     description:
       "Journey through the world of literary masterpieces, analyzing and appreciating the art of written expression.",
+    assignments: [
+      {
+        title: "English Literature Assignment 1",
+        question1: "Analyze the themes in the novel '1984' by George Orwell.",
+        question2:
+          "Discuss the use of symbolism in the play 'Hamlet' by William Shakespeare.",
+        dueDate: "2023-09-20",
+        setDate: "2023-08-25",
+        overallScore: 100,
+        videoAttachment: "link_to_video5",
+        audioAttachment: "link_to_audio5",
+        documentAttachment: "link_to_document5"
+      }
+    ],
     lessons: [
       {
         id: 1,
@@ -1302,6 +1364,19 @@ export const dummyCourses = [
     ],
     description:
       "Uncover the events, cultures, and people that have shaped the course of human history over the ages.",
+    assignments: [
+      {
+        title: "History Assignment 1",
+        question1: "Explain the causes and consequences of World War I.",
+        question2: "Discuss the impact of the Renaissance on European society.",
+        dueDate: "2023-09-25",
+        setDate: "2023-08-28",
+        overallScore: 100,
+        videoAttachment: "link_to_video6",
+        audioAttachment: "link_to_audio6",
+        documentAttachment: "link_to_document6"
+      }
+    ],
     lessons: [
       {
         id: 1,
@@ -1407,6 +1482,20 @@ export const dummyCourses = [
       "Computer Networks",
       "Human-Computer Interaction",
       "Web Development"
+    ],
+    assignments: [
+      {
+        title: "Computer Science Assignment 1",
+        question1:
+          "Write a program to find the factorial of a number using recursion.",
+        question2: "Explain the concept of object-oriented programming.",
+        dueDate: "2023-09-30",
+        setDate: "2023-09-01",
+        overallScore: 100,
+        videoAttachment: "link_to_video7",
+        audioAttachment: "link_to_audio7",
+        documentAttachment: "link_to_document7"
+      }
     ],
     description:
       "Dive into the world of algorithms, programming, and technology, and learn the art of problem-solving in computing.",
@@ -1518,6 +1607,19 @@ export const dummyCourses = [
     ],
     description:
       "Explore the Earth's landscapes, environments, and the intricate relationships between human societies and the planet.",
+    assignments: [
+      {
+        title: "Geography Assignment 1",
+        question1: "Describe the formation of volcanoes and earthquakes.",
+        question2: "Explain the concept of population distribution.",
+        dueDate: "2023-10-05",
+        setDate: "2023-09-05",
+        overallScore: 100,
+        videoAttachment: "link_to_video8",
+        audioAttachment: "link_to_audio8",
+        documentAttachment: "link_to_document8"
+      }
+    ],
     lessons: [
       {
         id: 1,
@@ -1626,6 +1728,21 @@ export const dummyCourses = [
     ],
     description:
       "Examine the principles of production, distribution, and consumption of goods and services in this economics course.",
+    assignments: [
+      {
+        title: "Economics Assignment 1",
+        question1:
+          "Discuss the principles of supply and demand in a market economy.",
+        question2:
+          "Explain the concept of inflation and its effects on an economy.",
+        dueDate: "2023-10-10",
+        setDate: "2023-09-08",
+        overallScore: 100,
+        videoAttachment: "link_to_video9",
+        audioAttachment: "link_to_audio9",
+        documentAttachment: "link_to_document9"
+      }
+    ],
     lessons: [
       {
         id: 1,
@@ -1734,6 +1851,21 @@ export const dummyCourses = [
     ],
     description:
       "Get active and learn the importance of physical fitness, sportsmanship, and healthy lifestyle choices.",
+    assignments: [
+      {
+        title: "Physical Education Assignment 1",
+        question1:
+          "Design a workout routine targeting different muscle groups.",
+        question2:
+          "Discuss the importance of cardiovascular fitness for overall health.",
+        dueDate: "2023-10-15",
+        setDate: "2023-09-10",
+        overallScore: 100,
+        videoAttachment: "link_to_video10",
+        audioAttachment: "link_to_audio10",
+        documentAttachment: "link_to_document10"
+      }
+    ],
     lessons: [
       {
         id: 1,
@@ -1842,6 +1974,21 @@ export const dummyCourses = [
     ],
     description:
       "Journey through the evolution of visual arts, exploring iconic artworks and the stories behind them.",
+    assignments: [
+      {
+        title: "Art History Assignment 1",
+        question1:
+          "Analyze the style and techniques used in a famous painting of your choice.",
+        question2:
+          "Discuss the impact of the Renaissance on art and architecture.",
+        dueDate: "2023-10-20",
+        setDate: "2023-09-15",
+        overallScore: 100,
+        videoAttachment: "link_to_video11",
+        audioAttachment: "link_to_audio11",
+        documentAttachment: "link_to_document11"
+      }
+    ],
     lessons: [
       {
         id: 1,
@@ -1950,6 +2097,21 @@ export const dummyCourses = [
     ],
     description:
       "Discover the world of music, from theory and composition to performance and cultural significance.",
+    assignments: [
+      {
+        title: "Music Assignment 1",
+        question1:
+          "Compose a short melody using a given set of notes and rhythms.",
+        question2:
+          "Analyze the elements of rhythm and harmony in a selected piece of music.",
+        dueDate: "2023-10-25",
+        setDate: "2023-09-20",
+        overallScore: 100,
+        videoAttachment: "link_to_video12",
+        audioAttachment: "link_to_audio12",
+        documentAttachment: "link_to_document12"
+      }
+    ],
     lessons: [
       {
         id: 1,
@@ -2059,6 +2221,21 @@ export const dummyCourses = [
     ],
     description:
       "Embark on a linguistic journey, learning the beauty and intricacies of foreign languages and their cultures.",
+    assignments: [
+      {
+        title: "Foreign Languages Assignment 1",
+        question1:
+          "Write a dialogue between two people discussing their travel plans.",
+        question2:
+          "Translate a short paragraph from English to the target language.",
+        dueDate: "2023-10-30",
+        setDate: "2023-09-25",
+        overallScore: 100,
+        videoAttachment: "link_to_video13",
+        audioAttachment: "link_to_audio13",
+        documentAttachment: "link_to_document13"
+      }
+    ],
     lessons: [
       {
         id: 1,
@@ -2167,6 +2344,21 @@ export const dummyCourses = [
     ],
     description:
       "Explore the complex web of interactions between humans and the environment, and address pressing environmental challenges.",
+    assignments: [
+      {
+        title: "Environmental Science Assignment 1",
+        question1:
+          "Explain the greenhouse effect and its impact on global climate.",
+        question2:
+          "Discuss different strategies for sustainable waste management.",
+        dueDate: "2023-11-05",
+        setDate: "2023-09-30",
+        overallScore: 100,
+        videoAttachment: "link_to_video14",
+        audioAttachment: "link_to_audio14",
+        documentAttachment: "link_to_document14"
+      }
+    ],
     lessons: [
       {
         id: 1,
@@ -2275,6 +2467,21 @@ export const dummyCourses = [
     ],
     description:
       "Delve into the study of political systems, governance, and the dynamics of power and authority in societies.",
+    assignments: [
+      {
+        title: "Political Science Assignment 1",
+        question1:
+          "Analyze the structure and functions of the branches of government.",
+        question2:
+          "Discuss the concept of political ideologies and their influence on policymaking.",
+        dueDate: "2023-11-10",
+        setDate: "2023-10-05",
+        overallScore: 100,
+        videoAttachment: "link_to_video15",
+        audioAttachment: "link_to_audio15",
+        documentAttachment: "link_to_document15"
+      }
+    ],
     lessons: [
       {
         id: 1,
@@ -2383,6 +2590,21 @@ export const dummyCourses = [
     ],
     description:
       "Gain insights into the world of business, from entrepreneurship and management to marketing and finance.",
+    assignments: [
+      {
+        title: "Business Studies Assignment 1",
+        question1:
+          "Create a business plan for a new startup in a chosen industry.",
+        question2:
+          "Discuss the importance of ethical considerations in business decision-making.",
+        dueDate: "2023-11-15",
+        setDate: "2023-10-10",
+        overallScore: 100,
+        videoAttachment: "link_to_video16",
+        audioAttachment: "link_to_audio16",
+        documentAttachment: "link_to_document16"
+      }
+    ],
     lessons: [
       {
         id: 1,
@@ -2491,6 +2713,21 @@ export const dummyCourses = [
     ],
     description:
       "Explore the human mind and behavior, delving into topics like cognition, emotions, and psychological disorders.",
+    assignments: [
+      {
+        title: "Psychology Assignment 1",
+        question1:
+          "Explain the major theories of personality and their key concepts.",
+        question2:
+          "Discuss the role of nature and nurture in human development.",
+        dueDate: "2023-11-20",
+        setDate: "2023-10-15",
+        overallScore: 100,
+        videoAttachment: "link_to_video17",
+        audioAttachment: "link_to_audio17",
+        documentAttachment: "link_to_document17"
+      }
+    ],
     lessons: [
       {
         id: 1,
@@ -2599,6 +2836,21 @@ export const dummyCourses = [
     ],
     description:
       "Examine the structures, institutions, and dynamics that shape societies and influence human interactions.",
+    assignments: [
+      {
+        title: "Sociology Assignment 1",
+        question1:
+          "Discuss the concepts of social norms and deviance in society.",
+        question2:
+          "Analyze the effects of social inequality on various aspects of life.",
+        dueDate: "2023-11-25",
+        setDate: "2023-10-20",
+        overallScore: 100,
+        videoAttachment: "link_to_video18",
+        audioAttachment: "link_to_audio18",
+        documentAttachment: "link_to_document18"
+      }
+    ],
     lessons: [
       {
         id: 1,
@@ -2707,6 +2959,21 @@ export const dummyCourses = [
     ],
     description:
       "Embark on a journey of critical thinking and contemplation, exploring fundamental questions about existence and knowledge.",
+    assignments: [
+      {
+        title: "Philosophy Assignment 1",
+        question1:
+          "Explain the ethical theories of utilitarianism and deontology.",
+        question2:
+          "Discuss the concept of free will and determinism in philosophy.",
+        dueDate: "2023-11-30",
+        setDate: "2023-10-25",
+        overallScore: 100,
+        videoAttachment: "link_to_video19",
+        audioAttachment: "link_to_audio19",
+        documentAttachment: "link_to_document19"
+      }
+    ],
     lessons: [
       {
         id: 1,
@@ -2815,6 +3082,20 @@ export const dummyCourses = [
     ],
     description:
       "Uncover the rich tapestry of human cultures and societies, exploring their diversity and interconnectedness.",
+    assignments: [
+      {
+        title: "Anthropology Assignment 1",
+        question1:
+          "Discuss the methods used in anthropological fieldwork and research.",
+        question2: "Analyze the cultural relativism approach in anthropology.",
+        dueDate: "2023-12-05",
+        setDate: "2023-11-01",
+        overallScore: 100,
+        videoAttachment: "link_to_video20",
+        audioAttachment: "link_to_audio20",
+        documentAttachment: "link_to_document20"
+      }
+    ],
     lessons: [
       {
         id: 1,

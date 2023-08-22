@@ -27,7 +27,11 @@ import { CiEdit } from "react-icons/ci"
 
 import { DeleteConfirmation } from "../../../components/Components"
 
-export default function CoursesTableList({ dataToDisplay, setCourseToEditID, setLocations }) {
+export default function CoursesTableList({
+  dataToDisplay,
+  setCourseToEditID,
+  setActiveSections
+}) {
   const [order, setOrder] = React.useState("asc")
   const [orderBy, setOrderBy] = React.useState("calories")
   const [selected, setSelected] = React.useState([])
@@ -331,7 +335,6 @@ export default function CoursesTableList({ dataToDisplay, setCourseToEditID, set
       return prevDetails.filter((item) => !selected.includes(item.id))
     })
     setSelected([])
-    console.log(instructorDetails)
   }
 
   const handleChangePage = (event, newPage) => {
@@ -461,7 +464,18 @@ export default function CoursesTableList({ dataToDisplay, setCourseToEditID, set
                     <TableCell>
                       <IconButton
                         aria-label="edit"
-                        onClick={() => setCourseToEditID(row.id)}
+                        onClick={() => {
+                          setCourseToEditID(row.id)
+                          setActiveSections({
+                            overview: true,
+                            learners: false,
+                            isLesson: false,
+                            assignments: false,
+                            tests: false,
+                            liveSessions: false,
+                            discussions: false
+                          })
+                        }}
                       >
                         <CiEdit />
                       </IconButton>
