@@ -10,7 +10,11 @@ const Assignments = ({ previewedCourseList }) => {
     const currentTime = new Date()
 
     if (currentTime > dueDate) {
-      return "Assignment is already overdue!"
+      return (
+        <div>
+          <p>This Assignment is already overdue!</p>
+        </div>
+      )
     }
 
     const timeDifference = dueDate - setDate
@@ -29,15 +33,15 @@ const Assignments = ({ previewedCourseList }) => {
       {previewedCourseList[0]?.assignments?.map((lists, index) => {
         return (
           <div className="flex flex-col gap-2" key={index}>
-            <p className="text-sm p-2 rounded-md underline">
-              Set: {lists.setDate}
+            <p className="text-sm p-2 rounded-md">
+              Set: <span className="underline">{lists.setDate}</span>
             </p>
             <ul className="list-decimal list-inside pl-2 flex flex-col gap-2 mb-4">
               <li>{lists.question1}</li>
               <li>{lists.question2}</li>
             </ul>
-            <div className="flex justify-between">
-              <div className="flex items-center gap-2 text-sm ">
+            <div className="flex flex-col md:flex-row gap-4 md:gap-0 justify-between">
+              <div className="flex items-center gap-5 md:gap-2 text-sm ">
                 <div className="flex items-center gap-2 p-2 rounded-md bg-colorGray6 h-8">
                   <BsCalendar2Week />
                   <p>Due: {lists.dueDate}</p>
@@ -50,7 +54,7 @@ const Assignments = ({ previewedCourseList }) => {
                   />
                 </div>
               </div>
-              <div className="text-sm flex items-center gap-2">
+              <div className="text-sm flex items-center gap-5 md:gap-2">
                 <p className="underline">32 Students Submitted</p>
                 <span
                   className={`${

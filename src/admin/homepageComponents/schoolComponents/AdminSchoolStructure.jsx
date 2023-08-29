@@ -123,10 +123,10 @@ const AdminSchoolStructure = ({
         <OverallSummary icon={summaryIcon} title="Total Branches" figure="6" />
       </div>
       <div className="w-full flex flex-col md:flex-row justify-between gap-10 md:gap-0 mb-20">
-        <div className="md:w-[65%]">
+        <div className="md:w-[65%] w-full">
           {" "}
           {!editStructure && <StickyHeadTable />}
-          <div className="md:-mt-10">
+          <div className="md:-mt-10 w-full flex flex-col items-center md:items-start">
             {isSchoolProfile && editStructure && (
               <CreateSchoolProfile
                 form={form}
@@ -134,6 +134,8 @@ const AdminSchoolStructure = ({
                 buttonText1={buttonText1}
                 buttonText2={buttonText2}
                 reverse={reverse}
+                width="w-full"
+                loginOption={false}
               />
             )}
             {isSchoolStructure && editStructure && (

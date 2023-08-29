@@ -12,12 +12,16 @@ const EditCourse = ({
   courseDescriptionDefaultValue,
   groups,
   branches,
-  extractCourseToEdit,
+  previewedCourseList
 }) => {
   const { register, control, handleSubmit, formState, reset, errors } = form
   const [instructorsList, setInstructorsList] = useState(dummyInstructors)
 
-
+  console.log(
+    courseDefaultValue,
+    courseAliasDefaultValue,
+    courseDescriptionDefaultValue
+  )
 
   return (
     <form
@@ -34,7 +38,7 @@ const EditCourse = ({
             </h5>
 
             <fieldset className="px-4 md:w-full grid grid-cols-2 gap-4">
-              <div className="h-10">
+              <div className="h-12">
                 <InputElements
                   type="text"
                   id="courseName"
@@ -43,7 +47,7 @@ const EditCourse = ({
                   defaultValue={courseDefaultValue}
                 />
               </div>
-              <div className="h-10">
+              <div className="h-12">
                 <InputElements
                   type="text"
                   id="courseAlias"
@@ -98,8 +102,8 @@ const EditCourse = ({
               />
             </div>
             <div className="flex flex-col gap-4">
-              {Array.isArray(extractCourseToEdit[0]?.instructors) ? (
-                extractCourseToEdit[0]?.instructors?.map((item) => (
+              {Array.isArray(previewedCourseList[0]?.instructors) ? (
+                previewedCourseList[0]?.instructors?.map((item) => (
                   <span
                     key={item}
                     className="bg-colorBlue text-colorWhite1 p-2 text-[12px] rounded-md"
@@ -109,7 +113,7 @@ const EditCourse = ({
                 ))
               ) : (
                 <span className="bg-colorBlue text-colorWhite1 p-2 rounded-md">
-                  {extractCourseToEdit[0]?.instructors}
+                  {previewedCourseList[0]?.instructors}
                 </span>
               )}
             </div>

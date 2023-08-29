@@ -1,18 +1,19 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { setAdminLogo } from '../../redux/features/createAdmin'
+import React, { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { setAdminLogo } from "../../redux/features/createAdmin"
 
-import InputElements from '../../components/InputElements'
-import { Button } from '../../components/Components'
-
+import InputElements from "../../components/InputElements"
+import { Button } from "../../components/Components"
 
 const CreateSchoolProfile = ({
   onSchoolProfileSubmit,
   form,
   reverse,
   buttonText1,
-  buttonText2
+  buttonText2,
+  width,
+  loginOption
 }) => {
   const dispatch = useDispatch()
   const { register, control, handleSubmit, formState, reset, errors } = form
@@ -25,8 +26,16 @@ const CreateSchoolProfile = ({
     dispatch(setAdminLogo(imageUrl))
   }
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
+  }, [])
+
   return (
-    <div className="w-[90%] md:w-[600px] md:h-[400px] flex-shrink-0 bg-colorWhite1 rounded-md shadow-md md:px-8 px-5 py-5 flex flex-col items-center animate__animated animate__fadeInRight overflow-y-scroll mt-10">
+    <div
+      className={`${
+        width ? width : "w-[90%]"
+      } md:w-[600px] md:h-[400px] flex-shrink-0 bg-colorWhite1 rounded-md shadow-md md:px-8 px-5 py-5 flex flex-col items-center animate__animated animate__fadeInRight overflow-y-scroll mt-10`}
+    >
       <h4 className="pb-4">Create School Profile</h4>
       <form
         onSubmit={handleSubmit(onSchoolProfileSubmit)}
@@ -40,24 +49,30 @@ const CreateSchoolProfile = ({
           onChange={handleSelectSchoolLogo}
           image={schoolLogo}
         />
-        <InputElements
-          type="text"
-          id="schoolName"
-          form={form}
-          placeholder="School Name"
-        />
-        <InputElements
-          type="text"
-          id="schoolMotto"
-          form={form}
-          placeholder="School Motto"
-        />
-        <InputElements
-          type="url"
-          id="schoolUrl"
-          form={form}
-          placeholder="http://www.stregencyschools.com"
-        />
+        <div className="h-12">
+          <InputElements
+            type="text"
+            id="schoolName"
+            form={form}
+            placeholder="School Name"
+          />
+        </div>
+        <div className="h-12">
+          <InputElements
+            type="text"
+            id="schoolMotto"
+            form={form}
+            placeholder="School Motto"
+          />
+        </div>
+        <div className="h-12">
+          <InputElements
+            type="url"
+            id="schoolUrl"
+            form={form}
+            placeholder="http://www.stregencyschools.com"
+          />
+        </div>
 
         <div className="h-[38px] flex gap-10">
           <Button
@@ -72,9 +87,11 @@ const CreateSchoolProfile = ({
             color="text-colorWhite1"
           />
         </div>
-        <Link to="#" className="text-center text-[12px] text-colorBlue">
-          Already have an account? Log in
-        </Link>
+        {loginOption && (
+          <Link to="#" className="text-center text-[12px] text-colorBlue">
+            Already have an account? Log in
+          </Link>
+        )}
       </form>
     </div>
   )

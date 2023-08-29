@@ -81,6 +81,7 @@ const CreateAdmin = () => {
       learnerInvite: false
     })
     reset()
+    setIsPasswordVisible(false)
   }
 
   const onSchoolProfileSubmit = (data) => {
@@ -185,6 +186,7 @@ const CreateAdmin = () => {
     if (data.email === email && data.password === password) {
       navigate("/admin/dashboard")
     } else navigate("/admin/dashboard")
+    setIsPasswordVisible(false)
   }
 
   const passwordChange = (e) => {
@@ -308,6 +310,7 @@ const CreateAdmin = () => {
                 buttonText1={buttonText1}
                 buttonText2={buttonText2}
                 reverse={schoolProfileReverse}
+                loginOption={true}
               />
             )}
 

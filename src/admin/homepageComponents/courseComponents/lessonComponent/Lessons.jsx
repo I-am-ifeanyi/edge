@@ -14,9 +14,7 @@ import AlertTitle from "@mui/material/AlertTitle"
 
 import { Button, DeleteConfirmation } from "../../../../components/Components"
 
-function Lessons({
-  previewedCourseList
-}) {
+function Lessons({ previewedCourseList }) {
   const [lessonCourses, setLessonCourses] = useState("")
   const [isDeleteLesson, setIsDeleteLesson] = useState(false)
   const [lessonToDeleteId, setLessonToDeleteId] = useState("")
@@ -70,7 +68,7 @@ function Lessons({
   }
 
   return (
-    <div className="relative">
+    <div className="relative w-full">
       {isDeleteLesson && (
         <div className="fixed w-[86vw] rounded-md h-[50vh] z-40 flex items-center justify-center bg-colorWhite1 animate__animated animate__zoomIn">
           <DeleteConfirmation
@@ -85,7 +83,7 @@ function Lessons({
       )}
 
       <h6 className="pb-4">{`${lessonCourses[0]?.lessons?.length} Lessons in ${lessonCourses[0]?.courseName}`}</h6>
-      <div className="flex flex-col gap-4 p-5 bg-colorWhite1 rounded-md shadow-md relative">
+      <div className="flex flex-col gap-4 md:p-10 bg-colorWhite1 rounded-md shadow-md relative">
         {lessonCourses[0]?.lessons?.map((lesson) => {
           return (
             <div
@@ -112,7 +110,7 @@ function Lessons({
                     <div className="flex flex-col gap-2">
                       {lesson?.videos?.map((video, index) => {
                         return (
-                          <div className="flex relative w-full" key={index}>
+                          <div className="flex relative" key={index}>
                             <div
                               className={`relative ${
                                 isDeleteVideo === index
@@ -139,13 +137,13 @@ function Lessons({
                                   <p className="text-sm font-bold underline">
                                     {lesson.lessonName} {video.title}
                                   </p>
-                                  <div className="flex gap-4 text-xs text-colorGray4">
+                                  <div className="flex gap-2 md:gap-4 text-xs text-colorGray4">
                                     <p>{video.instructor}</p>
                                     <p>{video.date}</p>
                                   </div>
                                 </div>
                                 {isDeleteVideo !== index && (
-                                  <div className="flex px-4 gap-4">
+                                  <div className="flex flex-col md:flex-row px-4 gap-2 md:gap-4">
                                     <figure className="rounded-md p-1 cursor-pointer">
                                       <BsCloudDownload size={20} />
                                     </figure>
@@ -170,8 +168,8 @@ function Lessons({
                                 >
                                   <AlertTitle>Warning</AlertTitle>
                                   Are you sure you want to delete this video?
-                                  <strong
-                                    className="md:mx-5 ml-4 cursor-pointer bg-colorRed px-5 py-1 rounded-md text-colorWhite1"
+                                  <button
+                                    className="md:mx-5 md:ml-4 cursor-pointer bg-colorRed px-5 py-1 rounded-md text-colorWhite1"
                                     onClick={() => {
                                       deleteLessonMaterial(
                                         lesson.id,
@@ -182,13 +180,13 @@ function Lessons({
                                     }}
                                   >
                                     Yes
-                                  </strong>{" "}
-                                  <strong
+                                  </button>{" "}
+                                  <button
                                     className="mx-5 cursor-pointer px-6 py-1 rounded-md border-2"
                                     onClick={() => setIsDeleteVideo("")}
                                   >
                                     No
-                                  </strong>
+                                  </button>
                                 </Alert>
                               </div>
                             )}
@@ -202,7 +200,9 @@ function Lessons({
                           <div className="flex relative w-full" key={index}>
                             <div
                               className={`relative ${
-                                isDeleteAudio === index ? "hidden md:flex" : "flex"
+                                isDeleteAudio === index
+                                  ? "hidden md:flex"
+                                  : "flex"
                               } items-center w-[80px] h-[80px] justify-center`}
                             >
                               <figure className="w-full h-full rounded-l-md bg-[#82C43C] opacity-[0.2] absolute z-10 "></figure>
@@ -213,7 +213,9 @@ function Lessons({
                             </div>
                             <div
                               className={`relative ${
-                                isDeleteAudio === index ? "md:w-1/2 hidden" : "w-full"
+                                isDeleteAudio === index
+                                  ? "md:w-1/2 hidden"
+                                  : "w-full"
                               } h-[80px] flex flex-col justify-center`}
                             >
                               <div className="w-full h-full absolute bg-[#E2F1D2] z-10 opacity-[0.3] rounded-r-md"></div>
@@ -222,13 +224,13 @@ function Lessons({
                                   <p className="text-sm font-bold underline">
                                     {lesson.lessonName} {audio.title}
                                   </p>
-                                  <div className="flex gap-4 text-xs text-colorGray4">
+                                  <div className="flex gap-2 md:gap-4 text-xs text-colorGray4">
                                     <p>{audio.instructor}</p>
                                     <p>{audio.date}</p>
                                   </div>
                                 </div>
                                 {isDeleteAudio !== index && (
-                                  <div className="flex px-4 gap-4">
+                                  <div className="flex flex-col md:flex-row px-4 gap-2 md:gap-4">
                                     <figure className="rounded-md p-1 cursor-pointer">
                                       <BsCloudDownload size={20} />
                                     </figure>
@@ -252,8 +254,8 @@ function Lessons({
                                 >
                                   <AlertTitle>Warning</AlertTitle>
                                   Are you sure you want to delete this audio?
-                                  <strong
-                                    className="md:mx-5 ml-4 cursor-pointer bg-colorRed px-5 py-1 rounded-md text-colorWhite1"
+                                  <button
+                                    className="md:mx-5 md:ml-4 cursor-pointer bg-colorRed px-5 py-1 rounded-md text-colorWhite1"
                                     onClick={() => {
                                       deleteLessonMaterial(
                                         lesson.id,
@@ -264,13 +266,13 @@ function Lessons({
                                     }}
                                   >
                                     Yes
-                                  </strong>{" "}
-                                  <strong
+                                  </button>{" "}
+                                  <button
                                     className="mx-5 cursor-pointer px-6 py-1 rounded-md border-2"
                                     onClick={() => setIsDeleteAudio(false)}
                                   >
                                     No
-                                  </strong>
+                                  </button>
                                 </Alert>
                               </div>
                             )}
@@ -284,7 +286,9 @@ function Lessons({
                           <div className="flex relative w-full" key={index}>
                             <div
                               className={`relative ${
-                                isDeleteDocument === index ? "hidden md:flex" : "flex"
+                                isDeleteDocument === index
+                                  ? "hidden md:flex"
+                                  : "flex"
                               } items-center w-[80px] h-[80px] justify-center`}
                             >
                               <figure className="w-full h-full rounded-l-md bg-[#50B5FF] opacity-[0.1] absolute z-10 "></figure>
@@ -295,7 +299,9 @@ function Lessons({
                             </div>
                             <div
                               className={`relative ${
-                                isDeleteDocument === index ? "md:w-1/2 hidden" : "w-full"
+                                isDeleteDocument === index
+                                  ? "md:w-1/2 hidden"
+                                  : "w-full"
                               } h-[80px] flex flex-col justify-center`}
                             >
                               <div className="w-full h-full absolute bg-[#C4DBFF] z-10 opacity-[0.15] rounded-r-md"></div>
@@ -304,13 +310,13 @@ function Lessons({
                                   <p className="text-sm font-bold underline">
                                     {lesson.lessonName} {document.title}
                                   </p>
-                                  <div className="flex gap-4 text-xs text-colorGray4">
+                                  <div className="flex gap-2 md:gap-4 text-xs text-colorGray4">
                                     <p>{document.instructor}</p>
                                     <p>{document.date}</p>
                                   </div>
                                 </div>
                                 {isDeleteDocument !== index && (
-                                  <div className="flex px-4 gap-4">
+                                  <div className="flex flex-col md:flex-row px-4 gap-2 md:gap-4">
                                     <figure className="rounded-md p-1 cursor-pointer">
                                       <BsCloudDownload size={20} />
                                     </figure>
@@ -334,8 +340,8 @@ function Lessons({
                                 >
                                   <AlertTitle>Warning</AlertTitle>
                                   Are you sure you want to delete this audio?
-                                  <strong
-                                    className="md:mx-5 ml-4 cursor-pointer bg-colorRed px-5 py-1 rounded-md text-colorWhite1"
+                                  <button
+                                    className="md:mx-5 md:ml-4 cursor-pointer bg-colorRed px-5 py-1 rounded-md text-colorWhite1"
                                     onClick={() => {
                                       deleteLessonMaterial(
                                         lesson.id,
@@ -346,13 +352,13 @@ function Lessons({
                                     }}
                                   >
                                     Yes
-                                  </strong>{" "}
-                                  <strong
+                                  </button>{" "}
+                                  <button
                                     className="mx-5 cursor-pointer px-6 py-1 rounded-md border-2"
                                     onClick={() => setIsDeleteDocument(false)}
                                   >
                                     No
-                                  </strong>
+                                  </button>
                                 </Alert>
                               </div>
                             )}

@@ -317,7 +317,7 @@ const Instructors = () => {
                     <label className="md:w-[20%] text-colorGray4">
                       COURSES
                     </label>
-                    <fieldset className="md:w-[50%] grid gap-5 w-full" >
+                    <fieldset className="md:w-[50%] grid gap-5 w-full">
                       <div className="flex items-center text-xs gap-2 p-4 md:p-0 flex-wrap">
                         {instructorCourses?.map((courses, index) => {
                           return (
@@ -423,12 +423,14 @@ const Instructors = () => {
               <h5 className="bg-colorGray6 rounded-t-md p-4">
                 Instructor Settings
               </h5>
-              <InputElements
-                type="text"
-                id="instructorAlias"
-                placeholder="Instructor Alias"
-                form={form}
-              />
+              <div className="h-12">
+                <InputElements
+                  type="text"
+                  id="instructorAlias"
+                  placeholder="Instructor Alias"
+                  form={form}
+                />
+              </div>
               <div className="h-10 mt-10">
                 {" "}
                 <Button

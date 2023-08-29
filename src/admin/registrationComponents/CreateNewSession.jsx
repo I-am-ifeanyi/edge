@@ -1,10 +1,8 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useEffect } from "react"
+import { useDispatch } from "react-redux"
 
-
-import InputElements from '../../components/InputElements'
-import { Button } from '../../components/Components'
-
+import InputElements from "../../components/InputElements"
+import { Button } from "../../components/Components"
 
 const CreateNewSession = ({
   form,
@@ -16,6 +14,10 @@ const CreateNewSession = ({
   const dispatch = useDispatch()
   const { register, control, handleSubmit, formState, reset, errors } = form
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
+  }, [])
+
   return (
     <div className="w-[90%] md:w-[600px] mt-10 flex-shrink-0 bg-colorWhite1 rounded-md shadow-md md:px-8 px-5 py-5 flex flex-col gap-4 items-center animate__animated animate__fadeInRight">
       <h4 className="">Create New Session</h4>
@@ -25,12 +27,14 @@ const CreateNewSession = ({
         onSubmit={handleSubmit(onNewSessionSubmit)}
         noValidate
       >
-        <InputElements
-          type="text"
-          id="sessionName"
-          placeholder="2020/2021 Session"
-          form={form}
-        />
+        <div className="h-12">
+          <InputElements
+            type="text"
+            id="sessionName"
+            placeholder="2020/2021 Session"
+            form={form}
+          />
+        </div>
         <InputElements
           type="select"
           options={["Quarterly", "Triannual", "Biannual"]}

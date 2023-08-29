@@ -59,16 +59,16 @@ const Learners = () => {
         isActive: true
       }
     ])
-       setLocations([
-         {
-           A: "Learners",
-           isActive: false
-         },
-         {
-           A: "Settings",
-           isActive: true
-         }
-       ])
+    setLocations([
+      {
+        A: "Learners",
+        isActive: false
+      },
+      {
+        A: "Settings",
+        isActive: true
+      }
+    ])
   }
 
   const toggleAllLearners = () => {
@@ -84,16 +84,16 @@ const Learners = () => {
         isActive: false
       }
     ])
-       setLocations([
-         {
-           A: "Learners",
-           isActive: false
-         },
-         {
-           A: "All Learners",
-           isActive: true
-         }
-       ])
+    setLocations([
+      {
+        A: "Learners",
+        isActive: false
+      },
+      {
+        A: "All Learners",
+        isActive: true
+      }
+    ])
   }
 
   const addLocation = () => {
@@ -213,8 +213,8 @@ const Learners = () => {
           onClick={isAddLearner ? reverseAddLocation : addLocation}
         />
         {activeLocation !== "Settings" && (
-          <div className="px-4 relative top-52 w-full flex flex-col items-center md:items-start h-screen  py-5 rounded-md justify-between gap-5">
-            <div className="w-full flex flex-col md:flex-row justify-between gap-10 md:gap-0">
+          <div className="px-4 relative top-52 w-full flex flex-col items-center md:items-start h-screen  py-5 rounded-md md:justify-between gap-5">
+            <div className="w-full flex flex-col md:flex-row justify-between md:gap-0">
               <OverallSummary
                 icon={learnerIcon}
                 title="Total Learners"
@@ -222,7 +222,10 @@ const Learners = () => {
               />
             </div>
             {!isAddLearner && (
-              <LearnersTableList dataToDisplay={dummyLearners} listName="Learner's List"  />
+              <LearnersTableList
+                dataToDisplay={dummyLearners}
+                listName="Learner's List"
+              />
             )}
             {isAddLearner && (
               <div className="w-full flex flex-col md:flex-row justify-between gap-10 md:gap-0 animate__animated animate__fadeInRight">
@@ -266,12 +269,14 @@ const Learners = () => {
                           options={["Female", "Male", "Custom"]}
                         />
                       </div>
-                      <InputElements
-                        type="text"
-                        id="learnersRegNumber"
-                        placeholder="Reg Num"
-                        form={form}
-                      />
+                      <div className="col-span-2 md:col-span-1">
+                        <InputElements
+                          type="text"
+                          id="learnersRegNumber"
+                          placeholder="Reg Num"
+                          form={form}
+                        />
+                      </div>
                     </fieldset>
                   </fieldset>
                   <fieldset className="flex flex-col md:flex-row w-full justify-between px-4">
@@ -404,7 +409,6 @@ const Learners = () => {
                     />
                   </div>
                   <p className="text-xs text-colorGray3">MAX FILE SIZE: 20MB</p>
-              
 
                   <div className="h-[38px] flex gap-10">
                     <Button
@@ -428,12 +432,15 @@ const Learners = () => {
               <h5 className="bg-colorGray6 rounded-t-md p-4">
                 Learner Settings
               </h5>
-              <InputElements
-                type="text"
-                id="instructorAlias"
-                placeholder="Learner Alias"
-                form={form}
-              />
+              <div className="h-12">
+                <InputElements
+                  type="text"
+                  id="instructorAlias"
+                  placeholder="Learner Alias"
+                  form={form}
+                />
+              </div>
+
               <div className="h-10 mt-10">
                 {" "}
                 <Button

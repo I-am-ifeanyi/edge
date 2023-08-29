@@ -7,14 +7,11 @@ import HeaderComponent from "./homepageComponents/HeaderComponent"
 import OverallSummary from "./homepageComponents/OverallSummary"
 import InputElements from "../components/InputElements"
 import analyticsIcon from "../assets/admin/generalAnalytics-icons/analytics.png"
-import instructorsIcon from "../assets/admin/dashboard-icons/instructors-icon.png"
-import learnersIcon from "../assets/admin/dashboard-icons/learners-icon.png"
-import coursesIcon from "../assets/admin/dashboard-icons/courses-icon.png"
-
-
+import instructorsIcon from "../assets/admin/generalAnalytics-icons/instructors.png"
+import learnersIcon from "../assets/admin/generalAnalytics-icons/learners.png"
+import coursesIcon from "../assets/admin/generalAnalytics-icons/courses.png"
 
 import { Button } from "../components/Components"
-
 
 const GeneralAnalytics = () => {
   const testRef = useRef(null)
@@ -51,6 +48,10 @@ const GeneralAnalytics = () => {
       isActive: true
     }
   ]
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, right: 0, behavior: "smooth" })
+  }, [])
 
   useEffect(() => {
     const options = {
@@ -314,7 +315,7 @@ const GeneralAnalytics = () => {
           isFunctionButton={true}
           toggleItems={""}
         />
-        <div className="relative top-52 px-4">
+        <div className="relative top-52 px-4 md:mt-5">
           <div className="md:w-[170px] my-3 md:float-right">
             <InputElements
               type="select"
@@ -384,12 +385,15 @@ const GeneralAnalytics = () => {
               onSubmit={handleSubmit(onNewSessionSubmit)}
               noValidate
             >
-              <InputElements
-                type="text"
-                id="newSession"
-                placeholder="First Term 2020/2021"
-                form={form}
-              />
+              <div className="h-12">
+                <InputElements
+                  type="text"
+                  id="newSession"
+                  placeholder="First Term 2020/2021"
+                  form={form}
+                />
+              </div>
+
               <InputElements
                 type="select"
                 options={["Quarterly", "Triannual", "Biannual"]}

@@ -168,19 +168,19 @@ const InputElements = ({
             />{" "}
           </figure>
         )}
-          <label
-            htmlFor={id}
-            className={`flex gap-2 w-[150px] ${
-              image
-                ? "h-10 mt-2 bg-colorBlue text-colorWhite3 flex flex-row"
-                : "h-[150px] flex-col"
-            } border-2 border-dotted rounded-md text-sm items-center justify-center cursor-pointer`}
-          >
-            {" "}
-            <AiOutlineCloudUpload size={20} />
-            {image ? "Change Image" : "Upload"}
-          </label>
-        
+        <label
+          htmlFor={id}
+          className={`flex gap-2 w-[150px] ${
+            image
+              ? "h-10 mt-2 bg-colorBlue text-colorWhite3 flex flex-row"
+              : "h-[150px] flex-col"
+          } border-2 border-dotted rounded-md text-sm items-center justify-center cursor-pointer`}
+        >
+          {" "}
+          <AiOutlineCloudUpload size={20} />
+          {image ? "Change Image" : "Upload"}
+        </label>
+
         <input
           type="file"
           id={id}
@@ -236,7 +236,11 @@ const InputElements = ({
           />
           {icon}
         </fieldset>
-        {<p className="text-colorRed text-[10px] h-8">{errors?.[id]?.message}</p>}
+        {
+          <p className="text-colorRed text-[10px] h-8">
+            {errors?.[id]?.message}
+          </p>
+        }
       </div>
     )
   } else if (type === "url") {

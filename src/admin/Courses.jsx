@@ -13,6 +13,7 @@ import EditCourse from "./homepageComponents/courseComponents/EditCourse"
 import AddNewLesson from "./homepageComponents/courseComponents/lessonComponent/AddNewLesson"
 import Lessons from "./homepageComponents/courseComponents/lessonComponent/Lessons"
 import Assignments from "./homepageComponents/courseComponents/assignmentComponent/Assignments"
+import CreateAssignment from "./homepageComponents/courseComponents/assignmentComponent/CreateAssignment"
 
 import {
   Button,
@@ -31,6 +32,7 @@ const Courses = () => {
   const [courseToEditID, setCourseToEditID] = useState("")
   const [isAddNewLesson, setIsAddNewLesson] = useState(false)
   const [previewedCourseList, setPreviewedCourseList] = useState(null)
+  const [isCreateAssignment, setIsCreateAssignment] = useState(false)
   const [activeSections, setActiveSections] = useState({
     overview: false,
     learners: false,
@@ -327,9 +329,6 @@ const Courses = () => {
     })
   }
 
-  const extractCourseToEdit = coursesList.filter(
-    (courses) => courses.id === courseToEditID
-  )
   const [locations, setLocations] = useState([
     {
       A: "Courses",
@@ -345,7 +344,7 @@ const Courses = () => {
   let courseAlias
 
   if (courseToEditID) {
-    extractCourseToEdit.map((course) => {
+    previewedCourseList.map((course) => {
       courseName = course.courseName
       courseAlias = course.courseAlias
     })
@@ -559,7 +558,11 @@ const Courses = () => {
     setIsAddNewLesson(true)
   }
 
-  console.log(activeSections)
+  const addNewAssignment = () => {
+    setIsCreateAssignment((prev) => !prev)
+  }
+
+  console.log(isCreateAssignment)
 
   return (
     <div className="relative">
@@ -570,7 +573,6 @@ const Courses = () => {
           subTitle={courseToEditID ? `(${courseAlias})` : null}
           subLinks={courseToEditID ? subLinksII : subLinks}
           locations={!courseToEditID ? locations : locationsII}
-      
           buttonProps={
             courseToEditID
               ? learners || overview
@@ -578,7 +580,9 @@ const Courses = () => {
                 : isLesson
                 ? "Add Lesson"
                 : assignments
-                ? "Create Assignment"
+                ? isCreateAssignment
+                  ? "Cancel"
+                  : "Create Assignment"
                 : tests
                 ? "Create Test"
                 : liveSessions
@@ -600,20 +604,6 @@ const Courses = () => {
           }}
           page="courses"
           isFunctionButton={true}
-          // onClick={
-          //   isAddNewCourse
-          //     ? reverseAddLocation
-          //     : isLesson && courseToEditID
-          //     ? addNewLesson
-          //     : courseToEditID && !isLesson
-          //     ? reverseEdit
-          //     : addLocation
-          // }
-          // onClick={
-          //   isAddNewCourse || overview || learners
-          //     ? reverseAddLocation
-          //     : addLocation
-          // }
           onClick={
             courseToEditID
               ? learners || overview
@@ -621,7 +611,7 @@ const Courses = () => {
                 : isLesson
                 ? addNewLesson
                 : assignments
-                ? ""
+                ? addNewAssignment
                 : tests
                 ? ""
                 : liveSessions
@@ -640,16 +630,16 @@ const Courses = () => {
                   <EditCourse
                     form={form}
                     onEditCourseSubmit={onEditCourseSubmit}
-                    courseDefaultValue={extractCourseToEdit[0]?.courseName}
+                    courseDefaultValue={previewedCourseList[0]?.courseName}
                     courseAliasDefaultValue={
-                      extractCourseToEdit[0]?.courseAlias
+                      previewedCourseList[0]?.courseAlias
                     }
                     courseDescriptionDefaultValue={
-                      extractCourseToEdit[0]?.description
+                      previewedCourseList[0]?.description
                     }
                     groups={groups}
                     branches={branches}
-                    extractCourseToEdit={extractCourseToEdit}
+                    previewedCourseList={previewedCourseList}
                     setActiveSections={setActiveSections}
                     activeSections={activeSections}
                     courseToEditID={courseToEditID}
@@ -664,7 +654,7 @@ const Courses = () => {
               )
             } else if (location.A === "Lessons") {
               return (
-                <div className="relative md:top-56 top-60 px-4" key={index}>
+                <div className="relative md:top-56 top-60 md:px-4" key={index}>
                   {!isAddNewLesson && (
                     <Lessons
                       courseToEditID={courseToEditID}
@@ -689,10 +679,13 @@ const Courses = () => {
             } else if (location.A === "Assignments") {
               return (
                 <div
-                  className="relative md:top-60 top-64 px-4 shadow mx-4 py-10 bg-colorWhite1 rounded-md"
+                  className="relative md:top-60 top-64 md:px-4 px-2 shadow md:mx-4 py-4 md:py-10 bg-colorWhite1 rounded-md"
                   key={index}
                 >
-                  <Assignments previewedCourseList={previewedCourseList} />
+                  {!isCreateAssignment && (
+                    <Assignments previewedCourseList={previewedCourseList} />
+                  )}{" "}
+                  {isCreateAssignment && <CreateAssignment />}{" "}
                 </div>
               )
             } else if (location.A === "Tests") {
@@ -716,7 +709,7 @@ const Courses = () => {
             }
           })}
         {!courseToEditID && (
-          <div className="px-4 relative top-52 w-full flex flex-col items-center md:items-start h-screen  py-5 rounded-md justify-between gap-5">
+          <div className="px-4 relative top-48 md:top-52 w-full flex flex-col items-center md:items-start h-screen  py-5 rounded-md md:justify-between gap-5">
             <div className="w-full flex flex-col md:flex-row justify-between gap-10 md:gap-0">
               <OverallSummary
                 icon={coursesIcon}
@@ -746,18 +739,22 @@ const Courses = () => {
                       </h5>
 
                       <fieldset className="px-4 md:w-full grid grid-cols-2 gap-4">
-                        <InputElements
-                          type="text"
-                          id="courseName"
-                          placeholder="Course Title"
-                          form={form}
-                        />
-                        <InputElements
-                          type="text"
-                          id="courseAlias"
-                          placeholder="Course Alias"
-                          form={form}
-                        />
+                        <div className="h-12">
+                          <InputElements
+                            type="text"
+                            id="courseName"
+                            placeholder="Course Title"
+                            form={form}
+                          />
+                        </div>
+                        <div className="h-12">
+                          <InputElements
+                            type="text"
+                            id="courseAlias"
+                            placeholder="Course Alias"
+                            form={form}
+                          />
+                        </div>
                         <div className="h-[120px] col-span-2">
                           <InputElements
                             type="textArea"
