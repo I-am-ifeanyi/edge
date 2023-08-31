@@ -5,6 +5,9 @@ import {
   createRoutesFromElements,
   RouterProvider
 } from "react-router-dom"
+import { LocalizationProvider } from "@mui/x-date-pickers"
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs"
+
 import Login from "./authentication/Login"
 import MainDashboard from "./MainDashboard"
 import PageLayout from "./users/students/PageLayout"

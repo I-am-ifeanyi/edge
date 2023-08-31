@@ -734,6 +734,169 @@ export const dummyLearners = [
   }
 ]
 
+export const assignmentSubmission = [
+  {
+    id: 1,
+    candidateName: "John Doe",
+    regNumber: "202301",
+    score: "7/10",
+    remarks: "Good",
+    details: "view"
+  },
+  {
+    id: 2,
+    candidateName: "Jane Smith",
+    regNumber: "202302",
+    score: "5/10",
+    remarks: "Average",
+    details: "view"
+  },
+  {
+    id: 3,
+    candidateName: "Michael Johnson",
+    regNumber: "202303",
+    score: "10/10",
+    remarks: "Excellent",
+    details: "view"
+  },
+  {
+    id: 4,
+    candidateName: "Emily Davis",
+    regNumber: "202304",
+    score: "7/10",
+    remarks: "Good",
+    details: "view"
+  },
+  {
+    id: 5,
+    candidateName: "Daniel Brown",
+    regNumber: "202305",
+    score: "5/10",
+    remarks: "Average",
+    details: "view"
+  },
+  {
+    id: 6,
+    candidateName: "Sophia Johnson",
+    regNumber: "202306",
+    score: "10/10",
+    remarks: "Excellent",
+    details: "view"
+  },
+  {
+    id: 7,
+    candidateName: "William Anderson",
+    regNumber: "202307",
+    score: "7/10",
+    remarks: "Good",
+    details: "view"
+  },
+  {
+    id: 8,
+    candidateName: "Olivia White",
+    regNumber: "202308",
+    score: "5/10",
+    remarks: "Average",
+    details: "view"
+  },
+  {
+    id: 9,
+    candidateName: "James Martinez",
+    regNumber: "202309",
+    score: "10/10",
+    remarks: "Excellent",
+    details: "view"
+  },
+  {
+    id: 10,
+    candidateName: "Ava Robinson",
+    regNumber: "202310",
+    score: "7/10",
+    remarks: "Good",
+    details: "view"
+  },
+  {
+    id: 11,
+    candidateName: "Liam Thompson",
+    regNumber: "202311",
+    score: "5/10",
+    remarks: "Average",
+    details: "view"
+  },
+  {
+    id: 12,
+    candidateName: "Emma Harris",
+    regNumber: "202312",
+    score: "10/10",
+    remarks: "Excellent",
+    details: "view"
+  },
+  {
+    id: 13,
+    candidateName: "Noah Walker",
+    regNumber: "202313",
+    score: "7/10",
+    remarks: "Good",
+    details: "view"
+  },
+  {
+    id: 14,
+    candidateName: "Isabella Turner",
+    regNumber: "202314",
+    score: "5/10",
+    remarks: "Average",
+    details: "view"
+  },
+  {
+    id: 15,
+    candidateName: "Mason Hall",
+    regNumber: "202315",
+    score: "10/10",
+    remarks: "Excellent",
+    details: "view"
+  },
+  {
+    id: 16,
+    candidateName: "Mia Adams",
+    regNumber: "202316",
+    score: "7/10",
+    remarks: "Good",
+    details: "view"
+  },
+  {
+    id: 17,
+    candidateName: "Ethan Collins",
+    regNumber: "202317",
+    score: "5/10",
+    remarks: "Average",
+    details: "view"
+  },
+  {
+    id: 18,
+    candidateName: "Avery Stewart",
+    regNumber: "202318",
+    score: "10/10",
+    remarks: "Excellent",
+    details: "view"
+  },
+  {
+    id: 19,
+    candidateName: "Harper Price",
+    regNumber: "202319",
+    score: "7/10",
+    remarks: "Good",
+    details: "view"
+  },
+  {
+    id: 20,
+    candidateName: "Logan Turner",
+    regNumber: "202320",
+    score: "5/10",
+    remarks: "Average",
+    details: "view"
+  }
+]
+
 export const dummyCourses = [
   {
     id: 1,

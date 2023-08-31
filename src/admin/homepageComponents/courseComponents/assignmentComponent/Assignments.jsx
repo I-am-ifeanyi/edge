@@ -3,19 +3,11 @@ import { BsCalendar2Week } from "react-icons/bs"
 
 import { Button } from "../../../../components/Components"
 
-const Assignments = ({ previewedCourseList }) => {
+const Assignments = ({ previewedCourseList, setIsSubmissions }) => {
   const calculateRemainingDays = (assignment) => {
     const dueDate = new Date(assignment.dueDate)
     const setDate = new Date(assignment.setDate)
     const currentTime = new Date()
-
-    if (currentTime > dueDate) {
-      return (
-        <div>
-          <p>This Assignment is already overdue!</p>
-        </div>
-      )
-    }
 
     const timeDifference = dueDate - setDate
     const remainingTime = dueDate - currentTime
@@ -27,6 +19,25 @@ const Assignments = ({ previewedCourseList }) => {
   }
 
   const assignmentName = previewedCourseList[0].assignments[0].title
+
+  const daysRemaining = previewedCourseList[0]?.assignments?.map((lists) => {
+    return calculateRemainingDays(lists)
+  })
+  if (daysRemaining < 1) {
+    return (
+      <div>
+        <h4>Sorry, this assignment is long overdue</h4>
+        <div className="h-10 mt-2 w-[150px]">
+          <Button
+            text="View Details"
+            background="bg-colorBlue"
+            color="text-colorWhite1"
+            onClick={() => setIsSubmissions(true)}
+          />
+        </div>
+      </div>
+    )
+  }
   return (
     <div className="bg-colorWhite2 p-5 rounded-md flex flex-col">
       <h6>{assignmentName}</h6>
@@ -51,6 +62,7 @@ const Assignments = ({ previewedCourseList }) => {
                     text="View Details"
                     background="bg-colorBlue"
                     color="text-colorWhite1"
+                    onClick={() => setIsSubmissions(true)}
                   />
                 </div>
               </div>

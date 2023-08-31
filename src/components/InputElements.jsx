@@ -3,6 +3,9 @@ import { Select, MenuItem, FormControl, InputLabel } from "@mui/material"
 import { Controller } from "react-hook-form"
 import Autocomplete from "@mui/material/Autocomplete"
 import TextField from "@mui/material/TextField"
+import { DatePicker } from "@mui/x-date-pickers/DatePicker"
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs"
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider"
 
 import { CONSTANTS } from "./Components"
 import {
@@ -10,6 +13,7 @@ import {
   AiOutlineEyeInvisible,
   AiOutlineCloudUpload
 } from "react-icons/ai"
+import { BorderColor } from "@mui/icons-material"
 
 const InputElements = ({
   type,
@@ -420,6 +424,25 @@ const InputElements = ({
         {icon}
         {<p className="text-colorRed text-[10px]">{errors?.[id]?.message}</p>}
       </div>
+    )
+  } else if (type === "date") {
+    return (
+      <FormControl fullWidth>
+        <Controller
+          name={id}
+          control={control}
+          defaultValue={null}
+          render={({ field: { onChange, value } }) => (
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DatePicker
+                value={value || null}
+                onChange={onChange}
+                inputProps={{ autoComplete: "off" }}
+              />
+            </LocalizationProvider>
+          )}
+        />
+      </FormControl>
     )
   }
   return <div>InputElements</div>

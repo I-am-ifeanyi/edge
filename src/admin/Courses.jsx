@@ -14,6 +14,8 @@ import AddNewLesson from "./homepageComponents/courseComponents/lessonComponent/
 import Lessons from "./homepageComponents/courseComponents/lessonComponent/Lessons"
 import Assignments from "./homepageComponents/courseComponents/assignmentComponent/Assignments"
 import CreateAssignment from "./homepageComponents/courseComponents/assignmentComponent/CreateAssignment"
+import Submissions from "./homepageComponents/courseComponents/assignmentComponent/Submissions"
+import { assignmentSubmission } from "../components/Components"
 
 import {
   Button,
@@ -33,6 +35,7 @@ const Courses = () => {
   const [isAddNewLesson, setIsAddNewLesson] = useState(false)
   const [previewedCourseList, setPreviewedCourseList] = useState(null)
   const [isCreateAssignment, setIsCreateAssignment] = useState(false)
+  const [isSubmissions, setIsSubmissions] = useState(false)
   const [activeSections, setActiveSections] = useState({
     overview: false,
     learners: false,
@@ -560,9 +563,8 @@ const Courses = () => {
 
   const addNewAssignment = () => {
     setIsCreateAssignment((prev) => !prev)
+    setIsSubmissions(false)
   }
-
-  console.log(isCreateAssignment)
 
   return (
     <div className="relative">
@@ -679,13 +681,25 @@ const Courses = () => {
             } else if (location.A === "Assignments") {
               return (
                 <div
-                  className="relative md:top-60 top-64 md:px-4 px-2 shadow md:mx-4 py-4 md:py-10 bg-colorWhite1 rounded-md"
+                  className={`relative md:top-52 top-64 py-4  ${
+                    isCreateAssignment || isSubmissions
+                      ? "bg-transparent px-2"
+                      : "bg-colorWhite1 shadow md:py-10 md:px-4 px-2  md:mx-4"
+                  } rounded-md`}
                   key={index}
                 >
-                  {!isCreateAssignment && (
-                    <Assignments previewedCourseList={previewedCourseList} />
+                  {!isCreateAssignment && !isSubmissions && (
+                    <Assignments
+                      previewedCourseList={previewedCourseList}
+                      setIsSubmissions={setIsSubmissions}
+                    />
                   )}{" "}
-                  {isCreateAssignment && <CreateAssignment />}{" "}
+                  {isCreateAssignment && !isSubmissions && (
+                    <CreateAssignment form={form} />
+                  )}
+                  {isSubmissions && !isCreateAssignment && (
+                    <Submissions dataToDisplay={assignmentSubmission} />
+                  )}
                 </div>
               )
             } else if (location.A === "Tests") {
