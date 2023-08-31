@@ -741,7 +741,7 @@ export const assignmentSubmission = [
     regNumber: "202301",
     score: "7/10",
     remarks: "Good",
-    details: "view"
+    details: "View"
   },
   {
     id: 2,
@@ -749,7 +749,7 @@ export const assignmentSubmission = [
     regNumber: "202302",
     score: "5/10",
     remarks: "Average",
-    details: "view"
+    details: "View"
   },
   {
     id: 3,
@@ -757,7 +757,7 @@ export const assignmentSubmission = [
     regNumber: "202303",
     score: "10/10",
     remarks: "Excellent",
-    details: "view"
+    details: "View"
   },
   {
     id: 4,
@@ -765,7 +765,7 @@ export const assignmentSubmission = [
     regNumber: "202304",
     score: "7/10",
     remarks: "Good",
-    details: "view"
+    details: "View"
   },
   {
     id: 5,
@@ -773,7 +773,7 @@ export const assignmentSubmission = [
     regNumber: "202305",
     score: "5/10",
     remarks: "Average",
-    details: "view"
+    details: "View"
   },
   {
     id: 6,
@@ -781,7 +781,7 @@ export const assignmentSubmission = [
     regNumber: "202306",
     score: "10/10",
     remarks: "Excellent",
-    details: "view"
+    details: "View"
   },
   {
     id: 7,
@@ -789,7 +789,7 @@ export const assignmentSubmission = [
     regNumber: "202307",
     score: "7/10",
     remarks: "Good",
-    details: "view"
+    details: "View"
   },
   {
     id: 8,
@@ -797,7 +797,7 @@ export const assignmentSubmission = [
     regNumber: "202308",
     score: "5/10",
     remarks: "Average",
-    details: "view"
+    details: "View"
   },
   {
     id: 9,
@@ -805,7 +805,7 @@ export const assignmentSubmission = [
     regNumber: "202309",
     score: "10/10",
     remarks: "Excellent",
-    details: "view"
+    details: "View"
   },
   {
     id: 10,
@@ -813,7 +813,7 @@ export const assignmentSubmission = [
     regNumber: "202310",
     score: "7/10",
     remarks: "Good",
-    details: "view"
+    details: "View"
   },
   {
     id: 11,
@@ -821,7 +821,7 @@ export const assignmentSubmission = [
     regNumber: "202311",
     score: "5/10",
     remarks: "Average",
-    details: "view"
+    details: "View"
   },
   {
     id: 12,
@@ -829,7 +829,7 @@ export const assignmentSubmission = [
     regNumber: "202312",
     score: "10/10",
     remarks: "Excellent",
-    details: "view"
+    details: "View"
   },
   {
     id: 13,
@@ -837,7 +837,7 @@ export const assignmentSubmission = [
     regNumber: "202313",
     score: "7/10",
     remarks: "Good",
-    details: "view"
+    details: "View"
   },
   {
     id: 14,
@@ -845,7 +845,7 @@ export const assignmentSubmission = [
     regNumber: "202314",
     score: "5/10",
     remarks: "Average",
-    details: "view"
+    details: "View"
   },
   {
     id: 15,
@@ -853,7 +853,7 @@ export const assignmentSubmission = [
     regNumber: "202315",
     score: "10/10",
     remarks: "Excellent",
-    details: "view"
+    details: "View"
   },
   {
     id: 16,
@@ -861,7 +861,7 @@ export const assignmentSubmission = [
     regNumber: "202316",
     score: "7/10",
     remarks: "Good",
-    details: "view"
+    details: "View"
   },
   {
     id: 17,
@@ -869,7 +869,7 @@ export const assignmentSubmission = [
     regNumber: "202317",
     score: "5/10",
     remarks: "Average",
-    details: "view"
+    details: "View"
   },
   {
     id: 18,
@@ -877,7 +877,7 @@ export const assignmentSubmission = [
     regNumber: "202318",
     score: "10/10",
     remarks: "Excellent",
-    details: "view"
+    details: "View"
   },
   {
     id: 19,
@@ -885,7 +885,7 @@ export const assignmentSubmission = [
     regNumber: "202319",
     score: "7/10",
     remarks: "Good",
-    details: "view"
+    details: "View"
   },
   {
     id: 20,
@@ -893,7 +893,7 @@ export const assignmentSubmission = [
     regNumber: "202320",
     score: "5/10",
     remarks: "Average",
-    details: "view"
+    details: "View"
   }
 ]
 
