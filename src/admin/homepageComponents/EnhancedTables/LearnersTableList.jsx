@@ -47,7 +47,6 @@ export default function LearnersTableList({ dataToDisplay, listName }) {
   const [instructorDetails, setInstructorDetails] =
     React.useState(dataToDisplay)
 
-
   const rows = instructorDetails?.map((detail) => {
     return createData(
       detail.id,
@@ -75,11 +74,6 @@ export default function LearnersTableList({ dataToDisplay, listName }) {
       ? (a, b) => descendingComparator(a, b, orderBy)
       : (a, b) => -descendingComparator(a, b, orderBy)
   }
-
-  // Since 2020 all major browsers ensure sort stability with Array.prototype.sort().
-  // stableSort() brings sort stability to non-modern browsers (notably IE11). If you
-  // only support modern browsers you can replace stableSort(exampleArray, exampleComparator)
-  // with exampleArray.slice().sort(exampleComparator)
   function stableSort(array, comparator) {
     if (array) {
       const stabilizedThis = array.map((el, index) => [el, index])
@@ -323,7 +317,6 @@ export default function LearnersTableList({ dataToDisplay, listName }) {
 
     setSelected(newSelected)
   }
-
 
   const handleDeleteItems = () => {
     setInstructorDetails((prevDetails) => {
