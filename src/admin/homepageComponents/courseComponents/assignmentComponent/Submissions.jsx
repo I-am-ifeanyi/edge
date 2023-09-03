@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 
 import OverallSummary from "../../OverallSummary"
 import courseIcon from "../../../../assets/admin/coursesIcon/courses-icon.png"
@@ -6,7 +6,10 @@ import AssignmentSubmissionTableList from "../../EnhancedTables/AssignmentSubmis
 
 import { assignmentSubmission } from "../../../../components/Components"
 
-const Submissions = () => {
+const Submissions = ({ toggleDetailsState }) => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, right: 0, behavior: "smooth" })
+  }, [])
   return (
     <div className="px-2 w-full flex flex-col gap-5">
       <div className="flex flex-col md:flex-row gap-4 justify-between">
@@ -41,6 +44,7 @@ const Submissions = () => {
         <AssignmentSubmissionTableList
           dataToDisplay={assignmentSubmission}
           listName="Assignment Submissions"
+          toggleIsDetails={toggleDetailsState}
         />
       </div>
     </div>

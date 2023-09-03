@@ -16,6 +16,7 @@ import Assignments from "./homepageComponents/courseComponents/assignmentCompone
 import CreateAssignment from "./homepageComponents/courseComponents/assignmentComponent/CreateAssignment"
 import Submissions from "./homepageComponents/courseComponents/assignmentComponent/Submissions"
 import { assignmentSubmission } from "../components/Components"
+import AssignmentDetails from "./homepageComponents/courseComponents/assignmentComponent/AssignmentDetails"
 
 import {
   Button,
@@ -36,6 +37,7 @@ const Courses = () => {
   const [previewedCourseList, setPreviewedCourseList] = useState(null)
   const [isCreateAssignment, setIsCreateAssignment] = useState(false)
   const [isSubmissions, setIsSubmissions] = useState(false)
+  const [isDetails, setIsDetails] = useState(false)
   const [activeSections, setActiveSections] = useState({
     overview: false,
     learners: false,
@@ -59,6 +61,10 @@ const Courses = () => {
   const sampleCourse = coursesList?.filter(
     (course) => course.id === courseToEditID
   )
+
+  const toggleIsDetails = () => {
+    setIsDetails((prev) => !prev)
+  }
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
@@ -566,6 +572,8 @@ const Courses = () => {
     setIsSubmissions(false)
   }
 
+  console.log(isDetails)
+
   return (
     <div className="relative">
       <div className="md:w-[90%] w-full absolute h-full right-0 top-4">
@@ -697,8 +705,14 @@ const Courses = () => {
                   {isCreateAssignment && !isSubmissions && (
                     <CreateAssignment form={form} />
                   )}
-                  {isSubmissions && !isCreateAssignment && (
-                    <Submissions dataToDisplay={assignmentSubmission} />
+                  {isSubmissions && !isDetails && !isCreateAssignment && (
+                    <Submissions
+                      dataToDisplay={assignmentSubmission}
+                      toggleDetailsState={toggleIsDetails}
+                    />
+                  )}
+                  {isDetails && isSubmissions && !isCreateAssignment && (
+                    <AssignmentDetails toggleDetailsState={toggleIsDetails} />
                   )}
                 </div>
               )

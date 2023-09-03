@@ -10,7 +10,10 @@ import { styled } from "@mui/material/styles"
 import { tableCellClasses } from "@mui/material/TableCell"
 import { TbFileDownload } from "react-icons/tb"
 
-export default function AssignmentSubmissionTableList({ dataToDisplay }) {
+export default function AssignmentSubmissionTableList({
+  dataToDisplay,
+  toggleIsDetails
+}) {
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: "#F1F1F5",
@@ -81,7 +84,10 @@ export default function AssignmentSubmissionTableList({ dataToDisplay }) {
                   cursor: "pointer"
                 }}
               >
-                <span className="bg-gray-200 px-2 py-1 rounded-md font-[500] hover:translate-y-1 transition-all duration-500">
+                <span
+                  className="bg-gray-200 px-2 py-1 rounded-md font-[500] hover:translate-y-1 transition-all duration-500"
+                  onClick={toggleIsDetails}
+                >
                   {row.details}
                 </span>
                 <TbFileDownload size={20} color={"gray"} />
