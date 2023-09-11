@@ -17,12 +17,16 @@ import CreateAssignment from "./homepageComponents/courseComponents/assignmentCo
 import Submissions from "./homepageComponents/courseComponents/assignmentComponent/Submissions"
 import { assignmentSubmission } from "../components/Components"
 import AssignmentDetails from "./homepageComponents/courseComponents/assignmentComponent/AssignmentDetails"
+import Tests from "./homepageComponents/testComponents/Tests"
+import CreateNewTest from "./homepageComponents/testComponents/CreateNewTest"
+import TestSubmissions from "./homepageComponents/testComponents/TestSubmissions"
 
 import {
   Button,
   dummyCourses,
   dummyInstructors
 } from "../components/Components"
+import TestDetails from "./homepageComponents/testComponents/TestDetails"
 
 const Courses = () => {
   const form = useForm()
@@ -38,6 +42,9 @@ const Courses = () => {
   const [isCreateAssignment, setIsCreateAssignment] = useState(false)
   const [isSubmissions, setIsSubmissions] = useState(false)
   const [isDetails, setIsDetails] = useState(false)
+  const [isCreateTest, setIsCreateTest] = useState(false)
+  const [isTestSubmission, setIsTestSubmission] = useState(false)
+  const [isTestDetails, setIsTestDetails] = useState(false)
   const [activeSections, setActiveSections] = useState({
     overview: false,
     learners: false,
@@ -64,6 +71,10 @@ const Courses = () => {
 
   const toggleIsDetails = () => {
     setIsDetails((prev) => !prev)
+  }
+
+  const toggleIsTestDetails = () => {
+    setIsTestDetails((prev) => !prev)
   }
 
   useEffect(() => {
@@ -572,6 +583,11 @@ const Courses = () => {
     setIsSubmissions(false)
   }
 
+  const addNewTest = () => {
+    setIsCreateTest((prev) => !prev)
+    setIsTestSubmission(false)
+  }
+
   console.log(isDetails)
 
   return (
@@ -594,7 +610,11 @@ const Courses = () => {
                   ? "Cancel"
                   : "Create Assignment"
                 : tests
-                ? "Create Test"
+                ? isCreateTest
+                  ? "Cancel"
+                  : isTestSubmission && !isTestDetails
+                  ? "Export Test Results"
+                  : "Create New Test"
                 : liveSessions
                 ? "Schedule Session"
                 : "Add New Course"
@@ -623,7 +643,9 @@ const Courses = () => {
                 : assignments
                 ? addNewAssignment
                 : tests
-                ? ""
+                ? isTestSubmission && !isTestDetails
+                  ? () => alert("Test result successfully exported")
+                  : addNewTest
                 : liveSessions
                 ? ""
                 : ""
@@ -718,8 +740,25 @@ const Courses = () => {
               )
             } else if (location.A === "Tests") {
               return (
-                <div className="relative top-72" key={index}>
-                  This is Test's fort
+                <div className="relative top-64 md:top-52 p-4" key={index}>
+                  {!isCreateTest && !isTestSubmission && (
+                    <Tests
+                      previewedCourseList={previewedCourseList}
+                      setIsTestSubmission={setIsTestSubmission}
+                    />
+                  )}
+                  {isCreateTest && !isTestSubmission && (
+                    <CreateNewTest form={form} />
+                  )}
+                  {isTestSubmission && !isTestDetails && !isCreateTest && (
+                    <TestSubmissions
+                      form={form}
+                      toggleDetailsState={toggleIsTestDetails}
+                    />
+                  )}
+                  {isTestDetails && isTestSubmission && !isCreateTest && (
+                    <TestDetails />
+                  )}
                 </div>
               )
             } else if (location.A === "Live Sessions") {
