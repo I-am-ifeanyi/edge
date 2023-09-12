@@ -1,13 +1,11 @@
 import React, { useEffect } from "react"
 
+import OverallSummary from "../../OverallSummary"
+import courseIcon from "../../../../assets/admin/coursesIcon/courses-icon.png"
+import AssignmentSubmissionTableList from "../../EnhancedTables/AssignmentSubmissionTableList"
+import { assignmentSubmission } from "../../../../components/Components"
 
-import OverallSummary from "../OverallSummary"
-import courseIcon from "../../../assets/admin/coursesIcon/courses-icon.png"
-import AssignmentSubmissionTableList from "../EnhancedTables/AssignmentSubmissionTableList"
-import { assignmentSubmission } from "../../../components/Components"
-
-
-const TestSubmissions = ({ toggleDetailsState }) => {
+const TestSubmissions = ({ toggleDetailsState, setTestTaker }) => {
   useEffect(() => {
     window.scrollTo({ top: 0, right: 0, behavior: "smooth" })
   }, [])
@@ -46,10 +44,11 @@ const TestSubmissions = ({ toggleDetailsState }) => {
           dataToDisplay={assignmentSubmission}
           listName="Test Submissions"
           toggleIsDetails={toggleDetailsState}
+          setTestTaker={setTestTaker}
         />
       </div>
     </div>
   )
 }
 
-export default TestSubmissions;
+export default TestSubmissions

@@ -897,6 +897,61 @@ export const assignmentSubmission = [
   }
 ]
 
+export const dummyQuestions = [
+  {
+    question: "What is the capital of France?",
+    options: ["Berlin", "London", "Madrid", "Paris"],
+    correct: "Paris",
+  },
+  {
+    question: "Which planet is known as the 'Red Planet'?",
+    options: ["Earth", "Mars", "Venus", "Jupiter"],
+    correct: "Mars",
+  },
+  {
+    question: "Who wrote the play 'Romeo and Juliet'?",
+    options: ["Charles Dickens", "William Shakespeare", "Jane Austen", "Mark Twain"],
+    correct: "William Shakespeare",
+  },
+  {
+    question: "What is the chemical symbol for water?",
+    options: ["H2O", "CO2", "O2", "N2"],
+    correct: "H2O",
+  },
+  {
+    question: "Which gas do plants absorb from the atmosphere?",
+    options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Hydrogen"],
+    correct: "Carbon Dioxide",
+  },
+  {
+    question: "What is the largest mammal in the world?",
+    options: ["Giraffe", "Elephant", "Blue Whale", "Hippopotamus"],
+    correct: "Blue Whale",
+  },
+  {
+    question: "Who painted the Mona Lisa?",
+    options: ["Pablo Picasso", "Leonardo da Vinci", "Vincent van Gogh", "Rembrandt"],
+    correct: "Leonardo da Vinci",
+  },
+  {
+    question: "What is the powerhouse of the cell?",
+    options: ["Mitochondria", "Nucleus", "Ribosome", "Endoplasmic Reticulum"],
+    correct: "Mitochondria",
+  },
+  {
+    question: "Which country is known as the Land of the Rising Sun?",
+    options: ["China", "Japan", "South Korea", "Thailand"],
+    correct: "Japan",
+  },
+  {
+    question: "What is the chemical symbol for gold?",
+    options: ["Au", "Ag", "Fe", "Cu"],
+    correct: "Au",
+  },
+];
+
+
+
 export const dummyCourses = [
   {
     id: 1,

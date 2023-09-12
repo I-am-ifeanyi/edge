@@ -17,16 +17,16 @@ import CreateAssignment from "./homepageComponents/courseComponents/assignmentCo
 import Submissions from "./homepageComponents/courseComponents/assignmentComponent/Submissions"
 import { assignmentSubmission } from "../components/Components"
 import AssignmentDetails from "./homepageComponents/courseComponents/assignmentComponent/AssignmentDetails"
-import Tests from "./homepageComponents/testComponents/Tests"
-import CreateNewTest from "./homepageComponents/testComponents/CreateNewTest"
-import TestSubmissions from "./homepageComponents/testComponents/TestSubmissions"
+import Tests from "./homepageComponents/courseComponents/testComponents/Tests"
+import CreateNewTest from "./homepageComponents/courseComponents/testComponents/CreateNewTest"
+import TestSubmissions from "./homepageComponents/courseComponents/testComponents/TestSubmissions"
 
 import {
   Button,
   dummyCourses,
   dummyInstructors
 } from "../components/Components"
-import TestDetails from "./homepageComponents/testComponents/TestDetails"
+import TestDetails from "./homepageComponents/courseComponents/testComponents/TestDetails"
 
 const Courses = () => {
   const form = useForm()
@@ -45,6 +45,7 @@ const Courses = () => {
   const [isCreateTest, setIsCreateTest] = useState(false)
   const [isTestSubmission, setIsTestSubmission] = useState(false)
   const [isTestDetails, setIsTestDetails] = useState(false)
+  const [testTaker, setTestTaker] = useState("Ifeanyi Onyeka")
   const [activeSections, setActiveSections] = useState({
     overview: false,
     learners: false,
@@ -662,13 +663,6 @@ const Courses = () => {
                   <EditCourse
                     form={form}
                     onEditCourseSubmit={onEditCourseSubmit}
-                    courseDefaultValue={previewedCourseList[0]?.courseName}
-                    courseAliasDefaultValue={
-                      previewedCourseList[0]?.courseAlias
-                    }
-                    courseDescriptionDefaultValue={
-                      previewedCourseList[0]?.description
-                    }
                     groups={groups}
                     branches={branches}
                     previewedCourseList={previewedCourseList}
@@ -754,10 +748,11 @@ const Courses = () => {
                     <TestSubmissions
                       form={form}
                       toggleDetailsState={toggleIsTestDetails}
+                      setTestTaker={setTestTaker}
                     />
                   )}
                   {isTestDetails && isTestSubmission && !isCreateTest && (
-                    <TestDetails />
+                    <TestDetails testTaker={testTaker} form={form} />
                   )}
                 </div>
               )

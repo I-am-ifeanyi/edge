@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { AiFillSound } from "react-icons/ai"
 
 import InputElements from "../../../components/InputElements"
 import { dummyInstructors } from "../../../components/Components"
@@ -7,9 +8,9 @@ import { Button } from "../../../components/Components"
 const EditCourse = ({
   onEditCourseSubmit,
   form,
-  courseDefaultValue,
-  courseAliasDefaultValue,
-  courseDescriptionDefaultValue,
+  // courseDefaultValue,
+  // courseAliasDefaultValue,
+  // courseDescriptionDefaultValue,
   groups,
   branches,
   previewedCourseList
@@ -17,11 +18,20 @@ const EditCourse = ({
   const { register, control, handleSubmit, formState, reset, errors } = form
   const [instructorsList, setInstructorsList] = useState(dummyInstructors)
 
-  console.log(
-    courseDefaultValue,
-    courseAliasDefaultValue,
-    courseDescriptionDefaultValue
-  )
+
+  const speak = (text) => {
+    if ("speechSynthesis" in window) {
+      const synthesis = window.speechSynthesis
+      const utterance = new SpeechSynthesisUtterance(text)
+      synthesis.speak(utterance)
+    } else {
+      alert("Text-to-speech not supported in this browser.")
+    }
+  }
+
+  const courseDefaultValue = previewedCourseList[0]?.courseName
+  const courseAliasDefaultValue = previewedCourseList[0]?.courseAlias
+  const courseDescriptionDefaultValue = previewedCourseList[0]?.description
 
   return (
     <form
@@ -47,7 +57,7 @@ const EditCourse = ({
                   defaultValue={courseDefaultValue}
                 />
               </div>
-              <div className="h-12">
+              <div className="h-12 relative">
                 <InputElements
                   type="text"
                   id="courseAlias"
@@ -56,13 +66,18 @@ const EditCourse = ({
                   defaultValue={courseAliasDefaultValue}
                 />
               </div>
-              <div className="h-[120px] col-span-2">
+              <div className="h-[120px] col-span-2 relative">
                 <InputElements
                   type="textArea"
                   id="description"
                   placeholder="Course Description"
                   form={form}
                   defaultValue={courseDescriptionDefaultValue}
+                />
+                <AiFillSound
+                  className="absolute top-3 right-3 text-colorBlue -rotate-45 cursor-pointer"
+                  size={20}
+                  onClick={() => speak(courseDescriptionDefaultValue)}
                 />
               </div>
             </fieldset>

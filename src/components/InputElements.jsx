@@ -232,7 +232,7 @@ const InputElements = ({
             className="outline-none w-full  h-full px-2"
             {...register(`${id}`, {
               required: {
-                value: value ? false : true,
+                value: true,
                 message: `Please fill in this field`
               }
             })}
@@ -412,7 +412,7 @@ const InputElements = ({
           id={id}
           placeholder={placeholder}
           defaultValue={defaultValue}
-          className="outline-none w-full h-full p-2 bg-colorWhite2 border border-colorWhite3 rounded-lg resize-none"
+          className="outline-none w-full h-full p-2 pr-8 md:pr-5 bg-colorWhite2 border border-colorWhite3 rounded-lg resize-none"
           {...register(`${id}`, {
             required: {
               value: true,

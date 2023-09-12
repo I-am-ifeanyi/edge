@@ -12,7 +12,8 @@ import { TbFileDownload } from "react-icons/tb"
 
 export default function AssignmentSubmissionTableList({
   dataToDisplay,
-  toggleIsDetails
+  toggleIsDetails,
+  setTestTaker
 }) {
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -86,7 +87,10 @@ export default function AssignmentSubmissionTableList({
               >
                 <span
                   className="bg-gray-200 px-2 py-1 rounded-md font-[500] hover:translate-y-1 transition-all duration-500"
-                  onClick={toggleIsDetails}
+                  onClick={() => {
+                    toggleIsDetails()
+                    setTestTaker(row?.candidateName)
+                  }}
                 >
                   {row.details}
                 </span>

@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { BsCalendar2Week } from "react-icons/bs"
 
-import { Button } from "../../../components/Components"
+import { Button } from "../../../../components/Components"
 const Tests = ({ previewedCourseList, setIsTestSubmission }) => {
   const calculateRemainingDays = (assignment) => {
     const dueDate = new Date(assignment.dueDate)
